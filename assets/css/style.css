@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Syne:wght@500;600;700;800&display=swap');
 
 :root {
   --font-display: 'Syne', sans-serif;
@@ -7,13 +7,11 @@
   
   --bg-dark: #07090e;
   --bg-card: rgba(14, 18, 27, 0.85);
-  --bg-card-hover: rgba(20, 26, 38, 0.95);
   --border-light: rgba(255, 255, 255, 0.12);
   --border-gold: rgba(212, 175, 55, 0.4);
   
   --color-gold: #d4af37;
   --color-gold-light: #f3e5ab;
-  --color-accent: #ffffff;
 }
 
 * {
@@ -27,7 +25,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Horizon Grove Large Display Typography */
 .font-display {
   font-family: var(--font-display);
 }
@@ -36,25 +33,17 @@ body {
   font-family: var(--font-serif);
 }
 
-/* Horizon Grove Giant Title Style */
-.hero-giant-title {
-  font-family: var(--font-display);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 0.9;
-  text-transform: uppercase;
-}
-
-/* Background Image with Dark Atmospheric Gradient */
+/* Panoramic Dubai Skyline Hero Background */
 .hero-bg-wrapper {
   position: relative;
-  background-image: linear-gradient(180deg, rgba(7, 9, 14, 0.4) 0%, rgba(7, 9, 14, 0.8) 70%, #07090e 100%),
-                    url('../images/backgrounds/hero_horizon_bg.jpg');
+  background-image: linear-gradient(180deg, rgba(7, 9, 14, 0.35) 0%, rgba(7, 9, 14, 0.75) 60%, #07090e 100%),
+                    url('../images/backgrounds/dubai_skyline_hero.jpg');
   background-size: cover;
-  background-position: center center;
+  background-position: center 30%;
   background-repeat: no-repeat;
 }
 
+/* Dark Marble Texture Overlay for Body */
 .marble-texture-overlay {
   background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 60%),
                     radial-gradient(circle at 100% 100%, rgba(30, 58, 138, 0.08) 0%, transparent 50%),
@@ -81,7 +70,7 @@ body {
   box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.95), 0 0 30px rgba(212, 175, 55, 0.15);
 }
 
-/* Minimalist White Horizon Pill Button */
+/* Minimalist White Pill Button */
 .btn-horizon-white {
   background-color: #ffffff;
   color: #07090e;
@@ -118,21 +107,6 @@ body {
   transform: translateY(-2px);
 }
 
-.btn-horizon-gold {
-  background: linear-gradient(135deg, #dfba48 0%, #c59b27 50%, #997316 100%);
-  color: #07090e;
-  font-weight: 700;
-  border-radius: 9999px;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
-}
-
-.btn-horizon-gold:hover {
-  box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
-  transform: translateY(-2px);
-}
-
-/* Clean Badges */
 .badge-clean-white {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -147,16 +121,15 @@ body {
   backdrop-filter: blur(10px);
 }
 
-/* Floating Status Box (Horizon Grove Reference) */
 .horizon-status-box {
-  background: rgba(14, 18, 27, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
-  padding: 16px 24px;
+  background: rgba(14, 18, 27, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(24px);
+  border-radius: 24px;
+  padding: 20px 24px;
 }
 
-/* Custom Leaflet Map Theme */
+/* Custom Leaflet Map */
 .leaflet-container {
   background: #0b0e14 !important;
   font-family: var(--font-sans);
@@ -172,7 +145,6 @@ body {
   background: #0f141f !important;
 }
 
-/* Clean Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -188,7 +160,6 @@ body {
   background: #d4af37;
 }
 
-/* Gallery Thumbnails Scroll Hide */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
