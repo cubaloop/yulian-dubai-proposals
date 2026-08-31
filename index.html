@@ -77,45 +77,85 @@
         </button>
       </div>
 
-      <!-- Mobile Hamburger -->
+      <!-- Mobile Hamburger & Actions -->
       <div class="flex items-center space-x-2 md:hidden">
-        <button onclick="openComparisonModal()" class="p-2 rounded-full bg-slate-900 border border-white/10 text-amber-400">
+        <button onclick="openComparisonModal()" class="p-2.5 rounded-full bg-slate-900 border border-white/10 text-amber-400 hover:bg-slate-800">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
         </button>
-        <button onclick="toggleMobileMenu()" class="p-2 rounded-full bg-slate-900 border border-white/10 text-white">
+        <button onclick="toggleMobileMenu()" class="p-2.5 rounded-full bg-slate-900 border border-white/10 text-white hover:bg-slate-800 focus:outline-none">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
         </button>
       </div>
 
     </div>
 
-    <!-- Mobile Slide Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-slate-950/98 border-b border-white/10 px-6 py-6 space-y-4">
+    <!-- Mobile Slide Menu (Fully Interactive) -->
+    <div id="mobile-menu" class="hidden md:hidden bg-slate-950 border-b border-white/15 px-6 py-6 space-y-5 text-white shadow-2xl">
+      
+      <!-- Section Links in Mobile Menu -->
+      <div class="grid grid-cols-1 gap-2 border-b border-white/10 pb-4">
+        <button onclick="mobileNavigate('living')" class="flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-white/10 text-left font-bold text-sm text-slate-100">
+          <span class="flex items-center space-x-2">
+            <span class="text-amber-400">01.</span>
+            <span data-i18n="navLiving">Residencial (Vivir)</span>
+          </span>
+          <span class="text-[10px] px-2 py-0.5 bg-amber-400 text-slate-950 rounded-full font-black">4 OPCIONES</span>
+        </button>
+        <button onclick="mobileNavigate('commercial')" class="flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-white/10 text-left font-bold text-sm text-slate-100">
+          <span class="flex items-center space-x-2">
+            <span class="text-amber-400">02.</span>
+            <span data-i18n="navCommercial">Restaurante (Comercial)</span>
+          </span>
+          <span class="text-[10px] px-2 py-0.5 bg-white/10 text-slate-300 rounded-full">EN BÚSQUEDA</span>
+        </button>
+        <button onclick="mobileNavigate('townhouse')" class="flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-white/10 text-left font-bold text-sm text-slate-100">
+          <span class="flex items-center space-x-2">
+            <span class="text-amber-400">03.</span>
+            <span data-i18n="navTownhouse">Chalet (Personal)</span>
+          </span>
+          <span class="text-[10px] px-2 py-0.5 bg-white/10 text-slate-300 rounded-full">EN BÚSQUEDA</span>
+        </button>
+      </div>
+
+      <!-- Currency Toggle in Mobile -->
       <div class="flex items-center justify-between border-b border-white/10 pb-3">
-        <span class="text-xs text-slate-300">Moneda:</span>
-        <div class="inline-flex bg-slate-900 p-0.5 rounded-full border border-white/10">
-          <button onclick="setCurrency('EUR')" class="px-3 py-1 text-xs font-bold rounded-full bg-white text-slate-950">EUR</button>
-          <button onclick="setCurrency('AED')" class="px-3 py-1 text-xs font-medium text-slate-400">AED</button>
-          <button onclick="setCurrency('USD')" class="px-3 py-1 text-xs font-medium text-slate-400">USD</button>
+        <span class="text-xs font-semibold text-slate-300">Moneda:</span>
+        <div class="inline-flex bg-slate-900 p-0.5 rounded-full border border-white/15">
+          <button id="mob-curr-eur" onclick="setCurrency('EUR')" class="px-3 py-1 text-xs font-bold rounded-full bg-white text-slate-950">EUR</button>
+          <button id="mob-curr-aed" onclick="setCurrency('AED')" class="px-3 py-1 text-xs font-medium text-slate-400">AED</button>
+          <button id="mob-curr-usd" onclick="setCurrency('USD')" class="px-3 py-1 text-xs font-medium text-slate-400">USD</button>
         </div>
       </div>
+
+      <!-- Units Toggle in Mobile -->
       <div class="flex items-center justify-between border-b border-white/10 pb-3">
-        <span class="text-xs text-slate-300">Medidas:</span>
-        <div class="inline-flex bg-slate-900 p-0.5 rounded-full border border-white/10">
-          <button onclick="setUnit('sqm')" class="px-3 py-1 text-xs font-bold rounded-full bg-white text-slate-950">m²</button>
-          <button onclick="setUnit('sqft')" class="px-3 py-1 text-xs font-medium text-slate-400">sqft</button>
+        <span class="text-xs font-semibold text-slate-300">Medidas:</span>
+        <div class="inline-flex bg-slate-900 p-0.5 rounded-full border border-white/15">
+          <button id="mob-unit-sqm" onclick="setUnit('sqm')" class="px-3 py-1 text-xs font-bold rounded-full bg-white text-slate-950">m²</button>
+          <button id="mob-unit-sqft" onclick="setUnit('sqft')" class="px-3 py-1 text-xs font-medium text-slate-400">sqft</button>
         </div>
       </div>
+
+      <!-- Language Toggle in Mobile -->
       <div class="flex items-center justify-between border-b border-white/10 pb-3">
-        <span class="text-xs text-slate-300">Idioma:</span>
-        <div class="inline-flex bg-slate-900 p-0.5 rounded-full border border-white/10">
-          <button onclick="setLanguage('es')" class="px-3 py-1 text-xs font-bold rounded-full bg-white text-slate-950">Español</button>
-          <button onclick="setLanguage('en')" class="px-3 py-1 text-xs font-medium text-slate-400">English</button>
+        <span class="text-xs font-semibold text-slate-300">Idioma:</span>
+        <div class="inline-flex bg-slate-900 p-0.5 rounded-full border border-white/15">
+          <button id="mob-lang-es" onclick="setLanguage('es')" class="px-3 py-1 text-xs font-bold rounded-full bg-white text-slate-950">Español</button>
+          <button id="mob-lang-en" onclick="setLanguage('en')" class="px-3 py-1 text-xs font-medium text-slate-400">English</button>
         </div>
       </div>
-      <button onclick="openContactModal()" class="btn-horizon-white w-full py-3 text-xs font-bold">
-        <span data-i18n="getConsultation">Get A Consultation ↗</span>
-      </button>
+
+      <!-- Action Buttons in Mobile -->
+      <div class="space-y-2 pt-1">
+        <button onclick="closeMobileMenu(); openComparisonModal();" class="btn-horizon-glass w-full py-3 text-xs font-bold flex items-center justify-center">
+          <svg class="w-4 h-4 mr-2 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+          <span data-i18n="compareBtn">Comparar Opciones</span>
+        </button>
+        <button onclick="closeMobileMenu(); openContactModal();" class="btn-horizon-white w-full py-3.5 text-xs font-bold">
+          <span data-i18n="getConsultation">Get A Consultation ↗</span>
+        </button>
+      </div>
+
     </div>
   </header>
 
@@ -187,7 +227,7 @@
             <span class="text-slate-300 font-semibold uppercase tracking-wider text-[11px]">ESTADO DEL PORTAFOLIO</span>
             <span class="text-emerald-400 font-bold flex items-center text-xs">
               <span class="w-2 h-2 rounded-full bg-emerald-400 mr-1.5 animate-ping"></span>
-              3 Opciones Listas
+              4 Opciones Listas
             </span>
           </div>
           <div class="w-full bg-white/15 h-1.5 rounded-full overflow-hidden">
@@ -214,7 +254,7 @@
           <span>01.</span>
           <span data-i18n="tabLiving">Apartamento para Vivir</span>
         </span>
-        <span class="px-2.5 py-0.5 rounded-full bg-slate-950 text-white text-[10px] font-black">3 OPCIONES</span>
+        <span class="px-2.5 py-0.5 rounded-full bg-slate-950 text-white text-[10px] font-black">4 OPCIONES</span>
       </button>
 
       <!-- Tab 2: Commercial -->
@@ -258,7 +298,7 @@
     </div>
 
     <!-- Properties Cards Grid -->
-    <div id="properties-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div id="properties-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
       <!-- Injected by JavaScript -->
     </div>
   </main>
@@ -319,11 +359,11 @@
       </button>
 
       <div class="w-16 h-16 rounded-full bg-white text-slate-950 mx-auto flex items-center justify-center mb-4 text-2xl font-display font-bold">
-        YD
+        DR
       </div>
 
-      <h3 class="text-2xl font-display font-extrabold text-white" data-i18n="contactTitle">Private Advisory</h3>
-      <p class="text-xs text-slate-400 mt-1 mb-6" data-i18n="contactSubtitle">Direct consultation for Yulian • Dubai Real Estate Advisory</p>
+      <h3 class="text-2xl font-display font-extrabold text-white">David A. Rodriguez</h3>
+      <p class="text-xs text-slate-400 mt-1 mb-6">Asesor Inmobiliario Privado • Dubai Real Estate Advisory</p>
 
       <div class="space-y-3">
         <button onclick="sendGeneralInquiry()" class="btn-horizon-white w-full py-3.5 text-xs font-bold flex items-center justify-center">
@@ -339,7 +379,7 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
+  <!-- FOOTER (Updated with Creado por David A. Rodriguez) -->
   <footer class="mt-auto border-t border-slate-900/10 bg-white/80 backdrop-blur-md py-10 px-4 text-xs text-slate-600">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="flex items-center space-x-3">
@@ -347,8 +387,8 @@
         <span class="text-slate-400">/</span>
         <span><span data-i18n="footerBuiltFor">Herramienta personalizada exclusivamente para</span> <strong class="text-slate-950 font-bold">Yulian</strong></span>
       </div>
-      <div class="text-slate-700 font-medium" data-i18n="footerCuratedBy">
-        Curada por tu Asesor Inmobiliario de Confianza en Dubai
+      <div class="text-slate-900 font-bold text-sm">
+        Creado por David A. Rodriguez
       </div>
       <div class="text-[11px] text-slate-500">
         © 2026 Dubai Real Estate Advisory. Verified Market Listings.

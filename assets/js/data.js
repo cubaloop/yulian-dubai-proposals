@@ -9,18 +9,102 @@ const PROPOSALS_DATA = {
     townhousePreference: "Townhouse 4 BHK para Empleados en Damac Hills o similar"
   },
   rates: {
-    // 1 AED in EUR and USD
     AED_TO_EUR: 0.25,
     AED_TO_USD: 0.272,
     SQFT_TO_SQM: 0.092903
   },
   properties: [
     {
+      id: "forte-tower-1",
+      name: "Forte - Tower 1",
+      subTitle: "Emaar Downtown Dubai • Opera District",
+      badge: "Brand New & Upgraded",
+      featured: true,
+      priceAed: 3400000,
+      targetPriceAed: 3400000,
+      sqft: 1007,
+      sqm: 93.55,
+      beds: 2,
+      baths: 2,
+      floor: "Mid-High Floor",
+      furnishing: {
+        es: "Totalmente Amueblado y Mejorado (Upgraded)",
+        en: "Fully Furnished & Brand New Upgraded"
+      },
+      developer: "Emaar Properties",
+      location: {
+        name: "Downtown Dubai - Opera District",
+        coords: [25.1965, 55.2720],
+        highlights: {
+          es: "Vistas directas y despejadas al skyline de Sheikh Zayed Road. Ubicado a 2 min a pie de Dubai Opera y a pasos de Dubai Mall.",
+          en: "Unobstructed Sheikh Zayed Road skyline vistas. Situated 2 min walk from Dubai Opera and steps to Dubai Mall."
+        }
+      },
+      heroImage: "assets/images/forte/forte_01.jpg",
+      gallery: [
+        "assets/images/forte/forte_01.jpg",
+        "assets/images/forte/forte_02.jpg",
+        "assets/images/forte/forte_04.jpg",
+        "assets/images/forte/forte_03.jpg"
+      ],
+      description: {
+        es: "Espectacular unidad de 2 habitaciones en Forte Tower 1 de Emaar. Propiedad a estrenar, completamente amueblada y con mejoras de diseño interior de lujo ('Upgraded'). Destaca su isla de cocina en mármol blanco veteado, luminarias de diseño, elegante salón con vistas despejadas al skyline de Sheikh Zayed Road y acabados de categoría superior.",
+        en: "Spectacular brand-new 2-bedroom residence in Emaar's Forte Tower 1. Completely vacant, fully furnished, and interior-upgraded to the highest standards. Features a stunning waterfall marble kitchen island, bespoke lighting, spacious living area with Sheikh Zayed Road skyline views, and premium finishes throughout."
+      },
+      familySuitability: {
+        score: "9.9/10",
+        reasons: {
+          es: [
+            "Entrega vacante y 100% amueblada con acabados mejorados de diseño: Mudanza inmediata sin obras ni compras pendientes.",
+            "Acceso directo a bulevares peatonales planos y seguros en el Opera District, perfecto para pasear con tu madre con total comodidad.",
+            "Torre residencial Emaar de primer nivel con conserjería 24/7, piscinas de lujo y máxima insonorización y tranquilidad."
+          ],
+          en: [
+            "Vacant & 100% turnkey furnished with upgraded designer finishes: Instant move-in with zero renovation hassle.",
+            "Direct pedestrian access to safe, flat Opera District boulevards, ideal for relaxing walks with your mother.",
+            "Top-tier Emaar tower featuring 24/7 concierge, luxury pools, and premier acoustic privacy."
+          ]
+        }
+      },
+      appreciationHistory: {
+        labels: ["2021", "2022", "2023", "2024", "2025", "2026 (Actual)", "2028 (Est.)", "2030 (Est.)"],
+        valuesAed: [2.05, 2.35, 2.70, 3.05, 3.25, 3.40, 4.10, 4.85],
+        growth5y: "+65.8%",
+        projectedCagr: "9.3% Anual"
+      },
+      pros: {
+        es: [
+          "A estrenar y con reformas/upgrades de diseño de alta gama",
+          "100% Amueblado listo para entrar a vivir de inmediato",
+          "Vistas abiertas al skyline de Sheikh Zayed Road",
+          "Ubicación privilegiada Emaar en pleno Opera District"
+        ],
+        en: [
+          "Brand new with premium custom interior design upgrades",
+          "100% Fully furnished and ready for immediate occupation",
+          "Open skyline views over Sheikh Zayed Road",
+          "Prime Emaar location in the heart of the Opera District"
+        ]
+      },
+      upcomingProjects: {
+        es: [
+          { name: "Expansión Dubai Mall Boulevard ($400M+)", date: "2026-2027", impact: "+8-12% Valor de Zona" },
+          { name: "Línea Azul de Metro (Estación Directa Downtown)", date: "2028-2029", impact: "+15% Plusvalía y Demanda" },
+          { name: "Paseo Cultural Opera District fase 2", date: "2027", impact: "+10% Plusvalía Peatonal" }
+        ],
+        en: [
+          { name: "Dubai Mall Boulevard Expansion ($400M+)", date: "2026-2027", impact: "+8-12% Area Value" },
+          { name: "Dubai Metro Blue Line Direct Connection", date: "2028-2029", impact: "+15% Rental Demand" },
+          { name: "Opera District Cultural Boardwalk Phase 2", date: "2027", impact: "+10% Pedestrian Premium" }
+        ]
+      }
+    },
+    {
       id: "act-one-act-two",
       name: "Act One | Act Two Tower",
       subTitle: "Emaar Downtown Dubai • Opera District",
       badge: "Downtown Prime",
-      featured: true,
+      featured: false,
       priceAed: 3270000,
       targetPriceAed: 3250000,
       sqft: 1214,
@@ -68,7 +152,7 @@ const PROPOSALS_DATA = {
       },
       appreciationHistory: {
         labels: ["2021", "2022", "2023", "2024", "2025", "2026 (Actual)", "2028 (Est.)", "2030 (Est.)"],
-        valuesAed: [1.94, 2.20, 2.55, 2.89, 3.10, 3.27, 3.95, 4.65], // in Millions
+        valuesAed: [1.94, 2.20, 2.55, 2.89, 3.10, 3.27, 3.95, 4.65],
         growth5y: "+68.5%",
         projectedCagr: "9.1% Anual"
       },

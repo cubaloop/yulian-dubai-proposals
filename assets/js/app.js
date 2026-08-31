@@ -1,4 +1,4 @@
-// Application State & Controller for Yulian's Proposal - Horizon Grove Edition
+// Application State & Controller for Yulian's Proposal
 let state = {
   lang: 'es', // 'es' or 'en'
   currency: 'EUR', // 'EUR', 'AED', 'USD'
@@ -45,7 +45,7 @@ const TRANSLATIONS = {
     
     // Section Headers
     livingSectionTitle: "Residencias Seleccionadas",
-    livingSectionDesc: "Propiedades con vistas directas al Burj Khalifa y Canal de Dubai, acabados premium y máxima idoneidad para vivir cómodamente con tu madre.",
+    livingSectionDesc: "Propiedades con vistas directas al Burj Khalifa, Skyline de Sheikh Zayed Rd y Canal, acabados premium y máxima idoneidad para vivir con tu madre.",
     
     // Status Banners
     statusWorking: "Actualmente Trabajando en Encontrarte las mejores Opciones",
@@ -90,7 +90,7 @@ const TRANSLATIONS = {
     
     // Footer
     footerBuiltFor: "Herramienta personalizada exclusivamente para",
-    footerCuratedBy: "Curada por tu Asesor Inmobiliario de Confianza en Dubai"
+    footerCuratedBy: "Creado por David A. Rodriguez"
   },
   en: {
     heroWelcome: "welcome to your bespoke portfolio",
@@ -125,7 +125,7 @@ const TRANSLATIONS = {
     
     // Section Headers
     livingSectionTitle: "Curated Residences",
-    livingSectionDesc: "Prime properties featuring direct Burj Khalifa & Canal vistas, luxury turnkey finishes, and optimal comfort for you and your mother.",
+    livingSectionDesc: "Prime properties featuring direct Burj Khalifa, Sheikh Zayed Rd Skyline & Canal vistas, luxury turnkey finishes, and optimal comfort for you and your mother.",
     
     // Status Banners
     statusWorking: "Currently Sourcing the Best Options",
@@ -170,7 +170,7 @@ const TRANSLATIONS = {
     
     // Footer
     footerBuiltFor: "Bespoke portal tailored exclusively for",
-    footerCuratedBy: "Curated by your Trusted Dubai Real Estate Advisor"
+    footerCuratedBy: "Created by David A. Rodriguez"
   }
 };
 
@@ -267,24 +267,60 @@ function scrollToSection(id) {
   }
 }
 
+function mobileNavigate(tab) {
+  setTab(tab);
+  closeMobileMenu();
+  scrollToSection('section-' + tab);
+}
+
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  if (menu) {
+    menu.classList.toggle('hidden');
+  }
+}
+
+function closeMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  if (menu) {
+    menu.classList.add('hidden');
+  }
+}
+
 function updateUI() {
   const t = TRANSLATIONS[state.lang];
 
-  // Header active buttons
-  document.getElementById('lang-es-btn').className = state.lang === 'es' ? 'px-2.5 py-0.5 text-xs font-bold rounded-full bg-white text-slate-950 shadow' : 'px-2.5 py-0.5 text-xs font-medium text-slate-400 hover:text-white';
-  document.getElementById('lang-en-btn').className = state.lang === 'en' ? 'px-2.5 py-0.5 text-xs font-bold rounded-full bg-white text-slate-950 shadow' : 'px-2.5 py-0.5 text-xs font-medium text-slate-400 hover:text-white';
+  // Header active buttons (Desktop)
+  const langEsBtn = document.getElementById('lang-es-btn');
+  const langEnBtn = document.getElementById('lang-en-btn');
+  if (langEsBtn) langEsBtn.className = state.lang === 'es' ? 'px-2.5 py-0.5 text-xs font-bold rounded-full bg-white text-slate-950 shadow' : 'px-2.5 py-0.5 text-xs font-medium text-slate-400 hover:text-white';
+  if (langEnBtn) langEnBtn.className = state.lang === 'en' ? 'px-2.5 py-0.5 text-xs font-bold rounded-full bg-white text-slate-950 shadow' : 'px-2.5 py-0.5 text-xs font-medium text-slate-400 hover:text-white';
+
+  // Header active buttons (Mobile)
+  const mobLangEs = document.getElementById('mob-lang-es');
+  const mobLangEn = document.getElementById('mob-lang-en');
+  if (mobLangEs) mobLangEs.className = state.lang === 'es' ? 'px-3 py-1 text-xs font-bold rounded-full bg-white text-slate-950 shadow' : 'px-3 py-1 text-xs font-medium text-slate-400';
+  if (mobLangEn) mobLangEn.className = state.lang === 'en' ? 'px-3 py-1 text-xs font-bold rounded-full bg-white text-slate-950 shadow' : 'px-3 py-1 text-xs font-medium text-slate-400';
 
   ['EUR', 'AED', 'USD'].forEach(c => {
     const el = document.getElementById(`curr-${c.toLowerCase()}-btn`);
+    const mobEl = document.getElementById(`mob-curr-${c.toLowerCase()}`);
     if (el) {
       el.className = state.currency === c ? 'px-2.5 py-0.5 text-xs font-bold rounded-full bg-white text-slate-950 shadow' : 'px-2.5 py-0.5 text-xs font-medium text-slate-400 hover:text-white';
+    }
+    if (mobEl) {
+      mobEl.className = state.currency === c ? 'px-3 py-1 text-xs font-bold rounded-full bg-white text-slate-950 shadow' : 'px-3 py-1 text-xs font-medium text-slate-400';
     }
   });
 
   ['sqm', 'sqft'].forEach(u => {
     const el = document.getElementById(`unit-${u}-btn`);
+    const mobEl = document.getElementById(`mob-unit-${u}`);
     if (el) {
       el.className = state.unit === u ? 'px-2 py-0.5 text-xs font-bold rounded-full bg-white text-slate-950 shadow' : 'px-2 py-0.5 text-xs font-medium text-slate-400 hover:text-white';
+    }
+    if (mobEl) {
+      mobEl.className = state.unit === u ? 'px-3 py-1 text-xs font-bold rounded-full bg-white text-slate-950 shadow' : 'px-3 py-1 text-xs font-medium text-slate-400';
     }
   });
 
@@ -302,16 +338,20 @@ function updateUI() {
   const tabTownhouse = document.getElementById('nav-tab-townhouse');
 
   const activeTabClass = "border-white text-slate-950 bg-white shadow-xl";
-  const inactiveTabClass = "border-white/10 text-slate-400 hover:text-white hover:bg-white/5";
+  const inactiveTabClass = "border-white/15 text-slate-300 hover:text-white hover:bg-white/10";
 
-  tabLiving.className = `flex-1 py-3 px-5 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'living' ? activeTabClass : inactiveTabClass}`;
-  tabCommercial.className = `flex-1 py-3 px-5 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'commercial' ? activeTabClass : inactiveTabClass}`;
-  tabTownhouse.className = `flex-1 py-3 px-5 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'townhouse' ? activeTabClass : inactiveTabClass}`;
+  if (tabLiving) tabLiving.className = `flex-1 py-3.5 px-5 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'living' ? activeTabClass : inactiveTabClass}`;
+  if (tabCommercial) tabCommercial.className = `flex-1 py-3.5 px-5 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'commercial' ? activeTabClass : inactiveTabClass}`;
+  if (tabTownhouse) tabTownhouse.className = `flex-1 py-3.5 px-5 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'townhouse' ? activeTabClass : inactiveTabClass}`;
 
   // Section visibility
-  document.getElementById('section-living').classList.toggle('hidden', state.activeTab !== 'living');
-  document.getElementById('section-commercial').classList.toggle('hidden', state.activeTab !== 'commercial');
-  document.getElementById('section-townhouse').classList.toggle('hidden', state.activeTab !== 'townhouse');
+  const secLiving = document.getElementById('section-living');
+  const secCommercial = document.getElementById('section-commercial');
+  const secTownhouse = document.getElementById('section-townhouse');
+
+  if (secLiving) secLiving.classList.toggle('hidden', state.activeTab !== 'living');
+  if (secCommercial) secCommercial.classList.toggle('hidden', state.activeTab !== 'commercial');
+  if (secTownhouse) secTownhouse.classList.toggle('hidden', state.activeTab !== 'townhouse');
 
   if (state.activeTab === 'living') {
     renderPropertyCards();
@@ -326,9 +366,10 @@ function updateUI() {
   }
 }
 
-// Render Property Cards (Horizon Grove Minimalist Card Standard)
+// Render Property Cards
 function renderPropertyCards() {
   const container = document.getElementById('properties-grid');
+  if (!container) return;
   const t = TRANSLATIONS[state.lang];
   container.innerHTML = '';
 
@@ -358,7 +399,7 @@ function renderPropertyCards() {
 
         <!-- 5Y Appreciation Pill -->
         <div class="absolute bottom-4 left-4 flex items-center space-x-2">
-          <div class="px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold flex items-center">
+          <div class="px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs font-bold flex items-center">
             <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2"></span>
             ${prop.appreciationHistory.growth5y} (5A)
           </div>
@@ -378,7 +419,7 @@ function renderPropertyCards() {
             <h3 class="text-2xl font-display font-extrabold text-white group-hover:text-amber-300 transition-colors tracking-tight cursor-pointer" onclick="openPropertyModal('${prop.id}')">
               ${prop.name}
             </h3>
-            <p class="text-xs text-slate-400 flex items-center mt-1">
+            <p class="text-xs text-slate-300 flex items-center mt-1">
               <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mr-2"></span>
               ${prop.subTitle}
             </p>
@@ -433,11 +474,11 @@ function renderCommercialSection() {
   const comm = PROPOSALS_DATA.commercialSearch;
   const t = TRANSLATIONS[state.lang];
   const container = document.getElementById('commercial-content');
+  if (!container) return;
 
   container.innerHTML = `
     <div class="max-w-5xl mx-auto">
-      <!-- Status Notice Card with Restaurant Backdrop -->
-      <div class="horizon-card p-8 md:p-12 relative overflow-hidden mb-8 border-white/20" style="background-image: linear-gradient(180deg, rgba(7,9,14,0.7) 0%, rgba(7,9,14,0.95) 100%), url('assets/images/backgrounds/restaurant_bg.jpg'); background-size: cover; background-position: center;">
+      <div class="horizon-card p-8 md:p-12 relative overflow-hidden mb-8 border-white/20" style="background-image: linear-gradient(180deg, rgba(7,14,27,0.75) 0%, rgba(7,14,27,0.95) 100%), url('assets/images/backgrounds/restaurant_bg.jpg'); background-size: cover; background-position: center;">
         
         <div class="flex items-center space-x-3 text-amber-300 mb-4">
           <span class="relative flex h-3 w-3">
@@ -503,11 +544,11 @@ function renderTownhouseSection() {
   const th = PROPOSALS_DATA.townhouseSearch;
   const t = TRANSLATIONS[state.lang];
   const container = document.getElementById('townhouse-content');
+  if (!container) return;
 
   container.innerHTML = `
     <div class="max-w-5xl mx-auto">
-      <!-- Status Notice Card with Townhouse Backdrop -->
-      <div class="horizon-card p-8 md:p-12 relative overflow-hidden mb-8 border-white/20" style="background-image: linear-gradient(180deg, rgba(7,9,14,0.7) 0%, rgba(7,9,14,0.95) 100%), url('assets/images/backgrounds/townhouse_bg.jpg'); background-size: cover; background-position: center;">
+      <div class="horizon-card p-8 md:p-12 relative overflow-hidden mb-8 border-white/20" style="background-image: linear-gradient(180deg, rgba(7,14,27,0.75) 0%, rgba(7,14,27,0.95) 100%), url('assets/images/backgrounds/townhouse_bg.jpg'); background-size: cover; background-position: center;">
         
         <div class="flex items-center space-x-3 text-amber-300 mb-4">
           <span class="relative flex h-3 w-3">
@@ -577,16 +618,20 @@ function openPropertyModal(propId) {
   state.activeGalleryIndex = 0;
 
   const modal = document.getElementById('property-modal');
-  modal.classList.remove('hidden');
-  document.body.classList.add('overflow-hidden');
+  if (modal) {
+    modal.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+  }
 
   renderPropertyModalContent(prop);
 }
 
 function closePropertyModal() {
   const modal = document.getElementById('property-modal');
-  modal.classList.add('hidden');
-  document.body.classList.remove('overflow-hidden');
+  if (modal) {
+    modal.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+  }
   state.activeProperty = null;
 
   if (state.activeMap) {
@@ -602,6 +647,7 @@ function closePropertyModal() {
 function renderPropertyModalContent(prop) {
   const t = TRANSLATIONS[state.lang];
   const container = document.getElementById('modal-content-body');
+  if (!container) return;
   const formattedPrice = formatPrice(prop.priceAed);
   const formattedArea = formatArea(prop.sqft);
   const pricePerUnit = formatPricePerUnit(prop.priceAed, prop.sqft);
@@ -882,8 +928,8 @@ function initPropertyMap(prop) {
   const goldIcon = L.divIcon({
     className: 'custom-gold-marker',
     html: `
-      <div style="background: #ffffff; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(255,255,255,0.8); border: 2px solid #07090e;">
-        <svg style="width: 18px; height: 18px; color: #07090e;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+      <div style="background: #ffffff; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(255,255,255,0.8); border: 2px solid #070e1b;">
+        <svg style="width: 18px; height: 18px; color: #070e1b;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
       </div>
     `,
     iconSize: [34, 34],
@@ -939,7 +985,7 @@ function initPropertyChart(prop) {
         backgroundColor: gradient,
         borderWidth: 3,
         pointBackgroundColor: '#d4af37',
-        pointBorderColor: '#07090e',
+        pointBorderColor: '#070e1b',
         pointBorderWidth: 2,
         pointRadius: 6,
         pointHoverRadius: 8,
@@ -953,7 +999,7 @@ function initPropertyChart(prop) {
       plugins: {
         legend: { display: false },
         tooltip: {
-          backgroundColor: '#07090e',
+          backgroundColor: '#070e1b',
           titleColor: '#d4af37',
           bodyColor: '#ffffff',
           borderColor: 'rgba(255, 255, 255, 0.2)',
@@ -989,18 +1035,23 @@ function initPropertyChart(prop) {
 // Comparison Matrix Modal
 function openComparisonModal() {
   const modal = document.getElementById('comparison-modal');
-  modal.classList.remove('hidden');
-  renderComparisonTable();
+  if (modal) {
+    modal.classList.remove('hidden');
+    renderComparisonTable();
+  }
 }
 
 function closeComparisonModal() {
   const modal = document.getElementById('comparison-modal');
-  modal.classList.add('hidden');
+  if (modal) {
+    modal.classList.add('hidden');
+  }
 }
 
 function renderComparisonTable() {
   const t = TRANSLATIONS[state.lang];
   const container = document.getElementById('comparison-table-container');
+  if (!container) return;
 
   container.innerHTML = `
     <div class="overflow-x-auto">
@@ -1009,7 +1060,7 @@ function renderComparisonTable() {
           <tr class="border-b border-white/10">
             <th class="p-4 text-slate-400 font-semibold uppercase tracking-wider text-xs">Métrica</th>
             ${PROPOSALS_DATA.properties.map(p => `
-              <th class="p-4 text-white font-bold text-lg font-display min-w-[220px]">
+              <th class="p-4 text-white font-bold text-lg font-display min-w-[200px]">
                 <div class="text-amber-300 text-xs font-sans uppercase mb-1">${p.badge}</div>
                 ${p.name}
               </th>
@@ -1108,12 +1159,12 @@ function renderComparisonTable() {
 // Contact Modal & Inquiries
 function openContactModal(context = 'general') {
   const modal = document.getElementById('contact-modal');
-  modal.classList.remove('hidden');
+  if (modal) modal.classList.remove('hidden');
 }
 
 function closeContactModal() {
   const modal = document.getElementById('contact-modal');
-  modal.classList.add('hidden');
+  if (modal) modal.classList.add('hidden');
 }
 
 function sendPropertyInquiry(propId) {
@@ -1133,11 +1184,6 @@ function sendGeneralInquiry() {
   
   const whatsappUrl = `https://wa.me/971500000000?text=${encodeURIComponent(msg)}`;
   window.open(whatsappUrl, '_blank');
-}
-
-function toggleMobileMenu() {
-  const menu = document.getElementById('mobile-menu');
-  menu.classList.toggle('hidden');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
