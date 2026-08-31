@@ -5,13 +5,16 @@
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   
-  --bg-dark: #07090e;
-  --bg-card: rgba(14, 18, 27, 0.85);
-  --border-light: rgba(255, 255, 255, 0.12);
-  --border-gold: rgba(212, 175, 55, 0.4);
+  --bg-light: #f8fafc;
+  --navy-dark: #070e1b;
+  --navy-card: rgba(10, 20, 38, 0.92);
+  --navy-card-hover: rgba(14, 28, 54, 0.98);
+  --border-glass-dark: rgba(255, 255, 255, 0.14);
+  --border-gold: rgba(212, 175, 55, 0.45);
   
-  --color-gold: #d4af37;
+  --color-gold: #c59b27;
   --color-gold-light: #f3e5ab;
+  --color-navy: #0b192e;
 }
 
 * {
@@ -20,8 +23,8 @@
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--bg-dark);
-  color: #f1f5f9;
+  background-color: #f1f5f9;
+  color: #0f172a;
   overflow-x: hidden;
 }
 
@@ -33,47 +36,53 @@ body {
   font-family: var(--font-serif);
 }
 
-/* Panoramic Dubai Skyline Hero Background */
+/* Panoramic Dubai Skyline Hero Background with Deep Navy Vignette */
 .hero-bg-wrapper {
   position: relative;
-  background-image: linear-gradient(180deg, rgba(7, 9, 14, 0.35) 0%, rgba(7, 9, 14, 0.75) 60%, #07090e 100%),
+  background-image: linear-gradient(180deg, rgba(6, 13, 26, 0.45) 0%, rgba(6, 13, 26, 0.82) 70%, #070e1b 100%),
                     url('../images/backgrounds/dubai_skyline_hero.jpg');
   background-size: cover;
   background-position: center 30%;
   background-repeat: no-repeat;
+  color: #ffffff;
 }
 
-/* Dark Marble Texture Overlay for Body */
-.marble-texture-overlay {
-  background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 60%),
-                    radial-gradient(circle at 100% 100%, rgba(30, 58, 138, 0.08) 0%, transparent 50%),
-                    url('../images/backgrounds/dark_marble_texture.jpg');
+/* White Marble with Dark Blue Veins Background */
+.white-blue-marble-bg {
+  background-color: #f8fafc;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(11, 25, 46, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(14, 38, 74, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.6) 0%, transparent 80%),
+    url('../images/backgrounds/white_navy_marble_2.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
 }
 
-/* Minimalist Horizon Grove / Airbnb Cards */
+/* Deep Navy Luxury Cards with 3D Depth */
 .horizon-card {
-  background: var(--bg-card);
+  background: var(--navy-card);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border-glass-dark);
   border-radius: 28px;
-  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 25px 50px -12px rgba(6, 13, 26, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .horizon-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.95), 0 0 30px rgba(212, 175, 55, 0.15);
+  background: var(--navy-card-hover);
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 35px 70px -15px rgba(6, 13, 26, 0.7), 0 0 30px rgba(212, 175, 55, 0.18);
 }
 
-/* Minimalist White Pill Button */
+/* White Horizon Pill Buttons */
 .btn-horizon-white {
   background-color: #ffffff;
-  color: #07090e;
+  color: #070e1b;
   font-family: var(--font-sans);
   font-weight: 700;
   border-radius: 9999px;
@@ -82,18 +91,38 @@ body {
   align-items: center;
   justify-content: center;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .btn-horizon-white:hover {
   background-color: #f1f5f9;
   transform: scale(1.03) translateY(-2px);
-  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.25);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.btn-horizon-navy {
+  background-color: #0b192e;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  border-radius: 9999px;
+  padding: 12px 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(11, 25, 46, 0.25);
+}
+
+.btn-horizon-navy:hover {
+  background-color: #122442;
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(11, 25, 46, 0.35);
 }
 
 .btn-horizon-glass {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: #f8fafc;
   font-weight: 600;
   border-radius: 9999px;
@@ -102,47 +131,49 @@ body {
 }
 
 .btn-horizon-glass:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.4);
   transform: translateY(-2px);
 }
 
+/* Badges */
 .badge-clean-white {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   color: #ffffff;
   backdrop-filter: blur(10px);
 }
 
 .badge-clean-gold {
-  background: rgba(212, 175, 55, 0.15);
-  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: rgba(212, 175, 55, 0.18);
+  border: 1px solid rgba(212, 175, 55, 0.45);
   color: #f3e5ab;
   backdrop-filter: blur(10px);
 }
 
 .horizon-status-box {
-  background: rgba(14, 18, 27, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(7, 14, 27, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(24px);
   border-radius: 24px;
   padding: 20px 24px;
+  color: #ffffff;
 }
 
 /* Custom Leaflet Map */
 .leaflet-container {
-  background: #0b0e14 !important;
+  background: #070e1b !important;
   font-family: var(--font-sans);
 }
 .leaflet-popup-content-wrapper {
-  background: #0f141f !important;
+  background: #0a1426 !important;
   color: #f8fafc !important;
   border: 1px solid rgba(212, 175, 55, 0.5) !important;
   border-radius: 16px !important;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8) !important;
 }
 .leaflet-popup-tip {
-  background: #0f141f !important;
+  background: #0a1426 !important;
 }
 
 ::-webkit-scrollbar {
@@ -150,14 +181,14 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #07090e;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e2638;
+  background: #0b192e;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #d4af37;
+  background: #c59b27;
 }
 
 .no-scrollbar::-webkit-scrollbar {

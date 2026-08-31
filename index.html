@@ -23,10 +23,10 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="marble-texture-overlay min-h-screen flex flex-col selection:bg-white selection:text-slate-950 text-slate-100">
+<body class="white-blue-marble-bg min-h-screen flex flex-col selection:bg-slate-900 selection:text-white text-slate-900">
 
   <!-- TOP BRAND / NAVIGATION -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/75 backdrop-blur-2xl border-b border-white/10 transition-all duration-300">
+  <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/85 backdrop-blur-2xl border-b border-white/10 transition-all duration-300 text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
       <!-- Brand Logo -->
@@ -36,12 +36,12 @@
         </div>
         <div>
           <span class="font-display font-extrabold text-lg tracking-wider text-white uppercase block leading-tight">DUBAI <span class="text-amber-400">LUXURY</span></span>
-          <span class="text-[10px] text-slate-400 uppercase tracking-widest block">Client Dossier • Yulian</span>
+          <span class="text-[10px] text-slate-300 uppercase tracking-widest block">Client Dossier • Yulian</span>
         </div>
       </div>
 
       <!-- Center Links (Desktop) -->
-      <nav class="hidden md:flex items-center space-x-8 text-xs font-semibold uppercase tracking-widest text-slate-300">
+      <nav class="hidden md:flex items-center space-x-8 text-xs font-semibold uppercase tracking-widest text-slate-200">
         <button onclick="setTab('living'); scrollToSection('section-living')" class="hover:text-amber-300 transition-colors py-2" data-i18n="navLiving">Residencial</button>
         <button onclick="setTab('commercial'); scrollToSection('section-commercial')" class="hover:text-amber-300 transition-colors py-2" data-i18n="navCommercial">Restaurante</button>
         <button onclick="setTab('townhouse'); scrollToSection('section-townhouse')" class="hover:text-amber-300 transition-colors py-2" data-i18n="navTownhouse">Chalet</button>
@@ -53,20 +53,20 @@
       <!-- Right Controls & Consultation -->
       <div class="hidden lg:flex items-center space-x-3">
         <!-- Language Switcher -->
-        <div class="inline-flex bg-slate-900/90 p-1 rounded-full border border-white/10 text-xs">
+        <div class="inline-flex bg-slate-900/90 p-1 rounded-full border border-white/15 text-xs">
           <button id="lang-es-btn" onclick="setLanguage('es')" class="px-2.5 py-0.5 text-xs font-bold rounded-full bg-white text-slate-950">ES</button>
           <button id="lang-en-btn" onclick="setLanguage('en')" class="px-2.5 py-0.5 text-xs font-medium text-slate-400 hover:text-white">EN</button>
         </div>
 
         <!-- Currency -->
-        <div class="inline-flex bg-slate-900/90 p-1 rounded-full border border-white/10 text-xs">
+        <div class="inline-flex bg-slate-900/90 p-1 rounded-full border border-white/15 text-xs">
           <button id="curr-eur-btn" onclick="setCurrency('EUR')" class="px-2.5 py-0.5 text-xs font-bold rounded-full bg-white text-slate-950">EUR</button>
           <button id="curr-aed-btn" onclick="setCurrency('AED')" class="px-2.5 py-0.5 text-xs font-medium text-slate-400 hover:text-white">AED</button>
           <button id="curr-usd-btn" onclick="setCurrency('USD')" class="px-2.5 py-0.5 text-xs font-medium text-slate-400 hover:text-white">USD</button>
         </div>
 
         <!-- Units -->
-        <div class="inline-flex bg-slate-900/90 p-1 rounded-full border border-white/10 text-xs">
+        <div class="inline-flex bg-slate-900/90 p-1 rounded-full border border-white/15 text-xs">
           <button id="unit-sqm-btn" onclick="setUnit('sqm')" class="px-2 py-0.5 text-xs font-bold rounded-full bg-white text-slate-950">m²</button>
           <button id="unit-sqft-btn" onclick="setUnit('sqft')" class="px-2 py-0.5 text-xs font-medium text-slate-400 hover:text-white">sqft</button>
         </div>
@@ -92,7 +92,7 @@
     <!-- Mobile Slide Menu -->
     <div id="mobile-menu" class="hidden md:hidden bg-slate-950/98 border-b border-white/10 px-6 py-6 space-y-4">
       <div class="flex items-center justify-between border-b border-white/10 pb-3">
-        <span class="text-xs text-slate-400">Moneda:</span>
+        <span class="text-xs text-slate-300">Moneda:</span>
         <div class="inline-flex bg-slate-900 p-0.5 rounded-full border border-white/10">
           <button onclick="setCurrency('EUR')" class="px-3 py-1 text-xs font-bold rounded-full bg-white text-slate-950">EUR</button>
           <button onclick="setCurrency('AED')" class="px-3 py-1 text-xs font-medium text-slate-400">AED</button>
@@ -100,14 +100,14 @@
         </div>
       </div>
       <div class="flex items-center justify-between border-b border-white/10 pb-3">
-        <span class="text-xs text-slate-400">Medidas:</span>
+        <span class="text-xs text-slate-300">Medidas:</span>
         <div class="inline-flex bg-slate-900 p-0.5 rounded-full border border-white/10">
           <button onclick="setUnit('sqm')" class="px-3 py-1 text-xs font-bold rounded-full bg-white text-slate-950">m²</button>
           <button onclick="setUnit('sqft')" class="px-3 py-1 text-xs font-medium text-slate-400">sqft</button>
         </div>
       </div>
       <div class="flex items-center justify-between border-b border-white/10 pb-3">
-        <span class="text-xs text-slate-400">Idioma:</span>
+        <span class="text-xs text-slate-300">Idioma:</span>
         <div class="inline-flex bg-slate-900 p-0.5 rounded-full border border-white/10">
           <button onclick="setLanguage('es')" class="px-3 py-1 text-xs font-bold rounded-full bg-white text-slate-950">Español</button>
           <button onclick="setLanguage('en')" class="px-3 py-1 text-xs font-medium text-slate-400">English</button>
@@ -125,7 +125,7 @@
     <!-- Top Metadata Info -->
     <div class="max-w-7xl mx-auto w-full flex justify-between items-center text-xs tracking-widest uppercase text-slate-300">
       <div class="flex items-center space-x-3">
-        <span class="px-3.5 py-1 rounded-full bg-black/40 border border-white/20 backdrop-blur-md font-bold text-[11px] text-amber-300">
+        <span class="px-3.5 py-1 rounded-full bg-black/50 border border-white/20 backdrop-blur-md font-bold text-[11px] text-amber-300">
           PORTAFOLIO EXCLUSIVO 2026
         </span>
         <span class="text-slate-300 hidden sm:inline">DOWNTOWN • BUSINESS BAY • MARINA</span>
@@ -135,7 +135,7 @@
       </div>
     </div>
 
-    <!-- Center Hero Presentation (Clean, Elegant, No Unwanted Posters) -->
+    <!-- Center Hero Presentation -->
     <div class="max-w-7xl mx-auto w-full my-auto py-12">
       <div class="max-w-3xl space-y-4">
         <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/20 text-white text-xs font-bold tracking-widest uppercase backdrop-blur-md">
@@ -184,16 +184,16 @@
       <div class="flex justify-start md:justify-end">
         <div class="horizon-status-box w-full max-w-xs space-y-2.5">
           <div class="flex justify-between items-center text-xs">
-            <span class="text-slate-400 font-semibold uppercase tracking-wider text-[11px]">ESTADO DEL PORTAFOLIO</span>
+            <span class="text-slate-300 font-semibold uppercase tracking-wider text-[11px]">ESTADO DEL PORTAFOLIO</span>
             <span class="text-emerald-400 font-bold flex items-center text-xs">
               <span class="w-2 h-2 rounded-full bg-emerald-400 mr-1.5 animate-ping"></span>
               3 Opciones Listas
             </span>
           </div>
-          <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+          <div class="w-full bg-white/15 h-1.5 rounded-full overflow-hidden">
             <div class="bg-gradient-to-r from-amber-400 to-amber-200 h-full w-full rounded-full"></div>
           </div>
-          <div class="flex justify-between items-center text-[11px] text-slate-300 pt-1 border-t border-white/10">
+          <div class="flex justify-between items-center text-[11px] text-slate-200 pt-1 border-t border-white/10">
             <span>2-3 Habitaciones</span>
             <span class="text-amber-300 font-semibold">Downtown / Business Bay</span>
           </div>
@@ -205,11 +205,11 @@
   </section>
 
   <!-- 3 CATEGORY NAVIGATION TABS -->
-  <section class="sticky top-20 z-30 bg-slate-950/85 backdrop-blur-xl border-y border-white/10 py-4 px-4 sm:px-6 lg:px-8">
+  <section class="sticky top-20 z-30 bg-slate-950/85 backdrop-blur-xl border-y border-slate-900/20 py-4 px-4 sm:px-6 lg:px-8 shadow-md">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row gap-2.5">
       
       <!-- Tab 1: Residential -->
-      <button id="nav-tab-living" onclick="setTab('living')" class="flex-1 py-3.5 px-5 rounded-full border border-white text-slate-950 bg-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between">
+      <button id="nav-tab-living" onclick="setTab('living')" class="flex-1 py-3.5 px-5 rounded-full border border-white text-slate-950 bg-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between shadow-lg">
         <span class="flex items-center space-x-2">
           <span>01.</span>
           <span data-i18n="tabLiving">Apartamento para Vivir</span>
@@ -218,7 +218,7 @@
       </button>
 
       <!-- Tab 2: Commercial -->
-      <button id="nav-tab-commercial" onclick="setTab('commercial')" class="flex-1 py-3.5 px-5 rounded-full border border-white/10 text-slate-400 hover:text-white hover:bg-white/5 font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-between">
+      <button id="nav-tab-commercial" onclick="setTab('commercial')" class="flex-1 py-3.5 px-5 rounded-full border border-white/15 text-slate-300 hover:text-white hover:bg-white/10 font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-between">
         <span class="flex items-center space-x-2">
           <span>02.</span>
           <span data-i18n="tabCommercial">Restaurante Comercial</span>
@@ -227,7 +227,7 @@
       </button>
 
       <!-- Tab 3: Townhouse -->
-      <button id="nav-tab-townhouse" onclick="setTab('townhouse')" class="flex-1 py-3.5 px-5 rounded-full border border-white/10 text-slate-400 hover:text-white hover:bg-white/5 font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-between">
+      <button id="nav-tab-townhouse" onclick="setTab('townhouse')" class="flex-1 py-3.5 px-5 rounded-full border border-white/15 text-slate-300 hover:text-white hover:bg-white/10 font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-between">
         <span class="flex items-center space-x-2">
           <span>03.</span>
           <span data-i18n="tabTownhouse">Chalet para Rentar</span>
@@ -242,16 +242,16 @@
   <main id="section-living" class="flex-1 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full py-16">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
       <div>
-        <span class="text-amber-400 font-bold uppercase tracking-widest text-xs block mb-1">PROPOSALS FOR YULIAN & MOTHER</span>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white tracking-tight" data-i18n="livingSectionTitle">
+        <span class="text-amber-600 font-bold uppercase tracking-widest text-xs block mb-1">PROPOSALS FOR YULIAN & MOTHER</span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-slate-900 tracking-tight" data-i18n="livingSectionTitle">
           Residencias Seleccionadas
         </h2>
-        <p class="text-xs sm:text-sm text-slate-400 mt-2 max-w-2xl" data-i18n="livingSectionDesc">
+        <p class="text-xs sm:text-sm text-slate-600 mt-2 max-w-2xl" data-i18n="livingSectionDesc">
           Propiedades con vistas icónicas al Burj Khalifa y Canal, acabados premium y máxima idoneidad para vivir cómodamente con tu madre.
         </p>
       </div>
 
-      <button onclick="openComparisonModal()" class="btn-horizon-glass px-5 py-2.5 text-xs font-bold flex items-center self-start sm:self-auto hover:bg-white hover:text-slate-950">
+      <button onclick="openComparisonModal()" class="btn-horizon-navy px-5 py-2.5 text-xs font-bold flex items-center self-start sm:self-auto">
         <svg class="w-4 h-4 mr-2 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
         <span data-i18n="compareBtn">Comparar Opciones</span>
       </button>
@@ -279,21 +279,21 @@
 
   <!-- FLOATING WHATSAPP BUTTON -->
   <div class="fixed bottom-6 right-6 z-40">
-    <button onclick="sendGeneralInquiry()" class="flex items-center space-x-2 bg-white text-slate-950 font-bold px-5 py-3.5 rounded-full shadow-2xl hover:bg-slate-200 transition-transform hover:scale-105 border border-white/20">
-      <svg class="w-5 h-5 fill-emerald-500" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    <button onclick="sendGeneralInquiry()" class="flex items-center space-x-2 bg-slate-950 text-white font-bold px-5 py-3.5 rounded-full shadow-2xl hover:bg-slate-900 transition-transform hover:scale-105 border border-white/20">
+      <svg class="w-5 h-5 fill-emerald-400" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
       <span class="text-xs font-bold">WhatsApp Broker</span>
     </button>
   </div>
 
   <!-- PROPERTY DOSSIER MODAL -->
-  <div id="property-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-950/95 backdrop-blur-2xl">
+  <div id="property-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-950/95 backdrop-blur-2xl text-white">
     <div id="modal-content-body" class="min-h-screen">
       <!-- Injected by JavaScript -->
     </div>
   </div>
 
   <!-- COMPARISON MODAL -->
-  <div id="comparison-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-950/90 backdrop-blur-2xl flex items-center justify-center p-4">
+  <div id="comparison-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-950/90 backdrop-blur-2xl flex items-center justify-center p-4 text-white">
     <div class="horizon-card max-w-5xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-10 border-white/20">
       <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
         <div>
@@ -312,7 +312,7 @@
   </div>
 
   <!-- CONTACT MODAL -->
-  <div id="contact-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-950/90 backdrop-blur-2xl flex items-center justify-center p-4">
+  <div id="contact-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-950/90 backdrop-blur-2xl flex items-center justify-center p-4 text-white">
     <div class="horizon-card max-w-md w-full p-8 text-center relative border-white/20">
       <button onclick="closeContactModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white hover:text-slate-950 flex items-center justify-center transition-all">
         ✕
@@ -340,14 +340,14 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="mt-auto border-t border-white/10 bg-slate-950/90 py-10 px-4 text-xs text-slate-400">
+  <footer class="mt-auto border-t border-slate-900/10 bg-white/80 backdrop-blur-md py-10 px-4 text-xs text-slate-600">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="flex items-center space-x-3">
-        <span class="font-display font-bold text-white uppercase tracking-wider">DUBAI LUXURY ADVISORY</span>
-        <span class="text-slate-600">/</span>
-        <span><span data-i18n="footerBuiltFor">Herramienta personalizada exclusivamente para</span> <strong class="text-white">Yulian</strong></span>
+        <span class="font-display font-bold text-slate-900 uppercase tracking-wider">DUBAI LUXURY ADVISORY</span>
+        <span class="text-slate-400">/</span>
+        <span><span data-i18n="footerBuiltFor">Herramienta personalizada exclusivamente para</span> <strong class="text-slate-950 font-bold">Yulian</strong></span>
       </div>
-      <div class="text-slate-300 font-medium" data-i18n="footerCuratedBy">
+      <div class="text-slate-700 font-medium" data-i18n="footerCuratedBy">
         Curada por tu Asesor Inmobiliario de Confianza en Dubai
       </div>
       <div class="text-[11px] text-slate-500">
