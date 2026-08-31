@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuestas Exclusivas Dubai • Yulian | Luxury Real Estate Advisory</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Leaflet CSS & JS for Interactive Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <!-- Chart.js CDN for Financial Projections -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="marble-bg min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- TOP ANNOUNCEMENT & CLIENT BADGE -->
+  <div class="border-b border-white/10 bg-slate-950/60 backdrop-blur-md px-4 py-2 text-center text-xs tracking-wider text-slate-300 flex items-center justify-between max-w-7xl mx-auto w-full">
+    <div class="flex items-center space-x-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="font-medium text-amber-300 uppercase tracking-widest text-[11px]" data-i18n="heroTag">PORTAFOLIO EXCLUSIVO • DUBAI 2026</span>
+    </div>
+    <div class="text-[11px] text-slate-400 hidden sm:block">
+      Preparado para <strong class="text-slate-100 font-semibold">Yulian</strong> • Asesoría Privada
+    </div>
+    <div class="flex items-center space-x-2">
+      <span class="text-[11px] text-slate-400" data-i18n="currencyLabel">Moneda:</span>
+      <div class="inline-flex bg-slate-900/80 p-0.5 rounded-lg border border-white/10">
+        <button id="curr-eur-btn" onclick="setCurrency('EUR')" class="px-2 py-0.5 text-[11px] font-bold rounded bg-amber-500 text-slate-950">EUR (€)</button>
+        <button id="curr-aed-btn" onclick="setCurrency('AED')" class="px-2 py-0.5 text-[11px] font-medium text-slate-400 hover:text-white">AED</button>
+        <button id="curr-usd-btn" onclick="setCurrency('USD')" class="px-2 py-0.5 text-[11px] font-medium text-slate-400 hover:text-white">USD ($)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN HEADER / NAVBAR -->
+  <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-2xl border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand & Client Intro -->
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-600 via-amber-400 to-amber-200 p-[1px] flex items-center justify-center shadow-lg shadow-amber-500/20">
+          <div class="w-full h-full bg-slate-950 rounded-2xl flex items-center justify-center text-amber-300 font-serif-luxury font-black text-xl">
+            Y
+          </div>
+        </div>
+        <div>
+          <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold block">Client Dossier</span>
+          <span class="text-lg font-extrabold text-slate-100 font-serif-luxury tracking-wide">Yulian <span class="text-slate-400 font-sans text-xs font-normal">| Dubai Portafolio</span></span>
+        </div>
+      </div>
+
+      <!-- Center / Desktop Global Controls -->
+      <div class="hidden lg:flex items-center space-x-4">
+        <!-- Units Toggle -->
+        <div class="flex items-center bg-slate-900/80 px-3 py-1.5 rounded-full border border-white/10 text-xs">
+          <span class="text-slate-400 mr-2 text-[11px]" data-i18n="unitLabel">Medidas:</span>
+          <button id="unit-sqm-btn" onclick="setUnit('sqm')" class="px-2.5 py-1 text-xs font-bold rounded-lg bg-amber-500 text-slate-950">m²</button>
+          <button id="unit-sqft-btn" onclick="setUnit('sqft')" class="px-2.5 py-1 text-xs font-medium text-slate-400 hover:text-white">sqft</button>
+        </div>
+
+        <!-- Language Switcher -->
+        <div class="flex items-center bg-slate-900/80 px-1 py-1 rounded-full border border-white/10 text-xs">
+          <button id="lang-es-btn" onclick="setLanguage('es')" class="px-3 py-1 text-xs font-bold rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">Español</button>
+          <button id="lang-en-btn" onclick="setLanguage('en')" class="px-3 py-1 text-xs font-medium text-slate-400 hover:text-white">English</button>
+        </div>
+
+        <!-- Comparison Button -->
+        <button onclick="openComparisonModal()" class="btn-secondary px-4 py-2 rounded-full text-xs font-bold flex items-center">
+          <svg class="w-4 h-4 mr-1.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+          <span data-i18n="compareBtn">Comparar Opciones</span>
+        </button>
+
+        <!-- Direct Contact Advisor -->
+        <button onclick="openContactModal()" class="btn-gold px-5 py-2.5 text-xs font-bold flex items-center">
+          <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+          <span data-i18n="contactAdvisor">Contactar Asesor</span>
+        </button>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="flex items-center space-x-2 lg:hidden">
+        <button onclick="openComparisonModal()" class="p-2 rounded-xl bg-slate-900 border border-white/10 text-amber-400">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+        </button>
+        <button onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-slate-900 border border-white/10 text-slate-200">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Slide-Down Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-slate-950/95 border-b border-white/10 px-6 py-5 space-y-4">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <span class="text-xs text-slate-400" data-i18n="currencyLabel">Moneda:</span>
+        <div class="inline-flex bg-slate-900 p-0.5 rounded-lg border border-white/10">
+          <button onclick="setCurrency('EUR')" class="px-3 py-1 text-xs font-bold rounded bg-amber-500 text-slate-950">EUR</button>
+          <button onclick="setCurrency('AED')" class="px-3 py-1 text-xs font-medium text-slate-400">AED</button>
+          <button onclick="setCurrency('USD')" class="px-3 py-1 text-xs font-medium text-slate-400">USD</button>
+        </div>
+      </div>
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <span class="text-xs text-slate-400" data-i18n="unitLabel">Medidas:</span>
+        <div class="inline-flex bg-slate-900 p-0.5 rounded-lg border border-white/10">
+          <button onclick="setUnit('sqm')" class="px-3 py-1 text-xs font-bold rounded bg-amber-500 text-slate-950">m²</button>
+          <button onclick="setUnit('sqft')" class="px-3 py-1 text-xs font-medium text-slate-400">sqft</button>
+        </div>
+      </div>
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <span class="text-xs text-slate-400">Idioma:</span>
+        <div class="inline-flex bg-slate-900 p-0.5 rounded-lg border border-white/10">
+          <button onclick="setLanguage('es')" class="px-3 py-1 text-xs font-bold rounded bg-amber-500/20 text-amber-300">Español</button>
+          <button onclick="setLanguage('en')" class="px-3 py-1 text-xs font-medium text-slate-400">English</button>
+        </div>
+      </div>
+      <button onclick="openContactModal()" class="btn-gold w-full py-3 text-xs font-bold flex items-center justify-center">
+        <span data-i18n="contactAdvisor">Contactar Asesor</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO PRESENTATION BANNER (Horizon Grove Luxury Inspired) -->
+  <section class="relative pt-12 pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+    <div class="card-luxury rounded-3xl p-8 md:p-12 relative overflow-hidden border-amber-500/20">
+      <!-- Glow ambient background elements -->
+      <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-3xl">
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold tracking-widest uppercase mb-4">
+          <span>✨ Private Client Portfolio</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black font-serif-luxury text-slate-100 tracking-tight leading-none mb-4">
+          <span data-i18n="heroTitle">Propuestas Personalizadas para</span> <span class="text-gold-gradient">Yulian</span>
+        </h1>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl" data-i18n="heroSubtitle">
+          Selección curada de residencias de lujo, oportunidades comerciales y chalets residenciales según tus requerimientos exactos.
+        </p>
+
+        <!-- Client Criteria Quick Badges -->
+        <div class="flex flex-wrap gap-2.5 mt-6 pt-6 border-t border-white/10 text-xs">
+          <div class="px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-white/10 text-slate-200 flex items-center">
+            <span class="w-2 h-2 rounded-full bg-amber-400 mr-2"></span>
+            <span>2-3 BHK Residencial (Vivir con Madre)</span>
+          </div>
+          <div class="px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-white/10 text-slate-200 flex items-center">
+            <span class="w-2 h-2 rounded-full bg-blue-400 mr-2"></span>
+            <span>Restaurante 12k-15k sqft (Terrazas)</span>
+          </div>
+          <div class="px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-white/10 text-slate-200 flex items-center">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2"></span>
+            <span>4 BHK Chalet (Personal)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 CATEGORY TABS (Airbnb Clean Navigation) -->
+  <section class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full mb-8">
+    <div class="flex flex-col sm:flex-row gap-3 bg-slate-950/60 p-2 rounded-3xl border border-white/10 backdrop-blur-xl">
+      
+      <!-- Tab 1: Living Apartment -->
+      <button id="nav-tab-living" onclick="setTab('living')" class="flex-1 py-3.5 px-4 text-center rounded-2xl border border-amber-400 text-amber-300 bg-amber-500/10 shadow-lg shadow-amber-500/5 transition-all">
+        <div class="text-xs uppercase tracking-wider font-extrabold flex items-center justify-center space-x-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+          <span data-i18n="tabLiving">Apartamento para Vivir</span>
+          <span class="px-2 py-0.5 rounded-full bg-emerald-500 text-slate-950 text-[10px] font-black ml-1">3 LISTAS</span>
+        </div>
+        <div class="text-[11px] text-slate-400 mt-0.5" data-i18n="tabLivingSub">2-3 BHK • Downtown / Business Bay</div>
+      </button>
+
+      <!-- Tab 2: Commercial Restaurant -->
+      <button id="nav-tab-commercial" onclick="setTab('commercial')" class="flex-1 py-3.5 px-4 text-center rounded-2xl border border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/40 transition-all">
+        <div class="text-xs uppercase tracking-wider font-extrabold flex items-center justify-center space-x-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+          <span data-i18n="tabCommercial">Espacio Comercial (Restaurante)</span>
+        </div>
+        <div class="text-[11px] text-slate-400 mt-0.5" data-i18n="tabCommercialSub">12k-15k sqft • Áreas Abiertas</div>
+      </button>
+
+      <!-- Tab 3: Townhouse for Rent -->
+      <button id="nav-tab-townhouse" onclick="setTab('townhouse')" class="flex-1 py-3.5 px-4 text-center rounded-2xl border border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/40 transition-all">
+        <div class="text-xs uppercase tracking-wider font-extrabold flex items-center justify-center space-x-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+          <span data-i18n="tabTownhouse">Chalet para Rentar</span>
+        </div>
+        <div class="text-[11px] text-slate-400 mt-0.5" data-i18n="tabTownhouseSub">4 BHK • Damac Hills (Personal)</div>
+      </button>
+
+    </div>
+  </section>
+
+  <!-- CONTENT SECTION 1: RESIDENTIAL APARTMENTS (LIVING) -->
+  <main id="section-living" class="flex-1 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full pb-16">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-black font-serif-luxury text-slate-100" data-i18n="livingSectionTitle">
+          Opciones Residenciales Seleccionadas
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-400 mt-1" data-i18n="livingSectionDesc">
+          Propiedades de alta gama con vistas icónicas, acabados premium y máxima idoneidad para vivir cómodamente con tu madre.
+        </p>
+      </div>
+
+      <button onclick="openComparisonModal()" class="btn-secondary px-4 py-2.5 rounded-full text-xs font-bold flex items-center self-start sm:self-auto">
+        <svg class="w-4 h-4 mr-1.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+        <span data-i18n="compareBtn">Comparar Opciones</span>
+      </button>
+    </div>
+
+    <!-- Cards Grid -->
+    <div id="properties-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Injected by JavaScript -->
+    </div>
+  </main>
+
+  <!-- CONTENT SECTION 2: COMMERCIAL (RESTAURANT) -->
+  <section id="section-commercial" class="hidden flex-1 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full pb-16">
+    <div id="commercial-content">
+      <!-- Injected by JavaScript -->
+    </div>
+  </section>
+
+  <!-- CONTENT SECTION 3: TOWNHOUSE FOR RENT -->
+  <section id="section-townhouse" class="hidden flex-1 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full pb-16">
+    <div id="townhouse-content">
+      <!-- Injected by JavaScript -->
+    </div>
+  </section>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <div class="fixed bottom-6 right-6 z-40">
+    <button onclick="sendGeneralInquiry()" class="whatsapp-pulse flex items-center space-x-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-4 py-3 rounded-full shadow-2xl transition-transform hover:scale-105">
+      <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+      <span class="text-xs">Chat WhatsApp</span>
+    </button>
+  </div>
+
+  <!-- PROPERTY DOSSIER MODAL (Full Interactive View) -->
+  <div id="property-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-950/95 backdrop-blur-2xl">
+    <div id="modal-content-body" class="min-h-screen">
+      <!-- Injected by JavaScript -->
+    </div>
+  </div>
+
+  <!-- COMPARISON MODAL -->
+  <div id="comparison-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-950/90 backdrop-blur-xl flex items-center justify-center p-4">
+    <div class="card-luxury rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 border-amber-500/30">
+      <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+        <div>
+          <h3 class="text-2xl font-bold font-serif-luxury text-slate-100" data-i18n="compTitle">Comparativa Inteligente de Opciones</h3>
+          <p class="text-xs text-slate-400" data-i18n="compSubtitle">Análisis lado a lado para tomar la mejor decisión de inversión y estilo de vida.</p>
+        </div>
+        <button onclick="closeComparisonModal()" class="w-8 h-8 rounded-full bg-slate-900 border border-white/10 text-slate-300 hover:text-white flex items-center justify-center">
+          ✕
+        </button>
+      </div>
+
+      <div id="comparison-table-container">
+        <!-- Injected by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT MODAL -->
+  <div id="contact-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-950/90 backdrop-blur-xl flex items-center justify-center p-4">
+    <div class="card-luxury rounded-3xl max-w-md w-full p-6 md:p-8 border-amber-500/30 text-center relative">
+      <button onclick="closeContactModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-900 border border-white/10 text-slate-300 hover:text-white flex items-center justify-center">
+        ✕
+      </button>
+
+      <div class="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 mx-auto flex items-center justify-center mb-4 text-2xl">
+        🤝
+      </div>
+
+      <h3 class="text-2xl font-bold font-serif-luxury text-slate-100" data-i18n="contactTitle">Contacto Directo</h3>
+      <p class="text-xs text-slate-400 mt-1 mb-6" data-i18n="contactSubtitle">Asesoría privada para Yulian • Dubai Real Estate Advisory</p>
+
+      <div class="space-y-3">
+        <button onclick="sendGeneralInquiry()" class="btn-gold w-full py-3 text-xs font-bold flex items-center justify-center">
+          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654z"/></svg>
+          <span data-i18n="whatsappQuick">Escribir por WhatsApp</span>
+        </button>
+
+        <a href="tel:+971500000000" class="btn-secondary w-full py-3 text-xs font-bold rounded-full flex items-center justify-center">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+          <span data-i18n="callDirect">Llamada Directa</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="mt-auto border-t border-white/10 bg-slate-950/80 backdrop-blur-md py-8 px-4 text-center text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-2">
+        <span class="text-amber-400 font-serif-luxury font-bold text-base">Dubai Luxury Real Estate</span>
+        <span class="text-slate-600">•</span>
+        <span><span data-i18n="footerBuiltFor">Herramienta personalizada exclusivamente para</span> <strong class="text-slate-200">Yulian</strong></span>
+      </div>
+      <div class="text-slate-300 font-medium" data-i18n="footerCuratedBy">
+        Curada por tu Asesor Inmobiliario de Confianza en Dubai
+      </div>
+      <div class="text-[11px] text-slate-500" data-i18n="footerRights">
+        © 2026 Dubai Real Estate Advisory. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
