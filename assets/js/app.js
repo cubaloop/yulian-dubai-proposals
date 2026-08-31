@@ -1,4 +1,4 @@
-// Application State & Controller for Yulian's Proposal
+// Application State & Controller for Yulian's Proposal - Horizon Grove Edition
 let state = {
   lang: 'es', // 'es' or 'en'
   currency: 'EUR', // 'EUR', 'AED', 'USD'
@@ -13,97 +13,105 @@ let state = {
 // UI Translations
 const TRANSLATIONS = {
   es: {
-    heroTag: "PORTAFOLIO EXCLUSIVO • DUBAI 2026",
-    heroTitle: "Propuestas Personalizadas para",
-    heroSubtitle: "Selección curada de residencias de lujo, oportunidades comerciales y chalets residenciales según tus requerimientos exactos.",
+    heroWelcome: "welcome to your dubai portfolio",
+    heroDesc: "Un espacio exclusivo donde el diseño arquitectónico de vanguardia se une al confort familiar y comercial, curado a medida para ti y tu madre.",
+    viewApartments: "Ver Propuestas Residenciales",
+    startingFrom: "Desde",
+    searchProgress: "ESTADO DE BÚSQUEDA",
+    
+    navLiving: "Residencial (Vivir)",
+    navCommercial: "Restaurante (Comercial)",
+    navTownhouse: "Chalet (Personal)",
+    getConsultation: "Get A Consultation ↗",
     
     tabLiving: "Apartamento para Vivir",
     tabLivingSub: "2-3 BHK • Downtown / Business Bay",
-    tabCommercial: "Espacio Comercial (Restaurante)",
+    tabCommercial: "Restaurante Comercial",
     tabCommercialSub: "12k-15k sqft • Áreas Abiertas",
     tabTownhouse: "Chalet para Rentar",
     tabTownhouseSub: "4 BHK • Damac Hills (Personal)",
     
-    currencyLabel: "Moneda",
-    unitLabel: "Medidas",
     compareBtn: "Comparar Opciones",
     contactAdvisor: "Contactar Asesor",
     
     // Cards
-    viewFullDetails: "Ver Información Completa",
+    viewFullDetails: "Ver Ficha Completa",
     floor: "Piso",
     beds: "Habitaciones",
     baths: "Baños",
     priceNegotiable: "Negociable a",
-    targetROI: "Revalorización 5 Años",
+    targetROI: "Plusvalía 5 Años",
     targetAnnual: "Proyección Anual",
     
     // Section Headers
-    livingSectionTitle: "Opciones Residenciales Seleccionadas",
-    livingSectionDesc: "Propiedades de alta gama con vistas icónicas, acabados premium y máxima idoneidad para vivir cómodamente con tu madre.",
+    livingSectionTitle: "Residencias Seleccionadas",
+    livingSectionDesc: "Propiedades con vistas directas al Burj Khalifa y Canal de Dubai, acabados premium y máxima idoneidad para vivir cómodamente con tu madre.",
     
     // Status Banners
     statusWorking: "Actualmente Trabajando en Encontrarte las mejores Opciones",
-    statusWorkingSub: "Analizando disponibilidades exclusivas off-market y ubicaciones estratégicas con terrazas aprobadas.",
-    reqTitle: "Requerimientos Establecidos",
+    statusWorkingSub: "Analizando disponibilidades exclusivas off-market y ubicaciones estratégicas con terrazas abiertas y licencias gastronómicas aprobadas.",
+    reqTitle: "Criterios Establecidos",
     locationsTarget: "Zonas en Búsqueda",
-    budgetRange: "Presupuesto",
-    dimensionsRange: "Superficie",
+    budgetRange: "Presupuesto Objetivo",
+    dimensionsRange: "Superficie Solicitada",
     technicalFeatures: "Especificaciones Técnicas Clave",
     requestCall: "Avisarme al Encontrar Opciones",
     
     // Modal
-    gallery: "Galería de Fotos",
-    propertySpecs: "Ficha Técnica",
-    financialAnalysis: "Plusvalía Histórica y Proyección a Futuro",
-    financialDesc: "Crecimiento de capital en los últimos 5 años (2021-2026) y proyección a 2030 basada en el plan maestro de Dubai.",
-    suitabilityTitle: "Por Qué es Ideal para Vivir con tu Madre",
-    upcomingProjectsTitle: "Proyectos Anunciados en la Zona (Impulsores de Valor)",
-    mapTitle: "Ubicación en el Mapa y Conectividad",
+    gallery: "Galería de Fotos de Alta Calidad",
+    propertySpecs: "Ficha Arquitectónica",
+    financialAnalysis: "Plusvalía Histórica (5 Años) & Proyección 2030",
+    financialDesc: "Evolución real del valor del activo (2021-2026) y pronóstico de crecimiento fundamentado en el Dubai Urban Master Plan 2040.",
+    suitabilityTitle: "Por Qué es la Mejor Opción para Vivir con tu Madre",
+    upcomingProjectsTitle: "Mega-Proyectos en Desarrollo en la Zona (Impulsores de Valor)",
+    mapTitle: "Ubicación Geográfica y Conectividad",
     bookViewing: "Agendar Visita Privada",
     askWhatsapp: "Consultar por WhatsApp",
-    backToList: "Volver a las Opciones",
+    backToList: "Volver a las Propuestas",
     
     // Comparison
     compTitle: "Comparativa Inteligente de Opciones",
-    compSubtitle: "Análisis lado a lado para tomar la mejor decisión de inversión y estilo de vida.",
-    compPrice: "Precio Actual",
-    compTargetPrice: "Precio Negociado",
-    compArea: "Superficie",
-    compPricePerUnit: "Precio por Unidad",
+    compSubtitle: "Análisis técnico y financiero para respaldar la mejor decisión.",
+    compPrice: "Precio de Venta",
+    compTargetPrice: "Precio Negociable",
+    compArea: "Superficie Total",
+    compPricePerUnit: "Precio por m² / sqft",
     compFloorLevel: "Nivel de Piso",
-    compFurnishing: "Equipamiento",
-    compGrowth5y: "Crecimiento 5 Años",
+    compFurnishing: "Estado de Mobiliario",
+    compGrowth5y: "Revalorización 5 Años",
     compProjected2030: "Valor Proyectado 2030",
-    compSuitability: "Confort Familiar",
+    compSuitability: "Confort Familiar (Madre)",
     
     // Contact Modal
-    contactTitle: "Contacto Directo con tu Asesor Inmobiliario",
-    contactSubtitle: "Asesoría privada para Yulian • Dubai Real Estate Advisory",
+    contactTitle: "Asesoría Privada Directa",
+    contactSubtitle: "Consultoría exclusiva para Yulian • Dubai Real Estate Advisory",
     whatsappQuick: "Escribir por WhatsApp",
-    callDirect: "Llamada Directa",
-    schedulePrivateTour: "Solicitar Visita Presencial / Video Tour",
+    callDirect: "Llamada Telefónica Directa",
     
     // Footer
     footerBuiltFor: "Herramienta personalizada exclusivamente para",
-    footerCuratedBy: "Curada por tu Asesor Inmobiliario de Confianza en Dubai",
-    footerRights: "Todos los derechos reservados. Información verificada en el mercado de Dubai 2026."
+    footerCuratedBy: "Curada por tu Asesor Inmobiliario de Confianza en Dubai"
   },
   en: {
-    heroTag: "EXCLUSIVE PORTFOLIO • DUBAI 2026",
-    heroTitle: "Bespoke Proposals for",
-    heroSubtitle: "Curated luxury residences, prime restaurant commercial spaces, and residential townhouses tailored to your exact criteria.",
+    heroWelcome: "welcome to your bespoke portfolio",
+    heroDesc: "A unique space where avant-garde architecture meets tailored family and commercial convenience, curated specifically for you and your mother.",
+    viewApartments: "View Residential Proposals",
+    startingFrom: "From",
+    searchProgress: "SEARCH STATUS",
+    
+    navLiving: "Living (Residential)",
+    navCommercial: "Restaurant (Commercial)",
+    navTownhouse: "Townhouse (Staff)",
+    getConsultation: "Get A Consultation ↗",
     
     tabLiving: "Living Apartment",
     tabLivingSub: "2-3 BHK • Downtown / Business Bay",
-    tabCommercial: "Commercial (Restaurant)",
+    tabCommercial: "Restaurant Space",
     tabCommercialSub: "12k-15k sqft • Open Spaces",
     tabTownhouse: "Townhouse for Rent",
     tabTownhouseSub: "4 BHK • Damac Hills (Staff)",
     
-    currencyLabel: "Currency",
-    unitLabel: "Units",
-    compareBtn: "Compare Options",
+    compareBtn: "Compare Proposals",
     contactAdvisor: "Contact Advisor",
     
     // Cards
@@ -116,63 +124,60 @@ const TRANSLATIONS = {
     targetAnnual: "Projected Annual",
     
     // Section Headers
-    livingSectionTitle: "Curated Residential Proposals",
-    livingSectionDesc: "High-end residences with iconic views, premium finishes, and maximum living comfort for you and your mother.",
+    livingSectionTitle: "Curated Residences",
+    livingSectionDesc: "Prime properties featuring direct Burj Khalifa & Canal vistas, luxury turnkey finishes, and optimal comfort for you and your mother.",
     
     // Status Banners
     statusWorking: "Currently Sourcing the Best Options",
-    statusWorkingSub: "Sourcing exclusive off-market listings and prime licensed restaurant units with outdoor terraces.",
+    statusWorkingSub: "Sourcing off-market restaurant opportunities with outdoor terraces and approved food licenses in prime Dubai waterfronts.",
     reqTitle: "Target Requirements",
     locationsTarget: "Target Locations",
-    budgetRange: "Budget",
-    dimensionsRange: "Dimensions",
+    budgetRange: "Target Budget",
+    dimensionsRange: "Target Area",
     technicalFeatures: "Key Technical Specifications",
     requestCall: "Notify Me on Match",
     
     // Modal
-    gallery: "Photo Gallery",
-    propertySpecs: "Property Specifications",
-    financialAnalysis: "Historical Capital Growth & Projections",
-    financialDesc: "5-Year historical asset appreciation (2021-2026) and 2030 forecast anchored to Dubai Urban Master Plan.",
-    suitabilityTitle: "Why This Is Perfect for Living with Your Mother",
-    upcomingProjectsTitle: "Announced Area Mega-Projects (Value Drivers)",
-    mapTitle: "Location & Strategic Connectivity",
+    gallery: "High-Resolution Photo Gallery",
+    propertySpecs: "Architectural Dossier",
+    financialAnalysis: "Historical Capital Growth (5-Year) & 2030 Forecast",
+    financialDesc: "Asset appreciation trajectory (2021-2026) and future valuation model anchored to the Dubai Urban Master Plan 2040.",
+    suitabilityTitle: "Why This Residence Is Perfect for Living with Your Mother",
+    upcomingProjectsTitle: "Announced Area Mega-Projects (Value Catalysts)",
+    mapTitle: "Geographic Location & Connectivity",
     bookViewing: "Schedule Private Viewing",
     askWhatsapp: "Inquire via WhatsApp",
     backToList: "Back to Proposals",
     
     // Comparison
-    compTitle: "Property Comparison Matrix",
-    compSubtitle: "Side-by-side analysis for confident decision-making.",
-    compPrice: "Current Price",
+    compTitle: "Side-by-Side Comparison Matrix",
+    compSubtitle: "Technical and financial analysis for confident decision-making.",
+    compPrice: "Listing Price",
     compTargetPrice: "Negotiated Target",
     compArea: "Total Area",
     compPricePerUnit: "Price per Unit",
     compFloorLevel: "Floor Level",
     compFurnishing: "Furnishing Status",
     compGrowth5y: "5-Year Capital Growth",
-    compProjected2030: "2030 Forecast",
-    compSuitability: "Family Comfort",
+    compProjected2030: "2030 Projected Value",
+    compSuitability: "Family Comfort Score",
     
     // Contact Modal
-    contactTitle: "Direct Advisory Contact",
-    contactSubtitle: "Private Consultation for Yulian • Dubai Real Estate Advisory",
+    contactTitle: "Private Advisory",
+    contactSubtitle: "Direct consultation for Yulian • Dubai Real Estate Advisory",
     whatsappQuick: "Chat via WhatsApp",
     callDirect: "Direct Phone Call",
-    schedulePrivateTour: "Request Private Tour / Video Walkthrough",
     
     // Footer
     footerBuiltFor: "Bespoke portal tailored exclusively for",
-    footerCuratedBy: "Curated by your Trusted Dubai Real Estate Advisor",
-    footerRights: "All rights reserved. Market verified Dubai 2026."
+    footerCuratedBy: "Curated by your Trusted Dubai Real Estate Advisor"
   }
 };
 
-// Currency & Unit Converters
+// Conversions
 function formatPrice(aedAmount) {
   let finalVal = aedAmount;
   let symbol = "AED ";
-  let suffix = "";
 
   if (state.currency === 'EUR') {
     finalVal = aedAmount * PROPOSALS_DATA.rates.AED_TO_EUR;
@@ -189,7 +194,6 @@ function formatPrice(aedAmount) {
     }
     return `${symbol}${Math.round(finalVal).toLocaleString()}`;
   } else {
-    // AED
     if (finalVal >= 1000000) {
       return `${(finalVal / 1000000).toFixed(3).replace(/\.?0+$/, '')}M AED`;
     }
@@ -228,7 +232,7 @@ function formatPricePerUnit(aedAmount, sqftAmount) {
   }
 }
 
-// Language Switcher
+// Navigation & Toggles
 function setLanguage(lang) {
   state.lang = lang;
   if (lang === 'es') {
@@ -256,31 +260,35 @@ function setTab(tab) {
   updateUI();
 }
 
-// Render Functions
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
 function updateUI() {
   const t = TRANSLATIONS[state.lang];
 
-  // Header and controls
-  document.getElementById('lang-es-btn').className = state.lang === 'es' ? 'px-3 py-1 text-xs font-bold rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'px-3 py-1 text-xs font-medium text-slate-400 hover:text-white';
-  document.getElementById('lang-en-btn').className = state.lang === 'en' ? 'px-3 py-1 text-xs font-bold rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'px-3 py-1 text-xs font-medium text-slate-400 hover:text-white';
+  // Header active buttons
+  document.getElementById('lang-es-btn').className = state.lang === 'es' ? 'px-2.5 py-0.5 text-xs font-bold rounded-full bg-white text-slate-950 shadow' : 'px-2.5 py-0.5 text-xs font-medium text-slate-400 hover:text-white';
+  document.getElementById('lang-en-btn').className = state.lang === 'en' ? 'px-2.5 py-0.5 text-xs font-bold rounded-full bg-white text-slate-950 shadow' : 'px-2.5 py-0.5 text-xs font-medium text-slate-400 hover:text-white';
 
-  // Currency buttons
   ['EUR', 'AED', 'USD'].forEach(c => {
     const el = document.getElementById(`curr-${c.toLowerCase()}-btn`);
     if (el) {
-      el.className = state.currency === c ? 'px-2.5 py-1 text-xs font-bold rounded-lg bg-amber-500 text-slate-950 shadow-sm' : 'px-2.5 py-1 text-xs font-medium text-slate-400 hover:text-white';
+      el.className = state.currency === c ? 'px-2.5 py-0.5 text-xs font-bold rounded-full bg-white text-slate-950 shadow' : 'px-2.5 py-0.5 text-xs font-medium text-slate-400 hover:text-white';
     }
   });
 
-  // Unit buttons
   ['sqm', 'sqft'].forEach(u => {
     const el = document.getElementById(`unit-${u}-btn`);
     if (el) {
-      el.className = state.unit === u ? 'px-2.5 py-1 text-xs font-bold rounded-lg bg-amber-500 text-slate-950 shadow-sm' : 'px-2.5 py-1 text-xs font-medium text-slate-400 hover:text-white';
+      el.className = state.unit === u ? 'px-2 py-0.5 text-xs font-bold rounded-full bg-white text-slate-950 shadow' : 'px-2 py-0.5 text-xs font-medium text-slate-400 hover:text-white';
     }
   });
 
-  // Static translated texts
+  // Static translations
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (t[key]) {
@@ -288,17 +296,17 @@ function updateUI() {
     }
   });
 
-  // Navigation Tabs
+  // Navigation Tabs Styling
   const tabLiving = document.getElementById('nav-tab-living');
   const tabCommercial = document.getElementById('nav-tab-commercial');
   const tabTownhouse = document.getElementById('nav-tab-townhouse');
 
-  const activeTabClass = "border-amber-400 text-amber-300 bg-amber-500/10 shadow-lg shadow-amber-500/5";
-  const inactiveTabClass = "border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/40";
+  const activeTabClass = "border-white text-slate-950 bg-white shadow-xl";
+  const inactiveTabClass = "border-white/10 text-slate-400 hover:text-white hover:bg-white/5";
 
-  tabLiving.className = `flex-1 py-3 px-4 text-center rounded-2xl border transition-all duration-300 ${state.activeTab === 'living' ? activeTabClass : inactiveTabClass}`;
-  tabCommercial.className = `flex-1 py-3 px-4 text-center rounded-2xl border transition-all duration-300 ${state.activeTab === 'commercial' ? activeTabClass : inactiveTabClass}`;
-  tabTownhouse.className = `flex-1 py-3 px-4 text-center rounded-2xl border transition-all duration-300 ${state.activeTab === 'townhouse' ? activeTabClass : inactiveTabClass}`;
+  tabLiving.className = `flex-1 py-3 px-5 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'living' ? activeTabClass : inactiveTabClass}`;
+  tabCommercial.className = `flex-1 py-3 px-5 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'commercial' ? activeTabClass : inactiveTabClass}`;
+  tabTownhouse.className = `flex-1 py-3 px-5 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'townhouse' ? activeTabClass : inactiveTabClass}`;
 
   // Section visibility
   document.getElementById('section-living').classList.toggle('hidden', state.activeTab !== 'living');
@@ -313,13 +321,12 @@ function updateUI() {
     renderTownhouseSection();
   }
 
-  // If modal is open, re-render modal content with new currency/units/language
   if (state.activeProperty) {
     renderPropertyModalContent(state.activeProperty);
   }
 }
 
-// Render Property Cards (Living)
+// Render Property Cards (Horizon Grove Minimalist Card Standard)
 function renderPropertyCards() {
   const container = document.getElementById('properties-grid');
   const t = TRANSLATIONS[state.lang];
@@ -332,88 +339,85 @@ function renderPropertyCards() {
     const targetPrice = prop.targetPriceAed !== prop.priceAed ? formatPrice(prop.targetPriceAed) : null;
 
     const card = document.createElement('div');
-    card.className = "card-luxury rounded-3xl overflow-hidden flex flex-col group relative";
+    card.className = "horizon-card overflow-hidden flex flex-col group relative";
     card.innerHTML = `
       <!-- Hero Media Container -->
-      <div class="relative h-72 w-full overflow-hidden bg-slate-900 cursor-pointer" onclick="openPropertyModal('${prop.id}')">
+      <div class="relative h-80 w-full overflow-hidden bg-slate-900 cursor-pointer" onclick="openPropertyModal('${prop.id}')">
         <img src="${prop.heroImage}" alt="${prop.name}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
         
         <!-- Top Badges -->
         <div class="absolute top-4 left-4 right-4 flex items-center justify-between">
-          <span class="badge-gold px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase backdrop-blur-md">
+          <span class="badge-clean-gold px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
             ${prop.badge}
           </span>
-          <span class="badge-outline px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md bg-slate-950/60 text-slate-300">
+          <span class="badge-clean-white px-3 py-1 rounded-full text-xs font-semibold">
             ${prop.floor}
           </span>
         </div>
 
         <!-- 5Y Appreciation Pill -->
         <div class="absolute bottom-4 left-4 flex items-center space-x-2">
-          <div class="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold backdrop-blur-md flex items-center">
-            <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+          <div class="px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold flex items-center">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2"></span>
             ${prop.appreciationHistory.growth5y} (5A)
           </div>
         </div>
 
         <!-- Gallery Count Pill -->
-        <div class="absolute bottom-4 right-4 px-2.5 py-1 rounded-full bg-slate-950/70 border border-white/10 text-slate-300 text-xs font-medium backdrop-blur-md flex items-center">
-          <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+        <div class="absolute bottom-4 right-4 px-3 py-1.5 rounded-full bg-slate-950/80 border border-white/10 text-slate-300 text-xs font-medium backdrop-blur-md flex items-center">
           ${prop.gallery.length} fotos
         </div>
       </div>
 
       <!-- Card Body -->
-      <div class="p-6 flex-1 flex flex-col justify-between">
+      <div class="p-6 md:p-8 flex-1 flex flex-col justify-between">
         <div>
           <!-- Title & Subtitle -->
-          <div class="flex justify-between items-start mb-2">
-            <div>
-              <h3 class="text-xl font-bold text-slate-100 group-hover:text-amber-300 transition-colors font-serif-luxury text-2xl tracking-wide cursor-pointer" onclick="openPropertyModal('${prop.id}')">
-                ${prop.name}
-              </h3>
-              <p class="text-xs text-slate-400 flex items-center mt-1">
-                <svg class="w-3.5 h-3.5 text-amber-400 mr-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                ${prop.subTitle}
-              </p>
-            </div>
+          <div class="mb-4">
+            <h3 class="text-2xl font-display font-extrabold text-white group-hover:text-amber-300 transition-colors tracking-tight cursor-pointer" onclick="openPropertyModal('${prop.id}')">
+              ${prop.name}
+            </h3>
+            <p class="text-xs text-slate-400 flex items-center mt-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mr-2"></span>
+              ${prop.subTitle}
+            </p>
           </div>
 
           <!-- Key Metrics Grid -->
-          <div class="grid grid-cols-3 gap-2 py-3 my-3 border-y border-white/5 text-center">
-            <div class="bg-slate-900/50 p-2 rounded-xl border border-white/5">
+          <div class="grid grid-cols-3 gap-2.5 py-3.5 my-3 border-y border-white/10 text-center">
+            <div class="bg-white/5 p-2.5 rounded-2xl border border-white/5">
               <span class="text-[10px] uppercase tracking-wider text-slate-400 block">${t.beds}</span>
-              <span class="text-sm font-bold text-slate-200">${prop.beds} BHK</span>
+              <span class="text-sm font-bold text-white">${prop.beds} BHK</span>
             </div>
-            <div class="bg-slate-900/50 p-2 rounded-xl border border-white/5">
+            <div class="bg-white/5 p-2.5 rounded-2xl border border-white/5">
               <span class="text-[10px] uppercase tracking-wider text-slate-400 block">${t.baths}</span>
-              <span class="text-sm font-bold text-slate-200">${prop.baths}</span>
+              <span class="text-sm font-bold text-white">${prop.baths} Baños</span>
             </div>
-            <div class="bg-slate-900/50 p-2 rounded-xl border border-white/5">
-              <span class="text-[10px] uppercase tracking-wider text-slate-400 block">${t.unitLabel}</span>
+            <div class="bg-white/5 p-2.5 rounded-2xl border border-white/5">
+              <span class="text-[10px] uppercase tracking-wider text-slate-400 block">${t.dimensionsRange}</span>
               <span class="text-sm font-bold text-amber-300">${formattedArea}</span>
             </div>
           </div>
 
           <!-- Highlight Pro -->
-          <p class="text-xs text-slate-300 line-clamp-2 leading-relaxed mb-4">
+          <p class="text-xs text-slate-300 line-clamp-2 leading-relaxed mb-6">
             ${prop.description[state.lang]}
           </p>
         </div>
 
         <!-- Footer / Price and CTA -->
-        <div class="pt-4 border-t border-white/5 flex items-center justify-between mt-auto">
+        <div class="pt-4 border-t border-white/10 flex items-center justify-between mt-auto">
           <div>
-            <div class="text-xs text-slate-400">
-              ${targetPrice ? `<span class="text-emerald-400 font-semibold">${t.priceNegotiable} ${targetPrice}</span>` : pricePerUnit}
+            <div class="text-xs text-slate-400 font-medium">
+              ${targetPrice ? `<span class="text-emerald-400 font-bold">${t.priceNegotiable} ${targetPrice}</span>` : pricePerUnit}
             </div>
-            <div class="text-2xl font-black text-slate-100 font-serif-luxury tracking-tight text-gold-gradient">
+            <div class="text-2xl font-black text-white font-display tracking-tight">
               ${formattedPrice}
             </div>
           </div>
 
-          <button onclick="openPropertyModal('${prop.id}')" class="btn-gold px-4 py-2.5 text-xs font-bold flex items-center">
+          <button onclick="openPropertyModal('${prop.id}')" class="btn-horizon-white !px-4 !py-2.5 text-xs font-bold">
             <span>${t.viewFullDetails}</span>
             <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
           </button>
@@ -431,12 +435,11 @@ function renderCommercialSection() {
   const container = document.getElementById('commercial-content');
 
   container.innerHTML = `
-    <div class="max-w-4xl mx-auto">
-      <!-- Status Notice Card -->
-      <div class="card-luxury rounded-3xl p-8 border-amber-500/30 relative overflow-hidden mb-8">
-        <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto">
+      <!-- Status Notice Card with Restaurant Backdrop -->
+      <div class="horizon-card p-8 md:p-12 relative overflow-hidden mb-8 border-white/20" style="background-image: linear-gradient(180deg, rgba(7,9,14,0.7) 0%, rgba(7,9,14,0.95) 100%), url('assets/images/backgrounds/restaurant_bg.jpg'); background-size: cover; background-position: center;">
         
-        <div class="flex items-center space-x-3 text-amber-400 mb-3">
+        <div class="flex items-center space-x-3 text-amber-300 mb-4">
           <span class="relative flex h-3 w-3">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
@@ -444,41 +447,41 @@ function renderCommercialSection() {
           <span class="text-xs font-bold uppercase tracking-widest">${comm.status[state.lang]}</span>
         </div>
 
-        <h2 class="text-3xl md:text-4xl font-bold font-serif-luxury text-slate-100 mb-4">
+        <h2 class="text-3xl md:text-5xl font-display font-black text-white mb-4 tracking-tight">
           ${comm.title[state.lang]}
         </h2>
-        <p class="text-slate-300 text-sm leading-relaxed mb-6 max-w-2xl">
+        <p class="text-slate-200 text-sm md:text-base leading-relaxed mb-8 max-w-2xl">
           ${t.statusWorkingSub}
         </p>
 
         <!-- Requirements Summary Matrix -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 border-t border-white/10">
-          <div class="bg-slate-900/60 p-4 rounded-2xl border border-white/5">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-8 border-t border-white/20">
+          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 backdrop-blur-md">
             <span class="text-xs text-amber-400 font-semibold uppercase tracking-wider block mb-1">${t.dimensionsRange}</span>
-            <span class="text-lg font-bold text-slate-100">${comm.specs.sizeRange}</span>
+            <span class="text-xl font-bold text-white font-display">${comm.specs.sizeRange}</span>
           </div>
-          <div class="bg-slate-900/60 p-4 rounded-2xl border border-white/5">
+          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 backdrop-blur-md">
             <span class="text-xs text-amber-400 font-semibold uppercase tracking-wider block mb-1">${t.budgetRange}</span>
-            <span class="text-lg font-bold text-slate-100">${comm.specs.budget}</span>
+            <span class="text-xl font-bold text-white font-display">${comm.specs.budget}</span>
           </div>
-          <div class="bg-slate-900/60 p-4 rounded-2xl border border-white/5">
+          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 backdrop-blur-md">
             <span class="text-xs text-amber-400 font-semibold uppercase tracking-wider block mb-1">${t.locationsTarget}</span>
-            <span class="text-sm font-medium text-slate-200">${comm.specs.locations.join(", ")}</span>
+            <span class="text-sm font-medium text-slate-200">${comm.specs.locations.join(" • ")}</span>
           </div>
         </div>
       </div>
 
       <!-- Specific Requirements Checklist -->
-      <div class="card-luxury rounded-3xl p-8 mb-8">
-        <h3 class="text-xl font-bold text-slate-100 font-serif-luxury mb-4 flex items-center">
-          <svg class="w-5 h-5 text-amber-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      <div class="horizon-card p-8 md:p-10 mb-8 border-white/10">
+        <h3 class="text-2xl font-display font-bold text-white mb-6 flex items-center">
+          <span class="w-3 h-3 rounded-full bg-amber-400 mr-3"></span>
           ${t.technicalFeatures}
         </h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           ${comm.specs.requirements[state.lang].map(req => `
-            <div class="flex items-start space-x-3 bg-slate-900/40 p-3.5 rounded-2xl border border-white/5">
-              <span class="text-amber-400 text-lg">✓</span>
-              <span class="text-sm text-slate-300 leading-snug">${req}</span>
+            <div class="flex items-start space-x-3 bg-white/5 p-4 rounded-2xl border border-white/10">
+              <span class="text-amber-400 text-lg font-bold">✓</span>
+              <span class="text-sm text-slate-200 leading-snug">${req}</span>
             </div>
           `).join('')}
         </div>
@@ -486,9 +489,9 @@ function renderCommercialSection() {
 
       <!-- Action Box -->
       <div class="text-center py-6">
-        <button onclick="openContactModal('commercial')" class="btn-gold px-8 py-3.5 text-sm font-bold shadow-xl inline-flex items-center">
-          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+        <button onclick="openContactModal('commercial')" class="btn-horizon-white text-sm font-bold shadow-2xl">
           <span>${t.requestCall}</span>
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
         </button>
       </div>
     </div>
@@ -502,12 +505,11 @@ function renderTownhouseSection() {
   const container = document.getElementById('townhouse-content');
 
   container.innerHTML = `
-    <div class="max-w-4xl mx-auto">
-      <!-- Status Notice Card -->
-      <div class="card-luxury rounded-3xl p-8 border-amber-500/30 relative overflow-hidden mb-8">
-        <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto">
+      <!-- Status Notice Card with Townhouse Backdrop -->
+      <div class="horizon-card p-8 md:p-12 relative overflow-hidden mb-8 border-white/20" style="background-image: linear-gradient(180deg, rgba(7,9,14,0.7) 0%, rgba(7,9,14,0.95) 100%), url('assets/images/backgrounds/townhouse_bg.jpg'); background-size: cover; background-position: center;">
         
-        <div class="flex items-center space-x-3 text-amber-400 mb-3">
+        <div class="flex items-center space-x-3 text-amber-300 mb-4">
           <span class="relative flex h-3 w-3">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
@@ -515,41 +517,41 @@ function renderTownhouseSection() {
           <span class="text-xs font-bold uppercase tracking-widest">${th.status[state.lang]}</span>
         </div>
 
-        <h2 class="text-3xl md:text-4xl font-bold font-serif-luxury text-slate-100 mb-4">
+        <h2 class="text-3xl md:text-5xl font-display font-black text-white mb-4 tracking-tight">
           ${th.title[state.lang]}
         </h2>
-        <p class="text-slate-300 text-sm leading-relaxed mb-6 max-w-2xl">
+        <p class="text-slate-200 text-sm md:text-base leading-relaxed mb-8 max-w-2xl">
           ${t.statusWorkingSub}
         </p>
 
         <!-- Requirements Summary Matrix -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 border-t border-white/10">
-          <div class="bg-slate-900/60 p-4 rounded-2xl border border-white/5">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-8 border-t border-white/20">
+          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 backdrop-blur-md">
             <span class="text-xs text-amber-400 font-semibold uppercase tracking-wider block mb-1">${t.beds}</span>
-            <span class="text-lg font-bold text-slate-100">${th.specs.type[state.lang]}</span>
+            <span class="text-xl font-bold text-white font-display">${th.specs.type[state.lang]}</span>
           </div>
-          <div class="bg-slate-900/60 p-4 rounded-2xl border border-white/5">
+          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 backdrop-blur-md">
             <span class="text-xs text-amber-400 font-semibold uppercase tracking-wider block mb-1">${t.budgetRange}</span>
-            <span class="text-lg font-bold text-slate-100">${th.specs.budget}</span>
+            <span class="text-xl font-bold text-white font-display">${th.specs.budget}</span>
           </div>
-          <div class="bg-slate-900/60 p-4 rounded-2xl border border-white/5">
+          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 backdrop-blur-md">
             <span class="text-xs text-amber-400 font-semibold uppercase tracking-wider block mb-1">${t.locationsTarget}</span>
-            <span class="text-sm font-medium text-slate-200">${th.specs.locations.join(", ")}</span>
+            <span class="text-sm font-medium text-slate-200">${th.specs.locations.join(" • ")}</span>
           </div>
         </div>
       </div>
 
       <!-- Specific Requirements Checklist -->
-      <div class="card-luxury rounded-3xl p-8 mb-8">
-        <h3 class="text-xl font-bold text-slate-100 font-serif-luxury mb-4 flex items-center">
-          <svg class="w-5 h-5 text-amber-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+      <div class="horizon-card p-8 md:p-10 mb-8 border-white/10">
+        <h3 class="text-2xl font-display font-bold text-white mb-6 flex items-center">
+          <span class="w-3 h-3 rounded-full bg-amber-400 mr-3"></span>
           ${t.technicalFeatures}
         </h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           ${th.specs.requirements[state.lang].map(req => `
-            <div class="flex items-start space-x-3 bg-slate-900/40 p-3.5 rounded-2xl border border-white/5">
-              <span class="text-amber-400 text-lg">✓</span>
-              <span class="text-sm text-slate-300 leading-snug">${req}</span>
+            <div class="flex items-start space-x-3 bg-white/5 p-4 rounded-2xl border border-white/10">
+              <span class="text-amber-400 text-lg font-bold">✓</span>
+              <span class="text-sm text-slate-200 leading-snug">${req}</span>
             </div>
           `).join('')}
         </div>
@@ -557,9 +559,9 @@ function renderTownhouseSection() {
 
       <!-- Action Box -->
       <div class="text-center py-6">
-        <button onclick="openContactModal('townhouse')" class="btn-gold px-8 py-3.5 text-sm font-bold shadow-xl inline-flex items-center">
-          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+        <button onclick="openContactModal('townhouse')" class="btn-horizon-white text-sm font-bold shadow-2xl">
           <span>${t.requestCall}</span>
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
         </button>
       </div>
     </div>
@@ -607,50 +609,48 @@ function renderPropertyModalContent(prop) {
 
   container.innerHTML = `
     <!-- Top Header Navigation -->
-    <div class="sticky top-0 z-30 bg-slate-950/90 backdrop-blur-xl border-b border-white/10 px-6 py-4 flex items-center justify-between">
-      <button onclick="closePropertyModal()" class="flex items-center space-x-2 text-sm text-slate-300 hover:text-amber-400 transition-colors font-medium">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+    <div class="sticky top-0 z-30 bg-slate-950/95 backdrop-blur-2xl border-b border-white/10 px-6 py-4 flex items-center justify-between">
+      <button onclick="closePropertyModal()" class="flex items-center space-x-2 text-xs uppercase tracking-wider text-slate-300 hover:text-white font-bold transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
         <span>${t.backToList}</span>
       </button>
 
       <div class="flex items-center space-x-3">
-        <button onclick="openComparisonModal()" class="btn-secondary px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center">
-          <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+        <button onclick="openComparisonModal()" class="btn-horizon-glass px-4 py-2 text-xs font-bold">
           <span>${t.compareBtn}</span>
         </button>
 
-        <button onclick="sendPropertyInquiry('${prop.id}')" class="btn-gold px-4 py-1.5 text-xs font-bold flex items-center">
-          <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-          <span>WhatsApp</span>
+        <button onclick="sendPropertyInquiry('${prop.id}')" class="btn-horizon-white px-5 py-2 text-xs font-bold">
+          <span>WhatsApp Inquire ↗</span>
         </button>
       </div>
     </div>
 
     <!-- Modal Interior Content -->
-    <div class="p-6 md:p-10 space-y-10 max-w-6xl mx-auto">
+    <div class="p-6 md:p-12 space-y-12 max-w-6xl mx-auto">
       
       <!-- Title & Price Block -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-white/10">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-white/10">
         <div>
-          <div class="flex items-center space-x-3 mb-2">
-            <span class="badge-gold px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">${prop.badge}</span>
-            <span class="badge-outline px-3 py-1 rounded-full text-xs font-medium text-slate-300">${prop.developer}</span>
-            <span class="badge-outline px-3 py-1 rounded-full text-xs font-medium text-slate-300">${prop.floor}</span>
+          <div class="flex items-center space-x-3 mb-3">
+            <span class="badge-clean-gold px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider">${prop.badge}</span>
+            <span class="badge-clean-white px-3 py-1 rounded-full text-xs font-semibold">${prop.developer}</span>
+            <span class="badge-clean-white px-3 py-1 rounded-full text-xs font-semibold">${prop.floor}</span>
           </div>
-          <h1 class="text-3xl md:text-5xl font-black font-serif-luxury text-slate-100 tracking-tight">
+          <h1 class="text-4xl md:text-6xl font-display font-extrabold text-white tracking-tight">
             ${prop.name}
           </h1>
-          <p class="text-sm md:text-base text-slate-400 mt-1 flex items-center">
-            <svg class="w-4 h-4 text-amber-400 mr-1.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+          <p class="text-sm text-slate-400 mt-2 flex items-center">
+            <span class="w-2 h-2 rounded-full bg-amber-400 mr-2"></span>
             ${prop.location.name}
           </p>
         </div>
 
-        <div class="text-left md:text-right bg-slate-900/60 p-4 rounded-2xl border border-white/10">
-          <div class="text-xs text-slate-400">
+        <div class="text-left md:text-right bg-white/5 p-6 rounded-3xl border border-white/10 backdrop-blur-md">
+          <div class="text-xs text-slate-400 font-medium mb-1">
             ${targetPrice ? `<span class="text-emerald-400 font-bold">${t.priceNegotiable} ${targetPrice}</span> • ` : ''}${pricePerUnit}
           </div>
-          <div class="text-3xl md:text-4xl font-black text-gold-gradient font-serif-luxury">
+          <div class="text-3xl md:text-5xl font-display font-black text-white">
             ${formattedPrice}
           </div>
         </div>
@@ -658,17 +658,17 @@ function renderPropertyModalContent(prop) {
 
       <!-- Main Photo Gallery Slider -->
       <div>
-        <div class="relative w-full h-80 md:h-[500px] rounded-3xl overflow-hidden bg-slate-900 border border-white/10 shadow-2xl">
+        <div class="relative w-full h-96 md:h-[550px] rounded-3xl overflow-hidden bg-slate-900 border border-white/10 shadow-2xl">
           <img id="modal-gallery-main" src="${prop.gallery[state.activeGalleryIndex]}" alt="${prop.name}" class="w-full h-full object-cover transition-opacity duration-300" />
           
-          <button onclick="prevGalleryImage()" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-950/70 border border-white/20 text-white flex items-center justify-center hover:bg-amber-500 hover:text-slate-950 transition-all">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
+          <button onclick="prevGalleryImage()" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-slate-950/80 border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-slate-950 transition-all">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
           </button>
-          <button onclick="nextGalleryImage()" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-950/70 border border-white/20 text-white flex items-center justify-center hover:bg-amber-500 hover:text-slate-950 transition-all">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+          <button onclick="nextGalleryImage()" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-slate-950/80 border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-slate-950 transition-all">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
           </button>
 
-          <div class="absolute bottom-4 right-4 px-3 py-1 rounded-full bg-slate-950/80 border border-white/20 text-xs font-semibold text-slate-200">
+          <div class="absolute bottom-6 right-6 px-4 py-1.5 rounded-full bg-slate-950/90 border border-white/20 text-xs font-bold text-white">
             <span id="gallery-counter">1</span> / ${prop.gallery.length}
           </div>
         </div>
@@ -676,7 +676,7 @@ function renderPropertyModalContent(prop) {
         <!-- Thumbnail Strip -->
         <div class="flex space-x-3 mt-4 overflow-x-auto pb-2 no-scrollbar">
           ${prop.gallery.map((img, idx) => `
-            <button onclick="setGalleryImage(${idx})" class="flex-shrink-0 w-20 h-14 md:w-24 md:h-16 rounded-xl overflow-hidden border-2 transition-all ${idx === 0 ? 'border-amber-400 scale-105' : 'border-transparent opacity-60 hover:opacity-100'}" id="thumb-${idx}">
+            <button onclick="setGalleryImage(${idx})" class="flex-shrink-0 w-24 h-16 rounded-2xl overflow-hidden border-2 transition-all ${idx === 0 ? 'border-white scale-105' : 'border-transparent opacity-50 hover:opacity-100'}" id="thumb-${idx}">
               <img src="${img}" class="w-full h-full object-cover" />
             </button>
           `).join('')}
@@ -685,39 +685,39 @@ function renderPropertyModalContent(prop) {
 
       <!-- Quick Specs Matrix -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="card-luxury p-4 rounded-2xl">
-          <span class="text-xs text-slate-400 block">${t.beds}</span>
-          <span class="text-xl font-bold text-slate-100">${prop.beds} BHK</span>
+        <div class="horizon-card p-5">
+          <span class="text-xs text-slate-400 uppercase tracking-wider block">${t.beds}</span>
+          <span class="text-2xl font-bold font-display text-white mt-1 block">${prop.beds} BHK</span>
         </div>
-        <div class="card-luxury p-4 rounded-2xl">
-          <span class="text-xs text-slate-400 block">${t.baths}</span>
-          <span class="text-xl font-bold text-slate-100">${prop.baths}</span>
+        <div class="horizon-card p-5">
+          <span class="text-xs text-slate-400 uppercase tracking-wider block">${t.baths}</span>
+          <span class="text-2xl font-bold font-display text-white mt-1 block">${prop.baths} Baños</span>
         </div>
-        <div class="card-luxury p-4 rounded-2xl">
-          <span class="text-xs text-slate-400 block">${t.unitLabel}</span>
-          <span class="text-xl font-bold text-amber-300">${formattedArea}</span>
+        <div class="horizon-card p-5">
+          <span class="text-xs text-slate-400 uppercase tracking-wider block">${t.dimensionsRange}</span>
+          <span class="text-2xl font-bold font-display text-amber-300 mt-1 block">${formattedArea}</span>
         </div>
-        <div class="card-luxury p-4 rounded-2xl">
-          <span class="text-xs text-slate-400 block">${t.compFurnishing}</span>
-          <span class="text-sm font-semibold text-slate-200 truncate block">${prop.furnishing[state.lang]}</span>
+        <div class="horizon-card p-5">
+          <span class="text-xs text-slate-400 uppercase tracking-wider block">${t.compFurnishing}</span>
+          <span class="text-sm font-semibold text-slate-200 mt-2 block truncate">${prop.furnishing[state.lang]}</span>
         </div>
       </div>
 
       <!-- Description & Why Ideal for Living with Mother -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="md:col-span-2 space-y-6">
-          <div class="card-luxury p-6 rounded-3xl">
-            <h3 class="text-2xl font-bold font-serif-luxury text-slate-100 mb-3">${t.propertySpecs}</h3>
+          <div class="horizon-card p-8">
+            <h3 class="text-2xl font-display font-bold text-white mb-4">${t.propertySpecs}</h3>
             <p class="text-slate-300 text-sm md:text-base leading-relaxed">
               ${prop.description[state.lang]}
             </p>
             
-            <div class="mt-6 pt-6 border-t border-white/5">
-              <h4 class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-3">Puntos Clave Destacados</h4>
+            <div class="mt-8 pt-6 border-t border-white/10">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-4">Ventajas Competitivas</h4>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 ${prop.pros[state.lang].map(p => `
                   <div class="flex items-center space-x-2 text-xs text-slate-200">
-                    <span class="text-emerald-400">✓</span>
+                    <span class="text-emerald-400 font-bold">✓</span>
                     <span>${p}</span>
                   </div>
                 `).join('')}
@@ -726,20 +726,20 @@ function renderPropertyModalContent(prop) {
           </div>
 
           <!-- Suitability for Mother -->
-          <div class="card-luxury p-6 rounded-3xl border-amber-500/20 bg-gradient-to-br from-amber-500/5 to-transparent">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-xl font-bold font-serif-luxury text-slate-100 flex items-center">
-                <svg class="w-5 h-5 text-amber-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+          <div class="horizon-card p-8 border-amber-500/30">
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="text-2xl font-display font-bold text-white flex items-center">
+                <span class="w-3 h-3 rounded-full bg-amber-400 mr-3"></span>
                 ${t.suitabilityTitle}
               </h3>
-              <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold">
+              <span class="px-3.5 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-bold">
                 Calificación: ${prop.familySuitability.score}
               </span>
             </div>
             
             <div class="space-y-3">
               ${prop.familySuitability.reasons[state.lang].map(r => `
-                <div class="flex items-start space-x-3 bg-slate-900/60 p-3.5 rounded-2xl border border-white/5">
+                <div class="flex items-start space-x-3 bg-white/5 p-4 rounded-2xl border border-white/10">
                   <span class="text-amber-400 text-base">★</span>
                   <span class="text-xs md:text-sm text-slate-300 leading-relaxed">${r}</span>
                 </div>
@@ -750,19 +750,18 @@ function renderPropertyModalContent(prop) {
 
         <!-- Upcoming Projects in the Area -->
         <div class="space-y-6">
-          <div class="card-luxury p-6 rounded-3xl">
-            <h3 class="text-xl font-bold font-serif-luxury text-slate-100 mb-2">${t.upcomingProjectsTitle}</h3>
-            <p class="text-xs text-slate-400 mb-4">Mega-proyectos de infraestructura que incrementarán la demanda y plusvalía:</p>
+          <div class="horizon-card p-8">
+            <h3 class="text-2xl font-display font-bold text-white mb-2">${t.upcomingProjectsTitle}</h3>
+            <p class="text-xs text-slate-400 mb-6">Desarrollos de infraestructura que impulsarán la plusvalía:</p>
             
             <div class="space-y-3">
               ${prop.upcomingProjects[state.lang].map(proj => `
-                <div class="bg-slate-900/80 p-3.5 rounded-2xl border border-white/5">
+                <div class="bg-black/60 p-4 rounded-2xl border border-white/10">
                   <div class="flex justify-between items-start mb-1">
-                    <span class="text-xs font-bold text-slate-200">${proj.name}</span>
-                    <span class="text-[10px] text-amber-400 font-semibold px-2 py-0.5 bg-amber-500/10 rounded">${proj.date}</span>
+                    <span class="text-xs font-bold text-white">${proj.name}</span>
+                    <span class="text-[10px] text-amber-300 font-bold px-2 py-0.5 bg-amber-500/20 rounded">${proj.date}</span>
                   </div>
-                  <span class="text-xs font-semibold text-emerald-400 flex items-center">
-                    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                  <span class="text-xs font-semibold text-emerald-400 flex items-center mt-2">
                     Impacto: ${proj.impact}
                   </span>
                 </div>
@@ -771,14 +770,14 @@ function renderPropertyModalContent(prop) {
           </div>
 
           <!-- Quick Action Card -->
-          <div class="card-luxury p-6 rounded-3xl bg-gradient-to-b from-slate-900 to-slate-950 text-center border-amber-500/30">
-            <h4 class="text-base font-bold text-slate-100 mb-2">¿Te interesa visitar esta opción?</h4>
-            <p class="text-xs text-slate-400 mb-4">Coordinamos visita presencial o video tour guiado exclusivo para ti.</p>
+          <div class="horizon-card p-8 text-center border-white/20">
+            <h4 class="text-lg font-display font-bold text-white mb-2">¿Deseas visitar esta opción?</h4>
+            <p class="text-xs text-slate-400 mb-6">Coordinamos visita presencial o video tour guiado exclusivo.</p>
             
-            <button onclick="sendPropertyInquiry('${prop.id}')" class="btn-gold w-full py-3 text-xs font-bold mb-2 flex items-center justify-center">
+            <button onclick="sendPropertyInquiry('${prop.id}')" class="btn-horizon-white w-full py-3.5 text-xs font-bold mb-3">
               <span>${t.bookViewing}</span>
             </button>
-            <button onclick="openComparisonModal()" class="btn-secondary w-full py-2.5 text-xs font-semibold rounded-full">
+            <button onclick="openComparisonModal()" class="btn-horizon-glass w-full py-3 text-xs font-bold">
               <span>${t.compareBtn}</span>
             </button>
           </div>
@@ -786,43 +785,40 @@ function renderPropertyModalContent(prop) {
       </div>
 
       <!-- Financial Chart & Appreciation -->
-      <div class="card-luxury p-6 md:p-8 rounded-3xl">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+      <div class="horizon-card p-8 md:p-10">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div>
-            <h3 class="text-2xl font-bold font-serif-luxury text-slate-100">${t.financialAnalysis}</h3>
+            <h3 class="text-2xl md:text-3xl font-display font-extrabold text-white">${t.financialAnalysis}</h3>
             <p class="text-xs text-slate-400 mt-1">${t.financialDesc}</p>
           </div>
           <div class="flex items-center space-x-3">
-            <div class="bg-emerald-500/20 border border-emerald-500/40 px-3.5 py-1.5 rounded-full text-xs font-bold text-emerald-300">
+            <div class="bg-emerald-500/20 border border-emerald-500/40 px-4 py-1.5 rounded-full text-xs font-bold text-emerald-300">
               5Y Growth: ${prop.appreciationHistory.growth5y}
             </div>
-            <div class="bg-amber-500/20 border border-amber-500/40 px-3.5 py-1.5 rounded-full text-xs font-bold text-amber-300">
+            <div class="bg-amber-500/20 border border-amber-500/40 px-4 py-1.5 rounded-full text-xs font-bold text-amber-300">
               CAGR: ${prop.appreciationHistory.projectedCagr}
             </div>
           </div>
         </div>
 
-        <div class="w-full h-72 md:h-80">
+        <div class="w-full h-80">
           <canvas id="property-appreciation-chart"></canvas>
         </div>
       </div>
 
       <!-- Interactive Map -->
-      <div class="card-luxury p-6 md:p-8 rounded-3xl">
-        <div class="flex justify-between items-center mb-4">
-          <div>
-            <h3 class="text-2xl font-bold font-serif-luxury text-slate-100">${t.mapTitle}</h3>
-            <p class="text-xs text-slate-400 mt-0.5">${prop.location.highlights[state.lang]}</p>
-          </div>
+      <div class="horizon-card p-8 md:p-10">
+        <div class="mb-6">
+          <h3 class="text-2xl md:text-3xl font-display font-extrabold text-white">${t.mapTitle}</h3>
+          <p class="text-xs text-slate-400 mt-1">${prop.location.highlights[state.lang]}</p>
         </div>
         
-        <div id="property-map" class="w-full h-80 md:h-96 rounded-2xl border border-white/10 z-10"></div>
+        <div id="property-map" class="w-full h-80 md:h-96 rounded-3xl border border-white/10 z-10"></div>
       </div>
 
     </div>
   `;
 
-  // Init Gallery Listeners & Map & Chart
   setTimeout(() => {
     initPropertyMap(prop);
     initPropertyChart(prop);
@@ -841,7 +837,7 @@ function setGalleryImage(index) {
   state.activeProperty.gallery.forEach((_, i) => {
     const th = document.getElementById(`thumb-${i}`);
     if (th) {
-      th.className = `flex-shrink-0 w-20 h-14 md:w-24 md:h-16 rounded-xl overflow-hidden border-2 transition-all ${i === index ? 'border-amber-400 scale-105 opacity-100' : 'border-transparent opacity-60 hover:opacity-100'}`;
+      th.className = `flex-shrink-0 w-24 h-16 rounded-2xl overflow-hidden border-2 transition-all ${i === index ? 'border-white scale-105 opacity-100' : 'border-transparent opacity-50 hover:opacity-100'}`;
     }
   });
 }
@@ -878,18 +874,16 @@ function initPropertyMap(prop) {
     attributionControl: false
   });
 
-  // Dark styled tiles
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     maxZoom: 19,
     subdomains: 'abcd'
   }).addTo(map);
 
-  // Custom Gold Marker
   const goldIcon = L.divIcon({
     className: 'custom-gold-marker',
     html: `
-      <div style="background: linear-gradient(135deg, #d4af37, #aa820a); width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(212,175,55,0.7); border: 2px solid white;">
-        <svg style="width: 18px; height: 18px; color: #000;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+      <div style="background: #ffffff; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(255,255,255,0.8); border: 2px solid #07090e;">
+        <svg style="width: 18px; height: 18px; color: #07090e;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
       </div>
     `,
     iconSize: [34, 34],
@@ -900,9 +894,9 @@ function initPropertyMap(prop) {
     .addTo(map)
     .bindPopup(`
       <div style="padding: 6px;">
-        <div style="font-weight: 800; font-size: 14px; color: #d4af37;">${prop.name}</div>
+        <div style="font-weight: 800; font-size: 14px; color: #ffffff; font-family: 'Syne', sans-serif;">${prop.name}</div>
         <div style="font-size: 11px; color: #94a3b8; margin-top: 2px;">${prop.location.name}</div>
-        <div style="font-weight: 700; font-size: 13px; color: #f8fafc; margin-top: 4px;">${formatPrice(prop.priceAed)}</div>
+        <div style="font-weight: 700; font-size: 13px; color: #f59e0b; margin-top: 4px;">${formatPrice(prop.priceAed)}</div>
       </div>
     `)
     .openPopup();
@@ -922,10 +916,9 @@ function initPropertyChart(prop) {
 
   const ctx = canvas.getContext('2d');
   const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-  gradient.addColorStop(0, 'rgba(212, 175, 55, 0.4)');
-  gradient.addColorStop(1, 'rgba(212, 175, 55, 0.0)');
+  gradient.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
+  gradient.addColorStop(1, 'rgba(255, 255, 255, 0.0)');
 
-  // Convert AED values according to active currency
   const convertedValues = prop.appreciationHistory.valuesAed.map(v => {
     const rawAed = v * 1000000;
     if (state.currency === 'EUR') return (rawAed * PROPOSALS_DATA.rates.AED_TO_EUR) / 1000000;
@@ -942,14 +935,14 @@ function initPropertyChart(prop) {
       datasets: [{
         label: `Valor Estimado (${currSymbol} Millones)`,
         data: convertedValues,
-        borderColor: '#d4af37',
+        borderColor: '#ffffff',
         backgroundColor: gradient,
         borderWidth: 3,
-        pointBackgroundColor: '#f3e5ab',
-        pointBorderColor: '#090d14',
+        pointBackgroundColor: '#d4af37',
+        pointBorderColor: '#07090e',
         pointBorderWidth: 2,
-        pointRadius: 5,
-        pointHoverRadius: 7,
+        pointRadius: 6,
+        pointHoverRadius: 8,
         fill: true,
         tension: 0.35
       }]
@@ -958,16 +951,14 @@ function initPropertyChart(prop) {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        legend: {
-          display: false
-        },
+        legend: { display: false },
         tooltip: {
-          backgroundColor: '#0f172a',
+          backgroundColor: '#07090e',
           titleColor: '#d4af37',
-          bodyColor: '#f1f5f9',
-          borderColor: 'rgba(212, 175, 55, 0.3)',
+          bodyColor: '#ffffff',
+          borderColor: 'rgba(255, 255, 255, 0.2)',
           borderWidth: 1,
-          padding: 10,
+          padding: 12,
           callbacks: {
             label: function(context) {
               return ` ${context.parsed.y.toFixed(2)}M ${currSymbol}`;
@@ -1016,10 +1007,10 @@ function renderComparisonTable() {
       <table class="w-full text-left text-xs md:text-sm">
         <thead>
           <tr class="border-b border-white/10">
-            <th class="p-4 text-slate-400 font-semibold uppercase tracking-wider text-xs">Parámetro</th>
+            <th class="p-4 text-slate-400 font-semibold uppercase tracking-wider text-xs">Métrica</th>
             ${PROPOSALS_DATA.properties.map(p => `
-              <th class="p-4 text-slate-100 font-bold text-base font-serif-luxury min-w-[220px]">
-                <div class="text-amber-300 text-xs font-sans tracking-normal uppercase">${p.badge}</div>
+              <th class="p-4 text-white font-bold text-lg font-display min-w-[220px]">
+                <div class="text-amber-300 text-xs font-sans uppercase mb-1">${p.badge}</div>
                 ${p.name}
               </th>
             `).join('')}
@@ -1029,7 +1020,7 @@ function renderComparisonTable() {
           <tr>
             <td class="p-4 text-slate-400 font-medium">${t.compPrice}</td>
             ${PROPOSALS_DATA.properties.map(p => `
-              <td class="p-4 font-bold text-amber-300 font-serif-luxury text-lg">
+              <td class="p-4 font-bold text-white font-display text-xl">
                 ${formatPrice(p.priceAed)}
               </td>
             `).join('')}
@@ -1102,7 +1093,7 @@ function renderComparisonTable() {
             <td class="p-4 text-slate-400 font-medium">Acción</td>
             ${PROPOSALS_DATA.properties.map(p => `
               <td class="p-4">
-                <button onclick="closeComparisonModal(); openPropertyModal('${p.id}')" class="btn-gold px-3 py-1.5 text-xs font-bold rounded-full">
+                <button onclick="closeComparisonModal(); openPropertyModal('${p.id}')" class="btn-horizon-white !px-4 !py-1.5 text-xs font-bold">
                   Ver Ficha
                 </button>
               </td>
@@ -1144,13 +1135,11 @@ function sendGeneralInquiry() {
   window.open(whatsappUrl, '_blank');
 }
 
-// Mobile Menu Toggle
 function toggleMobileMenu() {
   const menu = document.getElementById('mobile-menu');
   menu.classList.toggle('hidden');
 }
 
-// Initial Boot
 document.addEventListener('DOMContentLoaded', () => {
   updateUI();
 });
