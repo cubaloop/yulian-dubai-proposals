@@ -1173,7 +1173,7 @@ function sendPropertyInquiry(propId) {
     ? `Hola David, soy Yulian. He revisado la propuesta de ${prop ? prop.name : 'propiedades'} en la web y me gustaría coordinar una visita y revisar detalles de compra.`
     : `Hello David, this is Yulian. I reviewed the proposal for ${prop ? prop.name : 'Dubai properties'} on the website and would like to schedule a private viewing.`;
   
-  const whatsappUrl = `https://wa.me/971500000000?text=${encodeURIComponent(msg)}`;
+  const whatsappUrl = `https://wa.me/971508379080?text=${encodeURIComponent(msg)}`;
   window.open(whatsappUrl, '_blank');
 }
 
@@ -1182,7 +1182,7 @@ function sendGeneralInquiry() {
     ? `Hola David, soy Yulian. Quisiera consultar sobre las propuestas residenciales, comerciales y chalets en Dubai.`
     : `Hello David, this is Yulian. I would like to discuss the residential, commercial and townhouse proposals in Dubai.`;
   
-  const whatsappUrl = `https://wa.me/971500000000?text=${encodeURIComponent(msg)}`;
+  const whatsappUrl = `https://wa.me/971508379080?text=${encodeURIComponent(msg)}`;
   window.open(whatsappUrl, '_blank');
 }
 
