@@ -1,7 +1,7 @@
 // Application State & Controller for Yulian's Proposal
 let state = {
   lang: 'es', // 'es' or 'en'
-  currency: 'EUR', // 'EUR', 'AED', 'USD'
+  currency: 'EUR', // 'EUR', 'AED', 'USD' (default EUR)
   unit: 'sqm', // 'sqm', 'sqft'
   activeTab: 'living', // 'living', 'commercial', 'guide', 'townhouse'
   activeProperty: null,
@@ -207,6 +207,20 @@ function formatPrice(aedAmount) {
       return `${(finalVal / 1000000).toFixed(3).replace(/\.?0+$/, '')}M AED`;
     }
     return `${Math.round(finalVal).toLocaleString()} AED`;
+  }
+}
+
+function formatTicketRange(minAed, maxAed, isPlus = false) {
+  if (state.currency === 'EUR') {
+    const minEur = Math.round(minAed * PROPOSALS_DATA.rates.AED_TO_EUR);
+    const maxEur = Math.round(maxAed * PROPOSALS_DATA.rates.AED_TO_EUR);
+    return `€${minEur} – €${maxEur}${isPlus ? '+' : ''}`;
+  } else if (state.currency === 'USD') {
+    const minUsd = Math.round(minAed * PROPOSALS_DATA.rates.AED_TO_USD);
+    const maxUsd = Math.round(maxAed * PROPOSALS_DATA.rates.AED_TO_USD);
+    return `$${minUsd} – $${maxUsd}${isPlus ? '+' : ''}`;
+  } else {
+    return `${minAed} – ${maxAed}${isPlus ? '+' : ''} AED`;
   }
 }
 
@@ -493,7 +507,7 @@ function renderRestaurantGuideSection() {
   if (!container) return;
 
   container.innerHTML = `
-    <div class="max-w-5xl mx-auto space-y-12">
+    <div class="max-w-7xl mx-auto space-y-12">
       
       <!-- Section Intro Header -->
       <div class="horizon-card p-8 md:p-12 relative overflow-hidden border-amber-500/30" style="background-image: linear-gradient(180deg, rgba(7,14,27,0.85) 0%, rgba(7,14,27,0.98) 100%), url('assets/images/backgrounds/restaurant_bg.jpg'); background-size: cover; background-position: center;">
@@ -505,7 +519,7 @@ function renderRestaurantGuideSection() {
         <h2 class="text-3xl md:text-5xl font-display font-black text-white mb-3 tracking-tight">
           ${guide.title[state.lang]}
         </h2>
-        <p class="text-slate-300 text-sm md:text-base leading-relaxed max-w-2xl">
+        <p class="text-slate-300 text-sm md:text-base leading-relaxed max-w-3xl">
           ${guide.subtitle[state.lang]}
         </p>
       </div>
@@ -651,7 +665,7 @@ function renderRestaurantGuideSection() {
         </div>
       </div>
 
-      <!-- MODULE 4: SPANISH RESTAURANTS BENCHMARK SUB-SECTION (NEW) -->
+      <!-- MODULE 4: SPANISH RESTAURANTS BENCHMARK SUB-SECTION (PERFECTLY FRAMED) -->
       <div id="benchmark-module-container">
         <!-- Rendered by renderBenchmarkSubSection() -->
       </div>
@@ -662,7 +676,7 @@ function renderRestaurantGuideSection() {
   renderBenchmarkSubSection();
 }
 
-// Render Spanish Restaurants Benchmark Sub-Section
+// Render Spanish Restaurants Benchmark Sub-Section (Framed 100% width with dynamic currency)
 function renderBenchmarkSubSection() {
   const container = document.getElementById('benchmark-module-container');
   if (!container) return;
@@ -679,11 +693,15 @@ function renderBenchmarkSubSection() {
     return matchesCategory && matchesSearch;
   });
 
+  // Dynamic summary strings based on currency
+  const summaryRange = formatTicketRange(120, 500, true) + ' / comensal';
+  const summarySub = `Casual (${formatTicketRange(120, 200)}) vs. Luxury (${formatTicketRange(300, 500, true)})`;
+
   container.innerHTML = `
-    <div class="horizon-card p-6 md:p-10 border-amber-500/30 space-y-8 bg-slate-950/90 shadow-2xl">
+    <div class="horizon-card p-6 md:p-8 border-amber-500/30 space-y-6 bg-slate-950/95 shadow-2xl overflow-hidden w-full">
       
       <!-- Benchmark Header -->
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-5">
         <div>
           <div class="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-widest mb-1">
             <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
@@ -693,44 +711,44 @@ function renderBenchmarkSubSection() {
             Benchmark de Restaurantes Españoles en Dubái
           </h3>
           <p class="text-xs md:text-sm text-slate-300 mt-1">
-            Análisis exhaustivo del panorama gastronómico español actual para definir el posicionamiento de tu restaurante.
+            Análisis de mercado y competidores clave para definir el posicionamiento de tu restaurante.
           </p>
         </div>
         <div class="flex items-center gap-2 self-start md:self-auto">
-          <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-black bg-emerald-950/90 text-emerald-300 border border-emerald-500/40">
-            ✓ 6 Principales Actores Mapeados
+          <span class="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-black bg-emerald-950/90 text-emerald-300 border border-emerald-500/40">
+            ✓ 6 Actores Mapeados
           </span>
         </div>
       </div>
 
       <!-- Insight Summary Badges -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="p-5 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-md">
-          <div class="text-[11px] uppercase tracking-wider text-slate-400 font-bold">Rango Ticket Promedio</div>
-          <div class="text-xl font-bold text-white mt-1 font-display">120 – 500+ AED / comensal</div>
-          <div class="text-xs text-slate-400 mt-1">Casual (120-200) vs. Luxury/Beach (300-500+)</div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+        <div class="p-4 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-md">
+          <div class="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Rango Ticket Promedio</div>
+          <div class="text-lg font-bold text-white mt-0.5 font-display">${summaryRange}</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">${summarySub}</div>
         </div>
-        <div class="p-5 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-md">
-          <div class="text-[11px] uppercase tracking-wider text-slate-400 font-bold">Ubicación Estratégica</div>
-          <div class="text-xl font-bold text-white mt-1 font-display">100% en Hoteles / Zonas Libres</div>
-          <div class="text-xs text-slate-400 mt-1">Clave para licencia de alcohol y productos de cerdo</div>
+        <div class="p-4 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-md">
+          <div class="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Ubicación Estratégica</div>
+          <div class="text-lg font-bold text-white mt-0.5 font-display">100% en Hoteles / Zonas Libres</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">Clave para licencia de alcohol y productos de cerdo</div>
         </div>
-        <div class="p-5 bg-white/5 rounded-2xl border border-amber-500/30 bg-amber-500/5 backdrop-blur-md">
-          <div class="text-[11px] uppercase tracking-wider text-amber-400 font-bold">Oportunidad Detectada</div>
-          <div class="text-xl font-bold text-amber-300 mt-1 font-display">Conceptos Regionales Únicos</div>
-          <div class="text-xs text-slate-300 mt-1">Asadores a la leña, sidrerías o barras de pintxos</div>
+        <div class="p-4 bg-white/5 rounded-2xl border border-amber-500/30 bg-amber-500/5 backdrop-blur-md">
+          <div class="text-[10px] uppercase tracking-wider text-amber-400 font-bold">Oportunidad Detectada</div>
+          <div class="text-lg font-bold text-amber-300 mt-0.5 font-display">Conceptos Regionales Únicos</div>
+          <div class="text-[11px] text-slate-300 mt-0.5">Asadores a la leña, sidrerías o barras de pintxos</div>
         </div>
       </div>
 
       <!-- Controls: Search & Category Filter -->
-      <div class="flex flex-col sm:flex-row gap-3 items-center justify-between pt-2">
-        <div class="flex flex-wrap gap-2 w-full sm:w-auto">
+      <div class="flex flex-col sm:flex-row gap-3 items-center justify-between pt-1">
+        <div class="flex flex-wrap gap-1.5 w-full sm:w-auto">
           ${categories.map(cat => `
             <button
               onclick="setBenchmarkCategory('${cat}')"
-              class="px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+              class="px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
                 state.benchmarkCategory === cat
-                  ? 'bg-amber-400 text-slate-950 font-black shadow-lg shadow-amber-400/20 scale-105'
+                  ? 'bg-amber-400 text-slate-950 font-black shadow-md shadow-amber-400/20'
                   : 'bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 border border-white/10'
               }"
             >
@@ -738,81 +756,86 @@ function renderBenchmarkSubSection() {
             </button>
           `).join('')}
         </div>
-        <div class="relative w-full sm:w-72">
+        <div class="relative w-full sm:w-64">
           <input
             type="text"
-            placeholder="Buscar por nombre, zona o concepto..."
+            placeholder="Buscar por nombre, zona..."
             value="${state.benchmarkSearch}"
             oninput="setBenchmarkSearch(this.value)"
-            class="w-full pl-9 pr-4 py-2.5 bg-black/60 border border-white/20 rounded-full text-xs text-slate-100 placeholder-slate-400 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all"
+            class="w-full pl-8 pr-3 py-2 bg-black/60 border border-white/20 rounded-full text-xs text-slate-100 placeholder-slate-400 focus:outline-none focus:border-amber-400 transition-all"
           />
-          <svg class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <svg class="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
         </div>
       </div>
 
-      <!-- Data Table (Desktop & Tablets) -->
-      <div class="hidden md:block overflow-x-auto rounded-2xl border border-white/10 shadow-inner">
-        <table class="w-full text-left text-xs text-slate-300">
-          <thead class="bg-white/10 text-slate-200 uppercase tracking-wider text-[11px] border-b border-white/10">
+      <!-- Framed Desktop Table (Fits 100% width cleanly without overflowing) -->
+      <div class="hidden lg:block w-full rounded-2xl border border-white/10 overflow-hidden bg-black/40">
+        <table class="w-full text-left text-xs table-fixed">
+          <thead class="bg-white/10 text-slate-200 uppercase tracking-wider text-[10px] border-b border-white/10">
             <tr>
-              <th class="py-4 px-4 font-bold">Restaurante</th>
-              <th class="py-4 px-4 font-bold">Ubicación</th>
-              <th class="py-4 px-4 font-bold">Concepto & Categoría</th>
-              <th class="py-4 px-4 text-center font-bold">Ticket Est.</th>
-              <th class="py-4 px-4 text-center font-bold">Licencia Alcohol</th>
-              <th class="py-4 px-4 min-w-[260px] font-bold">Factores Diferenciadores</th>
-              <th class="py-4 px-4 text-center font-bold">Web Oficial</th>
+              <th class="py-3 px-3.5 font-bold w-[17%]">Restaurante</th>
+              <th class="py-3 px-3 font-bold w-[17%]">Ubicación</th>
+              <th class="py-3 px-3 font-bold w-[18%]">Concepto & Tipo</th>
+              <th class="py-3 px-2.5 font-bold text-center w-[12%]">Ticket Est.</th>
+              <th class="py-3 px-2 font-bold text-center w-[10%]">Alcohol</th>
+              <th class="py-3 px-3 font-bold w-[18%]">Diferenciadores</th>
+              <th class="py-3 px-2 font-bold text-center w-[8%]">Web</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-white/5">
-            ${filteredData.map(item => `
-              <tr class="hover:bg-white/5 transition-colors">
-                <td class="py-4 px-4 font-bold text-white text-sm whitespace-nowrap">
-                  ${item.name}
-                </td>
-                <td class="py-4 px-4 text-slate-300 text-xs">
-                  ${item.location}
-                </td>
-                <td class="py-4 px-4">
-                  <div class="font-semibold text-slate-100 text-xs">${item.concept}</div>
-                  <span class="inline-block mt-1 text-[10px] px-2.5 py-0.5 rounded-full bg-white/10 text-amber-300 border border-white/10 font-medium">
-                    ${item.category}
-                  </span>
-                </td>
-                <td class="py-4 px-4 text-center font-bold text-amber-400 whitespace-nowrap text-sm">
-                  ${item.avgTicketAed.label}
-                </td>
-                <td class="py-4 px-4 text-center">
-                  <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">
-                    ${item.alcoholLicense ? '✓ Sí (Hotel/FZ)' : 'No'}
-                  </span>
-                </td>
-                <td class="py-4 px-4">
-                  <ul class="space-y-1 text-[11px] text-slate-300">
-                    ${item.differentiators.map(diff => `
-                      <li class="flex items-start space-x-1.5">
-                        <span class="text-amber-400 font-bold">•</span>
-                        <span>${diff}</span>
-                      </li>
-                    `).join('')}
-                  </ul>
-                </td>
-                <td class="py-4 px-4 text-center whitespace-nowrap">
-                  <a
-                    href="${item.websiteUrl}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-[11px] transition-all shadow hover:scale-105"
-                  >
-                    <span>Ver Web</span>
-                    <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                  </a>
-                </td>
-              </tr>
-            `).join('')}
+            ${filteredData.map(item => {
+              const isPlus = item.avgTicketAed.label.includes('+');
+              const ticketDisplay = formatTicketRange(item.avgTicketAed.min, item.avgTicketAed.max, isPlus);
+
+              return `
+                <tr class="hover:bg-white/5 transition-colors">
+                  <td class="py-3 px-3.5 font-bold text-white text-xs align-top">
+                    ${item.name}
+                  </td>
+                  <td class="py-3 px-3 text-slate-300 text-[11px] leading-tight align-top">
+                    ${item.location}
+                  </td>
+                  <td class="py-3 px-3 align-top">
+                    <div class="font-medium text-slate-200 text-[11px] leading-tight">${item.concept}</div>
+                    <span class="inline-block mt-1 text-[9px] px-2 py-0.5 rounded-full bg-white/10 text-amber-300 font-semibold border border-white/10">
+                      ${item.category}
+                    </span>
+                  </td>
+                  <td class="py-3 px-2.5 text-center font-bold text-amber-400 text-xs whitespace-nowrap align-top">
+                    ${ticketDisplay}
+                  </td>
+                  <td class="py-3 px-2 text-center align-top">
+                    <span class="px-2 py-0.5 rounded-full text-[9px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800 whitespace-nowrap">
+                      ${item.alcoholLicense ? '✓ Sí (Hotel/FZ)' : 'No'}
+                    </span>
+                  </td>
+                  <td class="py-3 px-3 align-top">
+                    <ul class="space-y-1 text-[10px] text-slate-300 leading-tight">
+                      ${item.differentiators.map(diff => `
+                        <li class="flex items-start space-x-1">
+                          <span class="text-amber-400 font-bold leading-none">•</span>
+                          <span>${diff}</span>
+                        </li>
+                      `).join('')}
+                    </ul>
+                  </td>
+                  <td class="py-3 px-2 text-center align-middle">
+                    <a
+                      href="${item.websiteUrl}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold transition-all shadow hover:scale-110"
+                      title="Visitar sitio oficial"
+                    >
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
+                  </td>
+                </tr>
+              `;
+            }).join('')}
             ${filteredData.length === 0 ? `
               <tr>
-                <td colspan="7" class="py-8 text-center text-slate-400">
+                <td colspan="7" class="py-8 text-center text-slate-400 text-xs">
                   No se encontraron restaurantes con los filtros seleccionados.
                 </td>
               </tr>
@@ -821,51 +844,56 @@ function renderBenchmarkSubSection() {
         </table>
       </div>
 
-      <!-- Mobile Cards View -->
-      <div class="md:hidden space-y-4">
-        ${filteredData.map(item => `
-          <div class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-3">
-            <div class="flex items-start justify-between">
-              <div>
-                <span class="text-[10px] uppercase font-bold text-amber-400 tracking-wider">${item.category}</span>
-                <h4 class="text-lg font-bold text-white font-display mt-0.5">${item.name}</h4>
-                <p class="text-xs text-slate-300">${item.location}</p>
+      <!-- Mobile & Tablet Cards View (Framed & Clean) -->
+      <div class="lg:hidden space-y-3.5">
+        ${filteredData.map(item => {
+          const isPlus = item.avgTicketAed.label.includes('+');
+          const ticketDisplay = formatTicketRange(item.avgTicketAed.min, item.avgTicketAed.max, isPlus);
+
+          return `
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <span class="text-[9px] uppercase font-bold text-amber-400 tracking-wider">${item.category}</span>
+                  <h4 class="text-base font-bold text-white font-display mt-0.5">${item.name}</h4>
+                  <p class="text-[11px] text-slate-300">${item.location}</p>
+                </div>
+                <span class="px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800 text-[9px] font-bold flex-shrink-0">
+                  Alcohol: Sí
+                </span>
               </div>
-              <span class="px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800 text-[10px] font-bold flex-shrink-0">
-                Alcohol: Sí
-              </span>
-            </div>
 
-            <div class="flex items-center justify-between bg-black/40 p-3 rounded-xl border border-white/5 text-xs">
-              <span class="text-slate-400">Ticket Estimado:</span>
-              <span class="font-bold text-amber-300 text-sm">${item.avgTicketAed.label}</span>
-            </div>
+              <div class="flex items-center justify-between bg-black/40 p-2.5 rounded-xl border border-white/5 text-xs">
+                <span class="text-slate-400 text-[11px]">Ticket Estimado:</span>
+                <span class="font-bold text-amber-300 text-xs">${ticketDisplay}</span>
+              </div>
 
-            <div class="text-xs text-slate-300">
-              <span class="font-semibold text-white block mb-1">Diferenciadores Clave:</span>
-              <ul class="space-y-1 text-[11px] text-slate-300 pl-1">
-                ${item.differentiators.map(diff => `
-                  <li class="flex items-start space-x-1.5">
-                    <span class="text-amber-400 font-bold">•</span>
-                    <span>${diff}</span>
-                  </li>
-                `).join('')}
-              </ul>
-            </div>
+              <div class="text-xs text-slate-300">
+                <span class="font-semibold text-white block mb-1 text-[11px]">Diferenciadores Clave:</span>
+                <ul class="space-y-1 text-[10px] text-slate-300 pl-0.5">
+                  ${item.differentiators.map(diff => `
+                    <li class="flex items-start space-x-1.5">
+                      <span class="text-amber-400 font-bold">•</span>
+                      <span>${diff}</span>
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
 
-            <div class="pt-2">
-              <a
-                href="${item.websiteUrl}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-horizon-white w-full py-2.5 text-xs font-bold flex items-center justify-center"
-              >
-                <span>Visitar Sitio Web</span>
-                <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-              </a>
+              <div class="pt-1">
+                <a
+                  href="${item.websiteUrl}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-horizon-white w-full !py-2 text-xs font-bold flex items-center justify-center"
+                >
+                  <span>Visitar Sitio Web</span>
+                  <svg class="w-3 h-3 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+              </div>
             </div>
-          </div>
-        `).join('')}
+          `;
+        }).join('')}
         ${filteredData.length === 0 ? `
           <div class="p-6 text-center text-slate-400 text-xs bg-white/5 rounded-2xl">
             No se encontraron restaurantes con los filtros seleccionados.
@@ -1461,7 +1489,7 @@ function initPropertyChart(prop) {
   });
 }
 
-// Comparison Matrix Modal
+// Comparison Matrix Modal (Framed without overflow)
 function openComparisonModal() {
   const modal = document.getElementById('comparison-modal');
   if (modal) {
@@ -1483,14 +1511,14 @@ function renderComparisonTable() {
   if (!container) return;
 
   container.innerHTML = `
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto rounded-2xl border border-white/10 bg-black/40">
       <table class="w-full text-left text-xs md:text-sm">
         <thead>
-          <tr class="border-b border-white/10">
-            <th class="p-4 text-slate-400 font-semibold uppercase tracking-wider text-xs">Métrica</th>
+          <tr class="border-b border-white/10 bg-white/5">
+            <th class="p-3.5 text-slate-400 font-bold uppercase tracking-wider text-xs">Métrica</th>
             ${PROPOSALS_DATA.properties.map(p => `
-              <th class="p-4 text-white font-bold text-lg font-display min-w-[200px]">
-                <div class="text-amber-300 text-xs font-sans uppercase mb-1">${p.badge}</div>
+              <th class="p-3.5 text-white font-bold text-base font-display">
+                <div class="text-amber-300 text-[10px] font-sans uppercase mb-0.5">${p.badge}</div>
                 ${p.name}
               </th>
             `).join('')}
@@ -1498,82 +1526,82 @@ function renderComparisonTable() {
         </thead>
         <tbody class="divide-y divide-white/5">
           <tr>
-            <td class="p-4 text-slate-400 font-medium">${t.compPrice}</td>
+            <td class="p-3.5 text-slate-400 font-medium">${t.compPrice}</td>
             ${PROPOSALS_DATA.properties.map(p => `
-              <td class="p-4 font-bold text-white font-display text-xl">
+              <td class="p-3.5 font-bold text-white font-display text-lg">
                 ${formatPrice(p.priceAed)}
               </td>
             `).join('')}
           </tr>
           <tr>
-            <td class="p-4 text-slate-400 font-medium">${t.compTargetPrice}</td>
+            <td class="p-3.5 text-slate-400 font-medium">${t.compTargetPrice}</td>
             ${PROPOSALS_DATA.properties.map(p => `
-              <td class="p-4 font-semibold text-emerald-400">
+              <td class="p-3.5 font-semibold text-emerald-400">
                 ${formatPrice(p.targetPriceAed)}
               </td>
             `).join('')}
           </tr>
           <tr>
-            <td class="p-4 text-slate-400 font-medium">${t.compArea}</td>
+            <td class="p-3.5 text-slate-400 font-medium">${t.compArea}</td>
             ${PROPOSALS_DATA.properties.map(p => `
-              <td class="p-4 text-slate-200 font-semibold">
+              <td class="p-3.5 text-slate-200 font-semibold">
                 ${formatArea(p.sqft)}
               </td>
             `).join('')}
           </tr>
           <tr>
-            <td class="p-4 text-slate-400 font-medium">${t.compPricePerUnit}</td>
+            <td class="p-3.5 text-slate-400 font-medium">${t.compPricePerUnit}</td>
             ${PROPOSALS_DATA.properties.map(p => `
-              <td class="p-4 text-slate-300">
+              <td class="p-3.5 text-slate-300">
                 ${formatPricePerUnit(p.priceAed, p.sqft)}
               </td>
             `).join('')}
           </tr>
           <tr>
-            <td class="p-4 text-slate-400 font-medium">${t.beds} / ${t.baths}</td>
+            <td class="p-3.5 text-slate-400 font-medium">${t.beds} / ${t.baths}</td>
             ${PROPOSALS_DATA.properties.map(p => `
-              <td class="p-4 text-slate-200">
+              <td class="p-3.5 text-slate-200">
                 ${p.beds} BHK / ${p.baths} Baños
               </td>
             `).join('')}
           </tr>
           <tr>
-            <td class="p-4 text-slate-400 font-medium">${t.compFloorLevel}</td>
+            <td class="p-3.5 text-slate-400 font-medium">${t.compFloorLevel}</td>
             ${PROPOSALS_DATA.properties.map(p => `
-              <td class="p-4 text-slate-200 font-semibold">
+              <td class="p-3.5 text-slate-200 font-semibold">
                 ${p.floor}
               </td>
             `).join('')}
           </tr>
           <tr>
-            <td class="p-4 text-slate-400 font-medium">${t.compFurnishing}</td>
+            <td class="p-3.5 text-slate-400 font-medium">${t.compFurnishing}</td>
             ${PROPOSALS_DATA.properties.map(p => `
-              <td class="p-4 text-slate-300 text-xs">
+              <td class="p-3.5 text-slate-300 text-xs">
                 ${p.furnishing[state.lang]}
               </td>
             `).join('')}
           </tr>
           <tr>
-            <td class="p-4 text-slate-400 font-medium">${t.compGrowth5y}</td>
+            <td class="p-3.5 text-slate-400 font-medium">${t.compGrowth5y}</td>
             ${PROPOSALS_DATA.properties.map(p => `
-              <td class="p-4 text-emerald-400 font-bold">
+              <td class="p-3.5 text-emerald-400 font-bold">
                 ${p.appreciationHistory.growth5y}
               </td>
             `).join('')}
           </tr>
           <tr>
-            <td class="p-4 text-slate-400 font-medium">${t.compSuitability}</td>
+            <td class="p-3.5 text-slate-400 font-medium">${t.compSuitability}</td>
             ${PROPOSALS_DATA.properties.map(p => `
-              <td class="p-4 text-amber-300 font-semibold">
+              <td class="p-3.5 text-amber-300 font-semibold">
                 ★ ${p.familySuitability.score}
               </td>
             `).join('')}
           </tr>
           <tr>
-            <td class="p-4 text-slate-400 font-medium">Acción</td>
+            <td class="p-3.5 text-slate-400 font-medium">Acción</td>
             ${PROPOSALS_DATA.properties.map(p => `
-              <td class="p-4">
-                <button onclick="closeComparisonModal(); openPropertyModal('${p.id}')" class="btn-horizon-white !px-4 !py-1.5 text-xs font-bold">
+              <td class="p-3.5">
+                <button onclick="closeComparisonModal(); openPropertyModal('${p.id}')" class="btn-horizon-white !px-3.5 !py-1 text-xs font-bold">
                   Ver Ficha
                 </button>
               </td>

@@ -1,196 +1,165 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Syne:wght@500;600;700;800&display=swap');
+/* Custom Stylesheet for Dubai Luxury Proposals */
 
 :root {
-  --font-display: 'Syne', sans-serif;
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  
-  --bg-light: #f8fafc;
-  --navy-dark: #070e1b;
-  --navy-card: rgba(10, 20, 38, 0.92);
-  --navy-card-hover: rgba(14, 28, 54, 0.98);
-  --border-glass-dark: rgba(255, 255, 255, 0.14);
-  --border-gold: rgba(212, 175, 55, 0.45);
-  
-  --color-gold: #c59b27;
+  --color-gold: #d4af37;
   --color-gold-light: #f3e5ab;
-  --color-navy: #0b192e;
-}
-
-* {
-  box-sizing: border-box;
+  --color-bg-dark: #070e1b;
+  --color-card-bg: rgba(10, 20, 38, 0.94);
+  --color-border: rgba(255, 255, 255, 0.12);
 }
 
 body {
-  font-family: var(--font-sans);
-  background-color: #f1f5f9;
-  color: #0f172a;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #1e293b;
   overflow-x: hidden;
+  background-color: #f8fafc;
+}
+
+/* Luxury White Marble with Dark Navy Blue Veins Background */
+.white-blue-marble-bg {
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.9) 0%, rgba(240, 245, 255, 0.8) 100%),
+    url('../images/backgrounds/white_navy_marble_2.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Panoramic Dubai Skyline Hero */
+.hero-bg-wrapper {
+  background-image: 
+    linear-gradient(180deg, rgba(7, 14, 27, 0.45) 0%, rgba(7, 14, 27, 0.85) 75%, rgba(7, 14, 27, 0.98) 100%),
+    url('../images/backgrounds/dubai_skyline_hero.jpg');
+  background-size: cover;
+  background-position: center 30%;
 }
 
 .font-display {
-  font-family: var(--font-display);
+  font-family: 'Syne', sans-serif;
 }
 
 .font-serif-luxury {
-  font-family: var(--font-serif);
+  font-family: 'Playfair Display', serif;
 }
 
-/* Panoramic Dubai Skyline Hero Background with Deep Navy Vignette */
-.hero-bg-wrapper {
-  position: relative;
-  background-image: linear-gradient(180deg, rgba(6, 13, 26, 0.45) 0%, rgba(6, 13, 26, 0.82) 70%, #070e1b 100%),
-                    url('../images/backgrounds/dubai_skyline_hero.jpg');
-  background-size: cover;
-  background-position: center 30%;
-  background-repeat: no-repeat;
-  color: #ffffff;
-}
-
-/* White Marble with Dark Blue Veins Background */
-.white-blue-marble-bg {
-  background-color: #f8fafc;
-  background-image: 
-    radial-gradient(circle at 10% 20%, rgba(11, 25, 46, 0.04) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(14, 38, 74, 0.05) 0%, transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.6) 0%, transparent 80%),
-    url('../images/backgrounds/white_navy_marble_2.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-
-/* Deep Navy Luxury Cards with 3D Depth */
+/* Luxury Deep Midnight Cards */
 .horizon-card {
-  background: var(--navy-card);
+  background-color: var(--color-card-bg);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--border-glass-dark);
-  border-radius: 28px;
-  box-shadow: 0 25px 50px -12px rgba(6, 13, 26, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
-  color: #f8fafc;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--color-border);
+  border-radius: 1.75rem;
+  box-shadow: 0 20px 40px -15px rgba(2, 6, 23, 0.35);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .horizon-card:hover {
-  transform: translateY(-6px);
-  background: var(--navy-card-hover);
-  border-color: rgba(212, 175, 55, 0.4);
-  box-shadow: 0 35px 70px -15px rgba(6, 13, 26, 0.7), 0 0 30px rgba(212, 175, 55, 0.18);
+  border-color: rgba(255, 255, 255, 0.22);
+  transform: translateY(-3px);
+  box-shadow: 0 25px 50px -12px rgba(2, 6, 23, 0.45);
 }
 
-/* White Horizon Pill Buttons */
+.horizon-status-box {
+  background: rgba(7, 14, 27, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+}
+
+/* Buttons */
 .btn-horizon-white {
   background-color: #ffffff;
   color: #070e1b;
-  font-family: var(--font-sans);
   font-weight: 700;
   border-radius: 9999px;
-  padding: 12px 28px;
+  padding: 0.75rem 1.5rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition: all 0.25s ease;
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
 }
 
 .btn-horizon-white:hover {
   background-color: #f1f5f9;
-  transform: scale(1.03) translateY(-2px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(255, 255, 255, 0.3);
 }
 
 .btn-horizon-navy {
-  background-color: #0b192e;
+  background-color: #070e1b;
   color: #ffffff;
-  font-family: var(--font-sans);
   font-weight: 700;
   border-radius: 9999px;
-  padding: 12px 28px;
+  padding: 0.75rem 1.5rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 25px rgba(11, 25, 46, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.25s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
 .btn-horizon-navy:hover {
-  background-color: #122442;
-  transform: translateY(-2px);
-  box-shadow: 0 15px 35px rgba(11, 25, 46, 0.35);
-}
-
-.btn-horizon-glass {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #f8fafc;
-  font-weight: 600;
-  border-radius: 9999px;
-  backdrop-filter: blur(12px);
-  transition: all 0.3s ease;
-}
-
-.btn-horizon-glass:hover {
-  background: rgba(255, 255, 255, 0.22);
+  background-color: #0f172a;
   border-color: rgba(255, 255, 255, 0.4);
   transform: translateY(-2px);
 }
 
+.btn-horizon-glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 9999px;
+  padding: 0.65rem 1.25rem;
+  transition: all 0.25s ease;
+}
+
+.btn-horizon-glass:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
 /* Badges */
+.badge-clean-gold {
+  background: rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  color: #fef08a;
+  backdrop-filter: blur(8px);
+}
+
 .badge-clean-white {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.25);
   color: #ffffff;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
 }
 
-.badge-clean-gold {
-  background: rgba(212, 175, 55, 0.18);
-  border: 1px solid rgba(212, 175, 55, 0.45);
-  color: #f3e5ab;
-  backdrop-filter: blur(10px);
-}
-
-.horizon-status-box {
-  background: rgba(7, 14, 27, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(24px);
-  border-radius: 24px;
-  padding: 20px 24px;
-  color: #ffffff;
-}
-
-/* Custom Leaflet Map */
-.leaflet-container {
-  background: #070e1b !important;
-  font-family: var(--font-sans);
-}
+/* Leaflet Map Dark / Gold Styling */
 .leaflet-popup-content-wrapper {
-  background: #0a1426 !important;
-  color: #f8fafc !important;
-  border: 1px solid rgba(212, 175, 55, 0.5) !important;
-  border-radius: 16px !important;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8) !important;
+  background: #070e1b !important;
+  color: #ffffff !important;
+  border-radius: 1rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5) !important;
 }
+
 .leaflet-popup-tip {
-  background: #0a1426 !important;
+  background: #070e1b !important;
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-::-webkit-scrollbar-thumb {
-  background: #0b192e;
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #c59b27;
+/* Table styles */
+table.table-fixed {
+  table-layout: fixed;
+  word-wrap: break-word;
 }
 
+/* Utilities */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
