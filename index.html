@@ -41,9 +41,10 @@
       </div>
 
       <!-- Center Links (Desktop) -->
-      <nav class="hidden md:flex items-center space-x-8 text-xs font-semibold uppercase tracking-widest text-slate-200">
+      <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-xs font-semibold uppercase tracking-widest text-slate-200">
         <button onclick="setTab('living'); scrollToSection('section-living')" class="hover:text-amber-300 transition-colors py-2" data-i18n="navLiving">Residencial</button>
         <button onclick="setTab('commercial'); scrollToSection('section-commercial')" class="hover:text-amber-300 transition-colors py-2" data-i18n="navCommercial">Restaurante</button>
+        <button onclick="setTab('guide'); scrollToSection('section-guide')" class="hover:text-amber-300 transition-colors py-2 text-amber-300 font-bold" data-i18n="navGuide">Info Restaurante</button>
         <button onclick="setTab('townhouse'); scrollToSection('section-townhouse')" class="hover:text-amber-300 transition-colors py-2" data-i18n="navTownhouse">Chalet</button>
         <button onclick="openComparisonModal()" class="hover:text-amber-300 transition-colors py-2 flex items-center">
           <span data-i18n="compareBtn">Comparativa</span>
@@ -89,7 +90,7 @@
 
     </div>
 
-    <!-- Mobile Slide Menu (Fully Interactive) -->
+    <!-- Mobile Slide Menu -->
     <div id="mobile-menu" class="hidden md:hidden bg-slate-950 border-b border-white/15 px-6 py-6 space-y-5 text-white shadow-2xl">
       
       <!-- Section Links in Mobile Menu -->
@@ -108,9 +109,16 @@
           </span>
           <span class="text-[10px] px-2 py-0.5 bg-white/10 text-slate-300 rounded-full">EN BÚSQUEDA</span>
         </button>
-        <button onclick="mobileNavigate('townhouse')" class="flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-white/10 text-left font-bold text-sm text-slate-100">
+        <button onclick="mobileNavigate('guide')" class="flex items-center justify-between p-3 rounded-2xl bg-amber-500/15 border border-amber-500/30 text-left font-bold text-sm text-amber-300">
           <span class="flex items-center space-x-2">
             <span class="text-amber-400">03.</span>
+            <span data-i18n="navGuide">Info para Restaurante</span>
+          </span>
+          <span class="text-[10px] px-2 py-0.5 bg-amber-400 text-slate-950 rounded-full font-bold">GUÍA & CONTACTO</span>
+        </button>
+        <button onclick="mobileNavigate('townhouse')" class="flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-white/10 text-left font-bold text-sm text-slate-100">
+          <span class="flex items-center space-x-2">
+            <span class="text-amber-400">04.</span>
             <span data-i18n="navTownhouse">Chalet (Personal)</span>
           </span>
           <span class="text-[10px] px-2 py-0.5 bg-white/10 text-slate-300 rounded-full">EN BÚSQUEDA</span>
@@ -195,8 +203,9 @@
             <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
           </button>
           
-          <button onclick="openComparisonModal()" class="btn-horizon-glass px-6 py-3 text-xs font-bold">
-            <span data-i18n="compareBtn">Comparativa Lado a Lado</span>
+          <button onclick="setTab('guide'); scrollToSection('section-guide')" class="btn-horizon-glass px-6 py-3 text-xs font-bold flex items-center">
+            <svg class="w-4 h-4 mr-2 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <span data-i18n="navGuide">Info para Restaurante</span>
           </button>
         </div>
       </div>
@@ -244,35 +253,44 @@
 
   </section>
 
-  <!-- 3 CATEGORY NAVIGATION TABS -->
+  <!-- 4 CATEGORY NAVIGATION TABS -->
   <section class="sticky top-20 z-30 bg-slate-950/85 backdrop-blur-xl border-y border-slate-900/20 py-4 px-4 sm:px-6 lg:px-8 shadow-md">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row gap-2.5">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-2.5">
       
       <!-- Tab 1: Residential -->
-      <button id="nav-tab-living" onclick="setTab('living')" class="flex-1 py-3.5 px-5 rounded-full border border-white text-slate-950 bg-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between shadow-lg">
-        <span class="flex items-center space-x-2">
+      <button id="nav-tab-living" onclick="setTab('living')" class="py-3 px-4 rounded-full border border-white text-slate-950 bg-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between shadow-lg">
+        <span class="flex items-center space-x-1.5 truncate">
           <span>01.</span>
-          <span data-i18n="tabLiving">Apartamento para Vivir</span>
+          <span data-i18n="tabLiving" class="truncate">Apartamento para Vivir</span>
         </span>
-        <span class="px-2.5 py-0.5 rounded-full bg-slate-950 text-white text-[10px] font-black">4 OPCIONES</span>
+        <span class="px-2 py-0.5 rounded-full bg-slate-950 text-white text-[10px] font-black flex-shrink-0">4 LISTAS</span>
       </button>
 
       <!-- Tab 2: Commercial -->
-      <button id="nav-tab-commercial" onclick="setTab('commercial')" class="flex-1 py-3.5 px-5 rounded-full border border-white/15 text-slate-300 hover:text-white hover:bg-white/10 font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-between">
-        <span class="flex items-center space-x-2">
+      <button id="nav-tab-commercial" onclick="setTab('commercial')" class="py-3 px-4 rounded-full border border-white/15 text-slate-300 hover:text-white hover:bg-white/10 font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-between">
+        <span class="flex items-center space-x-1.5 truncate">
           <span>02.</span>
-          <span data-i18n="tabCommercial">Restaurante Comercial</span>
+          <span data-i18n="tabCommercial" class="truncate">Restaurante Comercial</span>
         </span>
-        <span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-semibold">EN BÚSQUEDA</span>
+        <span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-semibold flex-shrink-0">LOCAL</span>
       </button>
 
-      <!-- Tab 3: Townhouse -->
-      <button id="nav-tab-townhouse" onclick="setTab('townhouse')" class="flex-1 py-3.5 px-5 rounded-full border border-white/15 text-slate-300 hover:text-white hover:bg-white/10 font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-between">
-        <span class="flex items-center space-x-2">
+      <!-- Tab 3: Restaurant Strategy & Supply Guide (NEW) -->
+      <button id="nav-tab-guide" onclick="setTab('guide')" class="py-3 px-4 rounded-full border border-amber-500/30 text-amber-300 hover:text-white hover:bg-amber-500/20 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between bg-amber-500/10">
+        <span class="flex items-center space-x-1.5 truncate">
           <span>03.</span>
-          <span data-i18n="tabTownhouse">Chalet para Rentar</span>
+          <span data-i18n="navGuide" class="truncate">Info Restaurante</span>
         </span>
-        <span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-semibold">EN BÚSQUEDA</span>
+        <span class="px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black flex-shrink-0">ESTRATEGIA</span>
+      </button>
+
+      <!-- Tab 4: Townhouse -->
+      <button id="nav-tab-townhouse" onclick="setTab('townhouse')" class="py-3 px-4 rounded-full border border-white/15 text-slate-300 hover:text-white hover:bg-white/10 font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-between">
+        <span class="flex items-center space-x-1.5 truncate">
+          <span>04.</span>
+          <span data-i18n="tabTownhouse" class="truncate">Chalet para Rentar</span>
+        </span>
+        <span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-semibold flex-shrink-0">PERSONAL</span>
       </button>
 
     </div>
@@ -303,14 +321,21 @@
     </div>
   </main>
 
-  <!-- MAIN SECTION 2: COMMERCIAL SPACE (RESTAURANT) -->
+  <!-- MAIN SECTION 2: COMMERCIAL SPACE (RESTAURANT LOCAL SEARCH) -->
   <section id="section-commercial" class="hidden flex-1 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full py-16">
     <div id="commercial-content">
       <!-- Injected by JavaScript -->
     </div>
   </section>
 
-  <!-- MAIN SECTION 3: TOWNHOUSE FOR RENT -->
+  <!-- MAIN SECTION 3: RESTAURANT STRATEGIC & SUPPLY GUIDE (NEW) -->
+  <section id="section-guide" class="hidden flex-1 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full py-16">
+    <div id="guide-content">
+      <!-- Injected by JavaScript -->
+    </div>
+  </section>
+
+  <!-- MAIN SECTION 4: TOWNHOUSE FOR RENT -->
   <section id="section-townhouse" class="hidden flex-1 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full py-16">
     <div id="townhouse-content">
       <!-- Injected by JavaScript -->
@@ -379,7 +404,7 @@
     </div>
   </div>
 
-  <!-- FOOTER (Updated with Creado por David A. Rodriguez) -->
+  <!-- FOOTER -->
   <footer class="mt-auto border-t border-slate-900/10 bg-white/80 backdrop-blur-md py-10 px-4 text-xs text-slate-600">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="flex items-center space-x-3">

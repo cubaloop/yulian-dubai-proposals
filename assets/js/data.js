@@ -408,6 +408,115 @@ const PROPOSALS_DATA = {
       }
     }
   },
+  restaurantGuide: {
+    title: {
+      es: "Información Estratégica para tu Restaurante en Dubai",
+      en: "Strategic Restaurant Guide & Supply Chain in Dubai"
+    },
+    subtitle: {
+      es: "Logística, Almacén (Warehouse), Licencias de Distribución y Cadena de Abastecimiento",
+      en: "Logistics, Warehousing Strategy, Distribution Licensing & Verified Supply Chain"
+    },
+    warehouseStrategy: {
+      title: {
+        es: "1. Estrategia de Almacenamiento: ¿Tener Warehouse Propio o No?",
+        en: "1. Warehousing Strategy: Private Warehouse vs. Local Supplier"
+      },
+      comparison: {
+        withWarehouse: {
+          title: { es: "Con Warehouse (Almacén Propio)", en: "With Dedicated Warehouse" },
+          points: {
+            es: [
+              "Permite importar grandes volúmenes directamente desde origen (España / Europa) vía marítima/aérea.",
+              "Requiere inversión de capital elevada (arrendamiento de nave industrial climatizada + cámaras de frío).",
+              "<strong>Requisito Legal Crítico:</strong> Para poder importar y almacenar a gran escala necesitas una <strong>Licencia de Distribuidor / Importador de Alimentos</strong> ante Dubai Municipality. Sin esta licencia NO es legal operar distribución."
+            ],
+            en: [
+              "Enables bulk container imports directly from Spain/Europe via sea/air freight.",
+              "Requires significant upfront capital (cold storage lease, fit-out, logistics staff).",
+              "<strong>Critical Legal Requirement:</strong> Bulk importation requires an official <strong>Food Distribution & General Trading License</strong> approved by Dubai Municipality."
+            ]
+          }
+        },
+        withoutWarehouse: {
+          title: { es: "Sin Warehouse (Operación con Proveedor Local Recomendada)", en: "Without Warehouse (Recommended Lean Start)" },
+          points: {
+            es: [
+              "<strong>Recomendación Estratégica:</strong> Para la fase de lanzamiento, se aconseja <strong>empezar operando directamente con proveedores e importadores ya establecidos</strong>.",
+              "Cero riesgo de sobre-stock, mermas o costos fijos de almacenamiento en frío.",
+              "Suministro bajo demanda justo a tiempo (Just-In-Time) directo a las cocinas de tu restaurante.",
+              "Mayor agilidad y enfoque 100% en la apertura, carta y experiencia del comensal."
+            ],
+            en: [
+              "<strong>Strategic Recommendation:</strong> For the opening phase, start by <strong>sourcing directly from established licensed importers/distributors</strong>.",
+              "Zero inventory spoilage risk, cold-storage overhead, or licensing liabilities.",
+              "Just-In-Time deliveries directly to your restaurant kitchen according to daily demand.",
+              "Allows full managerial focus on brand launch, kitchen operations, and guest experience."
+            ]
+          }
+        }
+      }
+    },
+    operationalAdvice: {
+      title: {
+        es: "2. Consejo Operativo: Selección de Productos & Negociación por Volumen",
+        en: "2. Operational Workflow: Product Sourcing & Volume Pricing"
+      },
+      steps: {
+        es: [
+          {
+            step: "Paso 01",
+            title: "Auditoría de Catálogo",
+            desc: "Accede al catálogo digital de la empresa importadora y preselecciona los productos e ingredientes clave que definirán la propuesta gastronómica de tu menú."
+          },
+          {
+            step: "Paso 02",
+            title: "Cotización por Volumen",
+            desc: "Consulta directamente con el contacto de la importadora para cotizar los productos seleccionados y obtener las mejores escalas de precio por volumen y frecuencia."
+          },
+          {
+            step: "Paso 03",
+            title: "Elección del Mejor Distribuidor",
+            desc: "La importadora te derivará con el distribuidor oficial idóneo según la ubicación de tu local (Downtown/Marina/Business Bay) para garantizar entregas óptimas."
+          }
+        ],
+        en: [
+          {
+            step: "Step 01",
+            title: "Catalog Audit",
+            desc: "Review the digital product catalog of the importing hub and curate signature items defining your restaurant menu."
+          },
+          {
+            step: "Step 02",
+            title: "Volume Quotation",
+            desc: "Inquire with the import representative to obtain tier-one pricing based on estimated weekly/monthly consumption volumes."
+          },
+          {
+            step: "Step 03",
+            title: "Distributor Pairing",
+            desc: "The importer pairs your restaurant with their best-fit local logistics distributor for streamlined delivery routing."
+          }
+        ]
+      }
+    },
+    supplierContact: {
+      title: {
+        es: "3. Contacto Estratégico: Empresa Importadora & Proveedor Clave",
+        en: "3. Strategic Supply Partner: Key Importer & Wholesaler"
+      },
+      companyName: "Spain Gulf Food",
+      companyDesc: {
+        es: "Empresa importadora líder que abastece directamente a los principales distribuidores y restaurantes de alta cocina en Dubai y Emiratos Árabes.",
+        en: "Premier food import hub supplying top-tier hospitality distributors and gourmet dining destinations across Dubai and the UAE."
+      },
+      agentName: "Noora",
+      agentRole: { es: "Agente de Cuentas & Alianzas Estratégicas", en: "Key Account & Strategic Partnerships Agent" },
+      phoneRaw: "+971585871408",
+      phoneFormatted: "+971 58 587 1408",
+      websiteUrl: "https://www.spaingulfood.com/",
+      websiteDisplay: "www.spaingulfood.com"
+    }
+  },
   townhouseSearch: {
     title: {
       es: "Chalet para Rentar (Personal y Empleados)",

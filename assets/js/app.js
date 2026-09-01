@@ -3,7 +3,7 @@ let state = {
   lang: 'es', // 'es' or 'en'
   currency: 'EUR', // 'EUR', 'AED', 'USD'
   unit: 'sqm', // 'sqm', 'sqft'
-  activeTab: 'living', // 'living', 'commercial', 'townhouse'
+  activeTab: 'living', // 'living', 'commercial', 'guide', 'townhouse'
   activeProperty: null,
   activeGalleryIndex: 0,
   activeMap: null,
@@ -20,7 +20,8 @@ const TRANSLATIONS = {
     searchProgress: "ESTADO DE BÚSQUEDA",
     
     navLiving: "Residencial (Vivir)",
-    navCommercial: "Restaurante (Comercial)",
+    navCommercial: "Restaurante (Local)",
+    navGuide: "Info Restaurante",
     navTownhouse: "Chalet (Personal)",
     getConsultation: "Get A Consultation ↗",
     
@@ -28,6 +29,8 @@ const TRANSLATIONS = {
     tabLivingSub: "2-3 BHK • Downtown / Business Bay",
     tabCommercial: "Restaurante Comercial",
     tabCommercialSub: "12k-15k sqft • Áreas Abiertas",
+    tabGuide: "Info Restaurante",
+    tabGuideSub: "Estrategia, Almacén & Proveedores",
     tabTownhouse: "Chalet para Rentar",
     tabTownhouseSub: "4 BHK • Damac Hills (Personal)",
     
@@ -100,7 +103,8 @@ const TRANSLATIONS = {
     searchProgress: "SEARCH STATUS",
     
     navLiving: "Living (Residential)",
-    navCommercial: "Restaurant (Commercial)",
+    navCommercial: "Restaurant (Location)",
+    navGuide: "Restaurant Info",
     navTownhouse: "Townhouse (Staff)",
     getConsultation: "Get A Consultation ↗",
     
@@ -108,6 +112,8 @@ const TRANSLATIONS = {
     tabLivingSub: "2-3 BHK • Downtown / Business Bay",
     tabCommercial: "Restaurant Space",
     tabCommercialSub: "12k-15k sqft • Open Spaces",
+    tabGuide: "Restaurant Info",
+    tabGuideSub: "Strategy, Warehousing & Supply Hub",
     tabTownhouse: "Townhouse for Rent",
     tabTownhouseSub: "4 BHK • Damac Hills (Staff)",
     
@@ -335,28 +341,36 @@ function updateUI() {
   // Navigation Tabs Styling
   const tabLiving = document.getElementById('nav-tab-living');
   const tabCommercial = document.getElementById('nav-tab-commercial');
+  const tabGuide = document.getElementById('nav-tab-guide');
   const tabTownhouse = document.getElementById('nav-tab-townhouse');
 
   const activeTabClass = "border-white text-slate-950 bg-white shadow-xl";
   const inactiveTabClass = "border-white/15 text-slate-300 hover:text-white hover:bg-white/10";
+  const activeGuideClass = "border-amber-400 text-slate-950 bg-amber-400 shadow-xl";
+  const inactiveGuideClass = "border-amber-500/30 text-amber-300 hover:text-white hover:bg-amber-500/20 bg-amber-500/10";
 
-  if (tabLiving) tabLiving.className = `flex-1 py-3.5 px-5 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'living' ? activeTabClass : inactiveTabClass}`;
-  if (tabCommercial) tabCommercial.className = `flex-1 py-3.5 px-5 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'commercial' ? activeTabClass : inactiveTabClass}`;
-  if (tabTownhouse) tabTownhouse.className = `flex-1 py-3.5 px-5 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'townhouse' ? activeTabClass : inactiveTabClass}`;
+  if (tabLiving) tabLiving.className = `py-3 px-4 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between shadow-lg ${state.activeTab === 'living' ? activeTabClass : inactiveTabClass}`;
+  if (tabCommercial) tabCommercial.className = `py-3 px-4 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'commercial' ? activeTabClass : inactiveTabClass}`;
+  if (tabGuide) tabGuide.className = `py-3 px-4 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'guide' ? activeGuideClass : inactiveGuideClass}`;
+  if (tabTownhouse) tabTownhouse.className = `py-3 px-4 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'townhouse' ? activeTabClass : inactiveTabClass}`;
 
   // Section visibility
   const secLiving = document.getElementById('section-living');
   const secCommercial = document.getElementById('section-commercial');
+  const secGuide = document.getElementById('section-guide');
   const secTownhouse = document.getElementById('section-townhouse');
 
   if (secLiving) secLiving.classList.toggle('hidden', state.activeTab !== 'living');
   if (secCommercial) secCommercial.classList.toggle('hidden', state.activeTab !== 'commercial');
+  if (secGuide) secGuide.classList.toggle('hidden', state.activeTab !== 'guide');
   if (secTownhouse) secTownhouse.classList.toggle('hidden', state.activeTab !== 'townhouse');
 
   if (state.activeTab === 'living') {
     renderPropertyCards();
   } else if (state.activeTab === 'commercial') {
     renderCommercialSection();
+  } else if (state.activeTab === 'guide') {
+    renderRestaurantGuideSection();
   } else if (state.activeTab === 'townhouse') {
     renderTownhouseSection();
   }
@@ -469,7 +483,176 @@ function renderPropertyCards() {
   });
 }
 
-// Render Commercial Section
+// Render Restaurant Strategic & Supply Guide Section (NEW)
+function renderRestaurantGuideSection() {
+  const guide = PROPOSALS_DATA.restaurantGuide;
+  const container = document.getElementById('guide-content');
+  if (!container) return;
+
+  container.innerHTML = `
+    <div class="max-w-5xl mx-auto space-y-10">
+      
+      <!-- Section Intro Header -->
+      <div class="horizon-card p-8 md:p-12 relative overflow-hidden border-amber-500/30" style="background-image: linear-gradient(180deg, rgba(7,14,27,0.85) 0%, rgba(7,14,27,0.98) 100%), url('assets/images/backgrounds/restaurant_bg.jpg'); background-size: cover; background-position: center;">
+        <div class="flex items-center space-x-3 text-amber-400 mb-3">
+          <span class="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-[11px] font-bold uppercase tracking-widest">
+            GUÍA ESTRATÉGICA • DUBAI GASTRONOMY
+          </span>
+        </div>
+        <h2 class="text-3xl md:text-5xl font-display font-black text-white mb-3 tracking-tight">
+          ${guide.title[state.lang]}
+        </h2>
+        <p class="text-slate-300 text-sm md:text-base leading-relaxed max-w-2xl">
+          ${guide.subtitle[state.lang]}
+        </p>
+      </div>
+
+      <!-- MODULE 1: WAREHOUSE VS NON-WAREHOUSE (STRATEGY & LEGAL LICENSING) -->
+      <div class="horizon-card p-8 md:p-10 border-white/15">
+        <div class="flex items-center space-x-3 mb-6">
+          <span class="w-8 h-8 rounded-full bg-amber-400 text-slate-950 font-black flex items-center justify-center text-sm">1</span>
+          <h3 class="text-2xl font-display font-bold text-white">
+            ${guide.warehouseStrategy.title[state.lang]}
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Option A: Con Warehouse -->
+          <div class="bg-black/50 p-6 rounded-3xl border border-white/10 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-sm font-bold text-slate-200 uppercase tracking-wider">${guide.warehouseStrategy.comparison.withWarehouse.title[state.lang]}</span>
+                <span class="px-2.5 py-1 rounded-full bg-white/10 text-slate-400 text-[10px] font-bold">ALTA INVERSIÓN</span>
+              </div>
+              <ul class="space-y-3.5 text-xs md:text-sm text-slate-300 leading-relaxed">
+                ${guide.warehouseStrategy.comparison.withWarehouse.points[state.lang].map(pt => `
+                  <li class="flex items-start space-x-2.5">
+                    <span class="text-amber-400 text-base leading-none">•</span>
+                    <span>${pt}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-white/10 text-[11px] text-amber-300 font-semibold flex items-center">
+              <svg class="w-4 h-4 mr-1.5 flex-shrink-0 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+              <span>Requiere Licencia de Importador y Distribuidor</span>
+            </div>
+          </div>
+
+          <!-- Option B: Sin Warehouse (Recommended) -->
+          <div class="bg-gradient-to-br from-amber-500/15 via-black/60 to-black/60 p-6 rounded-3xl border border-amber-500/40 flex flex-col justify-between relative shadow-xl">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-sm font-bold text-amber-300 uppercase tracking-wider">${guide.warehouseStrategy.comparison.withoutWarehouse.title[state.lang]}</span>
+                <span class="px-2.5 py-1 rounded-full bg-emerald-500 text-slate-950 text-[10px] font-black uppercase">RECOMENDADO</span>
+              </div>
+              <ul class="space-y-3.5 text-xs md:text-sm text-slate-200 leading-relaxed">
+                ${guide.warehouseStrategy.comparison.withoutWarehouse.points[state.lang].map(pt => `
+                  <li class="flex items-start space-x-2.5">
+                    <span class="text-emerald-400 font-bold text-base leading-none">✓</span>
+                    <span>${pt}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-amber-500/20 text-[11px] text-emerald-400 font-bold flex items-center">
+              <svg class="w-4 h-4 mr-1.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+              <span>Eficiencia Máxima de Capital & Cero Pasivos de Frío</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MODULE 2: OPERATIONAL WORKFLOW & SOURCING -->
+      <div class="horizon-card p-8 md:p-10 border-white/15">
+        <div class="flex items-center space-x-3 mb-6">
+          <span class="w-8 h-8 rounded-full bg-amber-400 text-slate-950 font-black flex items-center justify-center text-sm">2</span>
+          <h3 class="text-2xl font-display font-bold text-white">
+            ${guide.operationalAdvice.title[state.lang]}
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          ${guide.operationalAdvice.steps[state.lang].map(step => `
+            <div class="bg-black/50 p-5 rounded-2xl border border-white/10 space-y-2">
+              <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest">${step.step}</span>
+              <h4 class="text-base font-bold text-white font-display">${step.title}</h4>
+              <p class="text-xs text-slate-300 leading-relaxed">${step.desc}</p>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- MODULE 3: STRATEGIC SUPPLIER / IMPORT HUB CONTACT (SPAIN GULF FOOD) -->
+      <div class="horizon-card p-8 md:p-10 border-amber-500/40 bg-gradient-to-b from-slate-900 to-black relative overflow-hidden">
+        <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="flex items-center space-x-3 mb-6">
+          <span class="w-8 h-8 rounded-full bg-amber-400 text-slate-950 font-black flex items-center justify-center text-sm">3</span>
+          <h3 class="text-2xl font-display font-bold text-white">
+            ${guide.supplierContact.title[state.lang]}
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+          
+          <!-- Company Bio -->
+          <div class="lg:col-span-2 space-y-4">
+            <div class="flex items-center space-x-3">
+              <div class="w-12 h-12 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-center font-display font-black text-xl shadow-lg shadow-amber-400/20">
+                SG
+              </div>
+              <div>
+                <h4 class="text-2xl font-black text-white font-display">${guide.supplierContact.companyName}</h4>
+                <a href="${guide.supplierContact.websiteUrl}" target="_blank" class="text-xs text-amber-300 hover:underline flex items-center mt-0.5">
+                  <span>${guide.supplierContact.websiteDisplay}</span>
+                  <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+              </div>
+            </div>
+            
+            <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+              ${guide.supplierContact.companyDesc[state.lang]}
+            </p>
+
+            <div class="bg-white/5 p-4 rounded-2xl border border-white/10 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-slate-400 uppercase tracking-widest block">Contacto Directo</span>
+                <span class="text-base font-bold text-white">${guide.supplierContact.agentName}</span>
+                <span class="text-xs text-slate-400 block">${guide.supplierContact.agentRole[state.lang]}</span>
+              </div>
+              <span class="text-amber-400 font-bold text-sm">${guide.supplierContact.phoneFormatted}</span>
+            </div>
+          </div>
+
+          <!-- Direct CTA Buttons -->
+          <div class="space-y-3">
+            <a href="https://wa.me/971585871408?text=${encodeURIComponent('Hola Noora, soy Yulian. Estoy en proceso de apertura de mi restaurante en Dubai y me pongo en contacto para revisar el catálogo y consultar por los mejores distribuidores por volumen.')}" target="_blank" class="btn-horizon-white w-full py-3.5 text-xs font-bold flex items-center justify-center">
+              <svg class="w-4 h-4 mr-2 fill-emerald-500" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+              <span>WhatsApp Noora (+971 58 587 1408)</span>
+            </a>
+
+            <a href="tel:+971585871408" class="btn-horizon-glass w-full py-3 text-xs font-bold flex items-center justify-center">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+              <span>Llamar a Noora</span>
+            </a>
+
+            <a href="${guide.supplierContact.websiteUrl}" target="_blank" class="btn-horizon-glass w-full py-3 text-xs font-bold flex items-center justify-center !border-amber-400/40 text-amber-300 hover:!bg-amber-400 hover:!text-slate-950">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+              <span>Explorar Catálogo en www.spaingulfood.com</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  `;
+}
+
+// Render Commercial Section (Local Search)
 function renderCommercialSection() {
   const comm = PROPOSALS_DATA.commercialSearch;
   const t = TRANSLATIONS[state.lang];
@@ -494,6 +677,17 @@ function renderCommercialSection() {
         <p class="text-slate-200 text-sm md:text-base leading-relaxed mb-8 max-w-2xl">
           ${t.statusWorkingSub}
         </p>
+
+        <!-- Quick Link to Supply Guide -->
+        <div class="mb-6 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between flex-wrap gap-3">
+          <div class="flex items-center space-x-2 text-xs text-amber-300">
+            <span class="font-bold">💡 Consejo Logístico:</span>
+            <span>Revisa la estrategia de importación y contacto con proveedores de hostelería.</span>
+          </div>
+          <button onclick="setTab('guide'); scrollToSection('section-guide')" class="px-3.5 py-1.5 rounded-full bg-amber-400 text-slate-950 text-xs font-bold hover:bg-amber-300 transition-colors">
+            Ver Guía de Proveedores ➔
+          </button>
+        </div>
 
         <!-- Requirements Summary Matrix -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-8 border-t border-white/20">
