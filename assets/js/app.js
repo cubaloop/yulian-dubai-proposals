@@ -7,7 +7,10 @@ let state = {
   activeProperty: null,
   activeGalleryIndex: 0,
   activeMap: null,
-  activeChart: null
+  activeChart: null,
+  // Benchmark Sub-section State
+  benchmarkCategory: 'All',
+  benchmarkSearch: ''
 };
 
 // UI Translations
@@ -483,20 +486,20 @@ function renderPropertyCards() {
   });
 }
 
-// Render Restaurant Strategic & Supply Guide Section (NEW)
+// Render Restaurant Strategic & Supply Guide Section + Benchmark Module
 function renderRestaurantGuideSection() {
   const guide = PROPOSALS_DATA.restaurantGuide;
   const container = document.getElementById('guide-content');
   if (!container) return;
 
   container.innerHTML = `
-    <div class="max-w-5xl mx-auto space-y-10">
+    <div class="max-w-5xl mx-auto space-y-12">
       
       <!-- Section Intro Header -->
       <div class="horizon-card p-8 md:p-12 relative overflow-hidden border-amber-500/30" style="background-image: linear-gradient(180deg, rgba(7,14,27,0.85) 0%, rgba(7,14,27,0.98) 100%), url('assets/images/backgrounds/restaurant_bg.jpg'); background-size: cover; background-position: center;">
         <div class="flex items-center space-x-3 text-amber-400 mb-3">
           <span class="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-[11px] font-bold uppercase tracking-widest">
-            GUÍA ESTRATÉGICA • DUBAI GASTRONOMY
+            GUÍA ESTRATÉGICA & BENCHMARK • DUBAI GASTRONOMY
           </span>
         </div>
         <h2 class="text-3xl md:text-5xl font-display font-black text-white mb-3 tracking-tight">
@@ -648,8 +651,240 @@ function renderRestaurantGuideSection() {
         </div>
       </div>
 
+      <!-- MODULE 4: SPANISH RESTAURANTS BENCHMARK SUB-SECTION (NEW) -->
+      <div id="benchmark-module-container">
+        <!-- Rendered by renderBenchmarkSubSection() -->
+      </div>
+
     </div>
   `;
+
+  renderBenchmarkSubSection();
+}
+
+// Render Spanish Restaurants Benchmark Sub-Section
+function renderBenchmarkSubSection() {
+  const container = document.getElementById('benchmark-module-container');
+  if (!container) return;
+
+  const categories = ['All', 'Casual / Taberna', 'Premium / Fine Dining', 'Lifestyle / Beach Club'];
+
+  const filteredData = PROPOSALS_DATA.spanishRestaurantsDubai.filter(item => {
+    const matchesCategory = state.benchmarkCategory === 'All' || item.category === state.benchmarkCategory;
+    const query = state.benchmarkSearch.toLowerCase().trim();
+    const matchesSearch = !query || 
+      item.name.toLowerCase().includes(query) ||
+      item.location.toLowerCase().includes(query) ||
+      item.concept.toLowerCase().includes(query);
+    return matchesCategory && matchesSearch;
+  });
+
+  container.innerHTML = `
+    <div class="horizon-card p-6 md:p-10 border-amber-500/30 space-y-8 bg-slate-950/90 shadow-2xl">
+      
+      <!-- Benchmark Header -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-6">
+        <div>
+          <div class="flex items-center space-x-2 text-amber-400 text-xs font-bold uppercase tracking-widest mb-1">
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+            <span>Estudio de Competencia & Oportunidad</span>
+          </div>
+          <h3 class="text-2xl md:text-3xl font-display font-extrabold text-white tracking-tight">
+            Benchmark de Restaurantes Españoles en Dubái
+          </h3>
+          <p class="text-xs md:text-sm text-slate-300 mt-1">
+            Análisis exhaustivo del panorama gastronómico español actual para definir el posicionamiento de tu restaurante.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 self-start md:self-auto">
+          <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-black bg-emerald-950/90 text-emerald-300 border border-emerald-500/40">
+            ✓ 6 Principales Actores Mapeados
+          </span>
+        </div>
+      </div>
+
+      <!-- Insight Summary Badges -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-5 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-md">
+          <div class="text-[11px] uppercase tracking-wider text-slate-400 font-bold">Rango Ticket Promedio</div>
+          <div class="text-xl font-bold text-white mt-1 font-display">120 – 500+ AED / comensal</div>
+          <div class="text-xs text-slate-400 mt-1">Casual (120-200) vs. Luxury/Beach (300-500+)</div>
+        </div>
+        <div class="p-5 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-md">
+          <div class="text-[11px] uppercase tracking-wider text-slate-400 font-bold">Ubicación Estratégica</div>
+          <div class="text-xl font-bold text-white mt-1 font-display">100% en Hoteles / Zonas Libres</div>
+          <div class="text-xs text-slate-400 mt-1">Clave para licencia de alcohol y productos de cerdo</div>
+        </div>
+        <div class="p-5 bg-white/5 rounded-2xl border border-amber-500/30 bg-amber-500/5 backdrop-blur-md">
+          <div class="text-[11px] uppercase tracking-wider text-amber-400 font-bold">Oportunidad Detectada</div>
+          <div class="text-xl font-bold text-amber-300 mt-1 font-display">Conceptos Regionales Únicos</div>
+          <div class="text-xs text-slate-300 mt-1">Asadores a la leña, sidrerías o barras de pintxos</div>
+        </div>
+      </div>
+
+      <!-- Controls: Search & Category Filter -->
+      <div class="flex flex-col sm:flex-row gap-3 items-center justify-between pt-2">
+        <div class="flex flex-wrap gap-2 w-full sm:w-auto">
+          ${categories.map(cat => `
+            <button
+              onclick="setBenchmarkCategory('${cat}')"
+              class="px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                state.benchmarkCategory === cat
+                  ? 'bg-amber-400 text-slate-950 font-black shadow-lg shadow-amber-400/20 scale-105'
+                  : 'bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 border border-white/10'
+              }"
+            >
+              ${cat === 'All' ? 'Todos (' + PROPOSALS_DATA.spanishRestaurantsDubai.length + ')' : cat}
+            </button>
+          `).join('')}
+        </div>
+        <div class="relative w-full sm:w-72">
+          <input
+            type="text"
+            placeholder="Buscar por nombre, zona o concepto..."
+            value="${state.benchmarkSearch}"
+            oninput="setBenchmarkSearch(this.value)"
+            class="w-full pl-9 pr-4 py-2.5 bg-black/60 border border-white/20 rounded-full text-xs text-slate-100 placeholder-slate-400 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all"
+          />
+          <svg class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </div>
+      </div>
+
+      <!-- Data Table (Desktop & Tablets) -->
+      <div class="hidden md:block overflow-x-auto rounded-2xl border border-white/10 shadow-inner">
+        <table class="w-full text-left text-xs text-slate-300">
+          <thead class="bg-white/10 text-slate-200 uppercase tracking-wider text-[11px] border-b border-white/10">
+            <tr>
+              <th class="py-4 px-4 font-bold">Restaurante</th>
+              <th class="py-4 px-4 font-bold">Ubicación</th>
+              <th class="py-4 px-4 font-bold">Concepto & Categoría</th>
+              <th class="py-4 px-4 text-center font-bold">Ticket Est.</th>
+              <th class="py-4 px-4 text-center font-bold">Licencia Alcohol</th>
+              <th class="py-4 px-4 min-w-[260px] font-bold">Factores Diferenciadores</th>
+              <th class="py-4 px-4 text-center font-bold">Web Oficial</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5">
+            ${filteredData.map(item => `
+              <tr class="hover:bg-white/5 transition-colors">
+                <td class="py-4 px-4 font-bold text-white text-sm whitespace-nowrap">
+                  ${item.name}
+                </td>
+                <td class="py-4 px-4 text-slate-300 text-xs">
+                  ${item.location}
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-slate-100 text-xs">${item.concept}</div>
+                  <span class="inline-block mt-1 text-[10px] px-2.5 py-0.5 rounded-full bg-white/10 text-amber-300 border border-white/10 font-medium">
+                    ${item.category}
+                  </span>
+                </td>
+                <td class="py-4 px-4 text-center font-bold text-amber-400 whitespace-nowrap text-sm">
+                  ${item.avgTicketAed.label}
+                </td>
+                <td class="py-4 px-4 text-center">
+                  <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">
+                    ${item.alcoholLicense ? '✓ Sí (Hotel/FZ)' : 'No'}
+                  </span>
+                </td>
+                <td class="py-4 px-4">
+                  <ul class="space-y-1 text-[11px] text-slate-300">
+                    ${item.differentiators.map(diff => `
+                      <li class="flex items-start space-x-1.5">
+                        <span class="text-amber-400 font-bold">•</span>
+                        <span>${diff}</span>
+                      </li>
+                    `).join('')}
+                  </ul>
+                </td>
+                <td class="py-4 px-4 text-center whitespace-nowrap">
+                  <a
+                    href="${item.websiteUrl}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-[11px] transition-all shadow hover:scale-105"
+                  >
+                    <span>Ver Web</span>
+                    <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                  </a>
+                </td>
+              </tr>
+            `).join('')}
+            ${filteredData.length === 0 ? `
+              <tr>
+                <td colspan="7" class="py-8 text-center text-slate-400">
+                  No se encontraron restaurantes con los filtros seleccionados.
+                </td>
+              </tr>
+            ` : ''}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mobile Cards View -->
+      <div class="md:hidden space-y-4">
+        ${filteredData.map(item => `
+          <div class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-3">
+            <div class="flex items-start justify-between">
+              <div>
+                <span class="text-[10px] uppercase font-bold text-amber-400 tracking-wider">${item.category}</span>
+                <h4 class="text-lg font-bold text-white font-display mt-0.5">${item.name}</h4>
+                <p class="text-xs text-slate-300">${item.location}</p>
+              </div>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800 text-[10px] font-bold flex-shrink-0">
+                Alcohol: Sí
+              </span>
+            </div>
+
+            <div class="flex items-center justify-between bg-black/40 p-3 rounded-xl border border-white/5 text-xs">
+              <span class="text-slate-400">Ticket Estimado:</span>
+              <span class="font-bold text-amber-300 text-sm">${item.avgTicketAed.label}</span>
+            </div>
+
+            <div class="text-xs text-slate-300">
+              <span class="font-semibold text-white block mb-1">Diferenciadores Clave:</span>
+              <ul class="space-y-1 text-[11px] text-slate-300 pl-1">
+                ${item.differentiators.map(diff => `
+                  <li class="flex items-start space-x-1.5">
+                    <span class="text-amber-400 font-bold">•</span>
+                    <span>${diff}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+
+            <div class="pt-2">
+              <a
+                href="${item.websiteUrl}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-horizon-white w-full py-2.5 text-xs font-bold flex items-center justify-center"
+              >
+                <span>Visitar Sitio Web</span>
+                <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+              </a>
+            </div>
+          </div>
+        `).join('')}
+        ${filteredData.length === 0 ? `
+          <div class="p-6 text-center text-slate-400 text-xs bg-white/5 rounded-2xl">
+            No se encontraron restaurantes con los filtros seleccionados.
+          </div>
+        ` : ''}
+      </div>
+
+    </div>
+  `;
+}
+
+function setBenchmarkCategory(cat) {
+  state.benchmarkCategory = cat;
+  renderBenchmarkSubSection();
+}
+
+function setBenchmarkSearch(query) {
+  state.benchmarkSearch = query;
+  renderBenchmarkSubSection();
 }
 
 // Render Commercial Section (Local Search)
@@ -678,14 +913,14 @@ function renderCommercialSection() {
           ${t.statusWorkingSub}
         </p>
 
-        <!-- Quick Link to Supply Guide -->
+        <!-- Quick Link to Supply & Benchmark Guide -->
         <div class="mb-6 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between flex-wrap gap-3">
           <div class="flex items-center space-x-2 text-xs text-amber-300">
-            <span class="font-bold">💡 Consejo Logístico:</span>
-            <span>Revisa la estrategia de importación y contacto con proveedores de hostelería.</span>
+            <span class="font-bold">💡 Benchmark & Proveedores:</span>
+            <span>Consulta el estudio de restaurantes españoles en Dubai y la guía de importación.</span>
           </div>
           <button onclick="setTab('guide'); scrollToSection('section-guide')" class="px-3.5 py-1.5 rounded-full bg-amber-400 text-slate-950 text-xs font-bold hover:bg-amber-300 transition-colors">
-            Ver Guía de Proveedores ➔
+            Ver Benchmark & Guía ➔
           </button>
         </div>
 
