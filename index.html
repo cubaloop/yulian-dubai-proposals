@@ -45,7 +45,7 @@
         <button onclick="setTab('living'); scrollToSection('section-living')" class="hover:text-amber-300 transition-colors py-2" data-i18n="navLiving">Residencial</button>
         <button onclick="setTab('commercial'); scrollToSection('section-commercial')" class="hover:text-amber-300 transition-colors py-2" data-i18n="navCommercial">Restaurante</button>
         <button onclick="setTab('guide'); scrollToSection('section-guide')" class="hover:text-amber-300 transition-colors py-2 text-amber-300 font-bold" data-i18n="navGuide">Info Restaurante</button>
-        <button onclick="setTab('townhouse'); scrollToSection('section-townhouse')" class="hover:text-amber-300 transition-colors py-2" data-i18n="navTownhouse">Chalet</button>
+        <button onclick="setTab('townhouse'); scrollToSection('section-townhouse')" class="hover:text-amber-300 transition-colors py-2" data-i18n="navTownhouse">Chalets Alquiler</button>
         <button onclick="openComparisonModal()" class="hover:text-amber-300 transition-colors py-2 flex items-center">
           <span data-i18n="compareBtn">Comparativa</span>
         </button>
@@ -114,14 +114,14 @@
             <span class="text-amber-400">03.</span>
             <span data-i18n="navGuide">Info para Restaurante</span>
           </span>
-          <span class="text-[10px] px-2 py-0.5 bg-amber-400 text-slate-950 rounded-full font-bold">GUÍA & CONTACTO</span>
+          <span class="text-[10px] px-2 py-0.5 bg-amber-400 text-slate-950 rounded-full font-bold">GUÍA & BENCHMARK</span>
         </button>
         <button onclick="mobileNavigate('townhouse')" class="flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-white/10 text-left font-bold text-sm text-slate-100">
           <span class="flex items-center space-x-2">
             <span class="text-amber-400">04.</span>
-            <span data-i18n="navTownhouse">Chalet (Personal)</span>
+            <span data-i18n="navTownhouse">Chalets para Rentar</span>
           </span>
-          <span class="text-[10px] px-2 py-0.5 bg-white/10 text-slate-300 rounded-full">EN BÚSQUEDA</span>
+          <span class="text-[10px] px-2 py-0.5 bg-emerald-500 text-slate-950 rounded-full font-black">2 OPCIONES</span>
         </button>
       </div>
 
@@ -176,7 +176,7 @@
         <span class="px-3.5 py-1 rounded-full bg-black/50 border border-white/20 backdrop-blur-md font-bold text-[11px] text-amber-300">
           PORTAFOLIO EXCLUSIVO 2026
         </span>
-        <span class="text-slate-300 hidden sm:inline">DOWNTOWN • BUSINESS BAY • MARINA</span>
+        <span class="text-slate-300 hidden sm:inline">DOWNTOWN • BUSINESS BAY • MARINA • LAGOONS</span>
       </div>
       <div class="text-slate-300 text-right">
         <span>PREPARADO PARA</span> <strong class="text-white ml-1 font-display tracking-wider">YULIAN</strong>
@@ -203,9 +203,9 @@
             <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
           </button>
           
-          <button onclick="setTab('guide'); scrollToSection('section-guide')" class="btn-horizon-glass px-6 py-3 text-xs font-bold flex items-center">
-            <svg class="w-4 h-4 mr-2 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            <span data-i18n="navGuide">Info para Restaurante</span>
+          <button onclick="setTab('townhouse'); scrollToSection('section-townhouse')" class="btn-horizon-glass px-6 py-3 text-xs font-bold flex items-center">
+            <svg class="w-4 h-4 mr-2 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+            <span data-i18n="tabTownhouse">Ver Chalets para Rentar (2 Opciones)</span>
           </button>
         </div>
       </div>
@@ -217,9 +217,9 @@
       <!-- Left: Price Range -->
       <div>
         <div class="text-xs uppercase tracking-widest text-slate-300">
-          <span data-i18n="startingFrom">Desde</span> <strong class="text-amber-300 font-bold text-base">€450,000 (1.8M AED)</strong>
+          <span data-i18n="startingFrom">Desde</span> <strong class="text-amber-300 font-bold text-base">€450,000 (1.8M AED) • Chalets desde €2,708/mes</strong>
         </div>
-        <div class="text-[11px] text-slate-400 uppercase tracking-wider mt-0.5">Downtown & Business Bay, Dubai</div>
+        <div class="text-[11px] text-slate-400 uppercase tracking-wider mt-0.5">Downtown, Business Bay, Lagoons & Town Square</div>
       </div>
 
       <!-- Center: Scroll Indicator -->
@@ -233,18 +233,18 @@
       <div class="flex justify-start md:justify-end">
         <div class="horizon-status-box w-full max-w-xs space-y-2.5">
           <div class="flex justify-between items-center text-xs">
-            <span class="text-slate-300 font-semibold uppercase tracking-wider text-[11px]">ESTADO DEL PORTAFOLIO</span>
+            <span class="text-slate-300 font-semibold uppercase tracking-wider text-[11px]">PORTAFOLIO COMPLETO</span>
             <span class="text-emerald-400 font-bold flex items-center text-xs">
               <span class="w-2 h-2 rounded-full bg-emerald-400 mr-1.5 animate-ping"></span>
-              4 Opciones Listas
+              6 Opciones Listas
             </span>
           </div>
           <div class="w-full bg-white/15 h-1.5 rounded-full overflow-hidden">
-            <div class="bg-gradient-to-r from-amber-400 to-amber-200 h-full w-full rounded-full"></div>
+            <div class="bg-gradient-to-r from-amber-400 to-emerald-400 h-full w-full rounded-full"></div>
           </div>
           <div class="flex justify-between items-center text-[11px] text-slate-200 pt-1 border-t border-white/10">
-            <span>2-3 Habitaciones</span>
-            <span class="text-amber-300 font-semibold">Downtown / Business Bay</span>
+            <span>4 Aptos Compra</span>
+            <span class="text-emerald-300 font-semibold">2 Chalets Renta</span>
           </div>
         </div>
       </div>
@@ -263,7 +263,7 @@
           <span>01.</span>
           <span data-i18n="tabLiving" class="truncate">Apartamento para Vivir</span>
         </span>
-        <span class="px-2 py-0.5 rounded-full bg-slate-950 text-white text-[10px] font-black flex-shrink-0">4 LISTAS</span>
+        <span class="px-2 py-0.5 rounded-full bg-slate-950 text-white text-[10px] font-black flex-shrink-0">4 COMPRA</span>
       </button>
 
       <!-- Tab 2: Commercial -->
@@ -275,7 +275,7 @@
         <span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-semibold flex-shrink-0">LOCAL</span>
       </button>
 
-      <!-- Tab 3: Restaurant Strategy & Supply Guide (NEW) -->
+      <!-- Tab 3: Restaurant Strategy & Supply Guide -->
       <button id="nav-tab-guide" onclick="setTab('guide')" class="py-3 px-4 rounded-full border border-amber-500/30 text-amber-300 hover:text-white hover:bg-amber-500/20 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between bg-amber-500/10">
         <span class="flex items-center space-x-1.5 truncate">
           <span>03.</span>
@@ -284,13 +284,13 @@
         <span class="px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black flex-shrink-0">ESTRATEGIA</span>
       </button>
 
-      <!-- Tab 4: Townhouse -->
+      <!-- Tab 4: Townhouse Rentals (UPDATED) -->
       <button id="nav-tab-townhouse" onclick="setTab('townhouse')" class="py-3 px-4 rounded-full border border-white/15 text-slate-300 hover:text-white hover:bg-white/10 font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-between">
         <span class="flex items-center space-x-1.5 truncate">
           <span>04.</span>
-          <span data-i18n="tabTownhouse" class="truncate">Chalet para Rentar</span>
+          <span data-i18n="tabTownhouse" class="truncate">Chalets para Rentar</span>
         </span>
-        <span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-semibold flex-shrink-0">PERSONAL</span>
+        <span class="px-2 py-0.5 rounded-full bg-emerald-500 text-slate-950 text-[10px] font-black flex-shrink-0">2 RENTAS</span>
       </button>
 
     </div>
@@ -328,14 +328,14 @@
     </div>
   </section>
 
-  <!-- MAIN SECTION 3: RESTAURANT STRATEGIC & SUPPLY GUIDE (NEW) -->
+  <!-- MAIN SECTION 3: RESTAURANT STRATEGIC & SUPPLY GUIDE -->
   <section id="section-guide" class="hidden flex-1 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full py-16">
     <div id="guide-content">
       <!-- Injected by JavaScript -->
     </div>
   </section>
 
-  <!-- MAIN SECTION 4: TOWNHOUSE FOR RENT -->
+  <!-- MAIN SECTION 4: TOWNHOUSE FOR RENT (NOW WITH DETAILED PROPOSALS) -->
   <section id="section-townhouse" class="hidden flex-1 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full py-16">
     <div id="townhouse-content">
       <!-- Injected by JavaScript -->

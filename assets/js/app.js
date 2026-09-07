@@ -25,7 +25,7 @@ const TRANSLATIONS = {
     navLiving: "Residencial (Vivir)",
     navCommercial: "Restaurante (Local)",
     navGuide: "Info Restaurante",
-    navTownhouse: "Chalet (Personal)",
+    navTownhouse: "Chalets Alquiler",
     getConsultation: "Get A Consultation ↗",
     
     tabLiving: "Apartamento para Vivir",
@@ -34,8 +34,8 @@ const TRANSLATIONS = {
     tabCommercialSub: "12k-15k sqft • Áreas Abiertas",
     tabGuide: "Info Restaurante",
     tabGuideSub: "Estrategia, Almacén & Proveedores",
-    tabTownhouse: "Chalet para Rentar",
-    tabTownhouseSub: "4 BHK • Damac Hills (Personal)",
+    tabTownhouse: "Chalets para Rentar",
+    tabTownhouseSub: "3-4 BHK • Damac Lagoons & Town Square",
     
     compareBtn: "Comparar Opciones",
     contactAdvisor: "Contactar Asesor",
@@ -52,6 +52,8 @@ const TRANSLATIONS = {
     // Section Headers
     livingSectionTitle: "Residencias Seleccionadas",
     livingSectionDesc: "Propiedades con vistas directas al Burj Khalifa, Skyline de Sheikh Zayed Rd y Canal, acabados premium y máxima idoneidad para vivir con tu madre.",
+    townhouseSectionTitle: "Chalets para Rentar (Alojamiento de Personal)",
+    townhouseSectionDesc: "Opciones disponibles de 3 y 4 habitaciones en DAMAC Lagoons y Town Square Dubai, con amplios jardines y rápida conexión hacia el restaurante.",
     
     // Status Banners
     statusWorking: "Actualmente Trabajando en Encontrarte las mejores Opciones",
@@ -108,7 +110,7 @@ const TRANSLATIONS = {
     navLiving: "Living (Residential)",
     navCommercial: "Restaurant (Location)",
     navGuide: "Restaurant Info",
-    navTownhouse: "Townhouse (Staff)",
+    navTownhouse: "Townhouses Rent",
     getConsultation: "Get A Consultation ↗",
     
     tabLiving: "Living Apartment",
@@ -117,8 +119,8 @@ const TRANSLATIONS = {
     tabCommercialSub: "12k-15k sqft • Open Spaces",
     tabGuide: "Restaurant Info",
     tabGuideSub: "Strategy, Warehousing & Supply Hub",
-    tabTownhouse: "Townhouse for Rent",
-    tabTownhouseSub: "4 BHK • Damac Hills (Staff)",
+    tabTownhouse: "Townhouses for Rent",
+    tabTownhouseSub: "3-4 BHK • Damac Lagoons & Town Square",
     
     compareBtn: "Compare Proposals",
     contactAdvisor: "Contact Advisor",
@@ -135,6 +137,8 @@ const TRANSLATIONS = {
     // Section Headers
     livingSectionTitle: "Curated Residences",
     livingSectionDesc: "Prime properties featuring direct Burj Khalifa, Sheikh Zayed Rd Skyline & Canal vistas, luxury turnkey finishes, and optimal comfort for you and your mother.",
+    townhouseSectionTitle: "Townhouses for Rent (Staff Accommodation)",
+    townhouseSectionDesc: "Available 3 & 4-bedroom proposals in DAMAC Lagoons and Town Square Dubai, with private gardens and fast road transit.",
     
     // Status Banners
     statusWorking: "Currently Sourcing the Best Options",
@@ -207,6 +211,30 @@ function formatPrice(aedAmount) {
       return `${(finalVal / 1000000).toFixed(3).replace(/\.?0+$/, '')}M AED`;
     }
     return `${Math.round(finalVal).toLocaleString()} AED`;
+  }
+}
+
+function formatRentPrice(aedAnnualAmount) {
+  if (state.currency === 'EUR') {
+    const eurAnnual = aedAnnualAmount * PROPOSALS_DATA.rates.AED_TO_EUR;
+    const eurMonthly = Math.round(eurAnnual / 12);
+    return {
+      main: `€${Math.round(eurAnnual).toLocaleString()} / año`,
+      sub: `~€${eurMonthly.toLocaleString()} / mes`
+    };
+  } else if (state.currency === 'USD') {
+    const usdAnnual = aedAnnualAmount * PROPOSALS_DATA.rates.AED_TO_USD;
+    const usdMonthly = Math.round(usdAnnual / 12);
+    return {
+      main: `$${Math.round(usdAnnual).toLocaleString()} / year`,
+      sub: `~$${usdMonthly.toLocaleString()} / month`
+    };
+  } else {
+    const aedMonthly = Math.round(aedAnnualAmount / 12);
+    return {
+      main: `${Math.round(aedAnnualAmount).toLocaleString()} AED / año`,
+      sub: `~${aedMonthly.toLocaleString()} AED / mes`
+    };
   }
 }
 
@@ -365,11 +393,12 @@ function updateUI() {
   const inactiveTabClass = "border-white/15 text-slate-300 hover:text-white hover:bg-white/10";
   const activeGuideClass = "border-amber-400 text-slate-950 bg-amber-400 shadow-xl";
   const inactiveGuideClass = "border-amber-500/30 text-amber-300 hover:text-white hover:bg-amber-500/20 bg-amber-500/10";
+  const activeTownhouseClass = "border-emerald-400 text-slate-950 bg-emerald-400 shadow-xl font-black";
 
   if (tabLiving) tabLiving.className = `py-3 px-4 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between shadow-lg ${state.activeTab === 'living' ? activeTabClass : inactiveTabClass}`;
   if (tabCommercial) tabCommercial.className = `py-3 px-4 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'commercial' ? activeTabClass : inactiveTabClass}`;
   if (tabGuide) tabGuide.className = `py-3 px-4 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'guide' ? activeGuideClass : inactiveGuideClass}`;
-  if (tabTownhouse) tabTownhouse.className = `py-3 px-4 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'townhouse' ? activeTabClass : inactiveTabClass}`;
+  if (tabTownhouse) tabTownhouse.className = `py-3 px-4 rounded-full border font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-between ${state.activeTab === 'townhouse' ? activeTownhouseClass : inactiveTabClass}`;
 
   // Section visibility
   const secLiving = document.getElementById('section-living');
@@ -397,7 +426,7 @@ function updateUI() {
   }
 }
 
-// Render Property Cards
+// Render Residential Property Cards
 function renderPropertyCards() {
   const container = document.getElementById('properties-grid');
   if (!container) return;
@@ -498,6 +527,153 @@ function renderPropertyCards() {
     `;
     container.appendChild(card);
   });
+}
+
+// Render Townhouse Rentals Section (2 Active Options)
+function renderTownhouseSection() {
+  const container = document.getElementById('townhouse-content');
+  if (!container) return;
+  const t = TRANSLATIONS[state.lang];
+
+  container.innerHTML = `
+    <div class="max-w-7xl mx-auto space-y-12">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-900/10 pb-6">
+        <div>
+          <span class="text-emerald-600 font-bold uppercase tracking-widest text-xs block mb-1">STAFF & EMPLOYEE ACCOMMODATION</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
+            ${t.townhouseSectionTitle}
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 mt-2 max-w-2xl">
+            ${t.townhouseSectionDesc}
+          </p>
+        </div>
+
+        <div class="flex items-center space-x-3 self-start md:self-auto">
+          <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-black bg-emerald-900 text-emerald-300 border border-emerald-500/40">
+            ✓ 2 Opciones Disponibles
+          </span>
+        </div>
+      </div>
+
+      <!-- Townhouses Cards Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        ${PROPOSALS_DATA.townhouseRentals.map(th => {
+          const rent = formatRentPrice(th.priceAedAnnual);
+          const area = formatArea(th.sqft);
+
+          return `
+            <div class="horizon-card overflow-hidden flex flex-col group relative border-emerald-500/30">
+              
+              <!-- Image Container -->
+              <div class="relative h-80 w-full overflow-hidden bg-slate-900">
+                <img src="${th.heroImage}" alt="${th.name}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                
+                <!-- Badges -->
+                <div class="absolute top-4 left-4 right-4 flex items-center justify-between">
+                  <span class="px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-500 text-slate-950 shadow-lg">
+                    ${th.badge}
+                  </span>
+                  <span class="badge-clean-white px-3 py-1 rounded-full text-xs font-semibold">
+                    ${th.statusBadge}
+                  </span>
+                </div>
+
+                <!-- Specs Pill -->
+                <div class="absolute bottom-4 left-4 flex items-center space-x-2">
+                  <div class="px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs font-bold flex items-center">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2"></span>
+                    ${th.beds} Habitaciones • ${th.baths} Baños
+                  </div>
+                </div>
+
+                <!-- Area Pill -->
+                <div class="absolute bottom-4 right-4 px-3 py-1.5 rounded-full bg-slate-950/80 border border-white/10 text-amber-300 text-xs font-bold backdrop-blur-md">
+                  ${area}
+                </div>
+              </div>
+
+              <!-- Body -->
+              <div class="p-6 md:p-8 flex-1 flex flex-col justify-between">
+                <div>
+                  
+                  <!-- Title -->
+                  <div class="mb-4">
+                    <h3 class="text-2xl font-display font-black text-white group-hover:text-emerald-300 transition-colors tracking-tight">
+                      ${th.name}
+                    </h3>
+                    <p class="text-xs text-slate-300 flex items-center mt-1">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-2"></span>
+                      ${th.location.name}
+                    </p>
+                  </div>
+
+                  <!-- Description -->
+                  <p class="text-xs md:text-sm text-slate-300 leading-relaxed mb-6">
+                    ${th.description[state.lang]}
+                  </p>
+
+                  <!-- Payment Breakdown Options in Current Currency -->
+                  <div class="bg-black/50 p-4 rounded-2xl border border-white/10 mb-6 space-y-2.5">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-amber-400 block">Esquema de Pago (Cheques):</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      ${th.paymentOptions[state.lang].map(opt => {
+                        const optRent = formatRentPrice(opt.aed);
+                        return `
+                          <div class="bg-white/5 p-2.5 rounded-xl border border-white/5 flex items-center justify-between text-xs">
+                            <span class="text-slate-300 font-semibold">${opt.cheques} Cheque${opt.cheques > 1 ? 's' : ''}:</span>
+                            <span class="font-bold text-white">${optRent.main}</span>
+                          </div>
+                        `;
+                      }).join('')}
+                    </div>
+                  </div>
+
+                  <!-- Pros Checklist -->
+                  <div class="space-y-2 mb-6">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">Ventajas para el Personal:</span>
+                    <div class="grid grid-cols-1 gap-1.5">
+                      ${th.pros[state.lang].map(p => `
+                        <div class="flex items-start space-x-2 text-xs text-slate-200">
+                          <span class="text-emerald-400 font-bold leading-none">✓</span>
+                          <span>${p}</span>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Footer / Price & Contact -->
+                <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-auto">
+                  <div>
+                    <div class="text-xs text-slate-400 font-medium">${rent.sub}</div>
+                    <div class="text-2xl md:text-3xl font-black text-white font-display">
+                      ${rent.main}
+                    </div>
+                  </div>
+
+                  <a
+                    href="https://wa.me/971508379080?text=${encodeURIComponent('Hola David, soy Yulian. Me interesa consultar sobre la opción de alquiler para personal: ' + th.name)}"
+                    target="_blank"
+                    class="btn-horizon-white !px-5 !py-3 text-xs font-bold flex items-center justify-center"
+                  >
+                    <span>Consultar Renta</span>
+                    <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                  </a>
+                </div>
+
+              </div>
+
+            </div>
+          `;
+        }).join('')}
+      </div>
+
+    </div>
+  `;
 }
 
 // Render Restaurant Strategic & Supply Guide Section + Benchmark Module
@@ -665,7 +841,7 @@ function renderRestaurantGuideSection() {
         </div>
       </div>
 
-      <!-- MODULE 4: SPANISH RESTAURANTS BENCHMARK SUB-SECTION (PERFECTLY FRAMED) -->
+      <!-- MODULE 4: SPANISH RESTAURANTS BENCHMARK SUB-SECTION -->
       <div id="benchmark-module-container">
         <!-- Rendered by renderBenchmarkSubSection() -->
       </div>
@@ -676,7 +852,7 @@ function renderRestaurantGuideSection() {
   renderBenchmarkSubSection();
 }
 
-// Render Spanish Restaurants Benchmark Sub-Section (Framed 100% width with dynamic currency)
+// Render Spanish Restaurants Benchmark Sub-Section
 function renderBenchmarkSubSection() {
   const container = document.getElementById('benchmark-module-container');
   if (!container) return;
@@ -693,7 +869,6 @@ function renderBenchmarkSubSection() {
     return matchesCategory && matchesSearch;
   });
 
-  // Dynamic summary strings based on currency
   const summaryRange = formatTicketRange(120, 500, true) + ' / comensal';
   const summarySub = `Casual (${formatTicketRange(120, 200)}) vs. Luxury (${formatTicketRange(300, 500, true)})`;
 
@@ -768,7 +943,7 @@ function renderBenchmarkSubSection() {
         </div>
       </div>
 
-      <!-- Framed Desktop Table (Fits 100% width cleanly without overflowing) -->
+      <!-- Framed Desktop Table -->
       <div class="hidden lg:block w-full rounded-2xl border border-white/10 overflow-hidden bg-black/40">
         <table class="w-full text-left text-xs table-fixed">
           <thead class="bg-white/10 text-slate-200 uppercase tracking-wider text-[10px] border-b border-white/10">
@@ -844,7 +1019,7 @@ function renderBenchmarkSubSection() {
         </table>
       </div>
 
-      <!-- Mobile & Tablet Cards View (Framed & Clean) -->
+      <!-- Mobile & Tablet Cards View -->
       <div class="lg:hidden space-y-3.5">
         ${filteredData.map(item => {
           const isPlus = item.avgTicketAed.label.includes('+');
@@ -988,76 +1163,6 @@ function renderCommercialSection() {
       <!-- Action Box -->
       <div class="text-center py-6">
         <button onclick="openContactModal('commercial')" class="btn-horizon-white text-sm font-bold shadow-2xl">
-          <span>${t.requestCall}</span>
-          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
-        </button>
-      </div>
-    </div>
-  `;
-}
-
-// Render Townhouse Section
-function renderTownhouseSection() {
-  const th = PROPOSALS_DATA.townhouseSearch;
-  const t = TRANSLATIONS[state.lang];
-  const container = document.getElementById('townhouse-content');
-  if (!container) return;
-
-  container.innerHTML = `
-    <div class="max-w-5xl mx-auto">
-      <div class="horizon-card p-8 md:p-12 relative overflow-hidden mb-8 border-white/20" style="background-image: linear-gradient(180deg, rgba(7,14,27,0.75) 0%, rgba(7,14,27,0.95) 100%), url('assets/images/backgrounds/townhouse_bg.jpg'); background-size: cover; background-position: center;">
-        
-        <div class="flex items-center space-x-3 text-amber-300 mb-4">
-          <span class="relative flex h-3 w-3">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
-          </span>
-          <span class="text-xs font-bold uppercase tracking-widest">${th.status[state.lang]}</span>
-        </div>
-
-        <h2 class="text-3xl md:text-5xl font-display font-black text-white mb-4 tracking-tight">
-          ${th.title[state.lang]}
-        </h2>
-        <p class="text-slate-200 text-sm md:text-base leading-relaxed mb-8 max-w-2xl">
-          ${t.statusWorkingSub}
-        </p>
-
-        <!-- Requirements Summary Matrix -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-8 border-t border-white/20">
-          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 backdrop-blur-md">
-            <span class="text-xs text-amber-400 font-semibold uppercase tracking-wider block mb-1">${t.beds}</span>
-            <span class="text-xl font-bold text-white font-display">${th.specs.type[state.lang]}</span>
-          </div>
-          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 backdrop-blur-md">
-            <span class="text-xs text-amber-400 font-semibold uppercase tracking-wider block mb-1">${t.budgetRange}</span>
-            <span class="text-xl font-bold text-white font-display">${th.specs.budget}</span>
-          </div>
-          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 backdrop-blur-md">
-            <span class="text-xs text-amber-400 font-semibold uppercase tracking-wider block mb-1">${t.locationsTarget}</span>
-            <span class="text-sm font-medium text-slate-200">${th.specs.locations.join(" • ")}</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Specific Requirements Checklist -->
-      <div class="horizon-card p-8 md:p-10 mb-8 border-white/10">
-        <h3 class="text-2xl font-display font-bold text-white mb-6 flex items-center">
-          <span class="w-3 h-3 rounded-full bg-amber-400 mr-3"></span>
-          ${t.technicalFeatures}
-        </h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          ${th.specs.requirements[state.lang].map(req => `
-            <div class="flex items-start space-x-3 bg-white/5 p-4 rounded-2xl border border-white/10">
-              <span class="text-amber-400 text-lg font-bold">✓</span>
-              <span class="text-sm text-slate-200 leading-snug">${req}</span>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-
-      <!-- Action Box -->
-      <div class="text-center py-6">
-        <button onclick="openContactModal('townhouse')" class="btn-horizon-white text-sm font-bold shadow-2xl">
           <span>${t.requestCall}</span>
           <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
         </button>
@@ -1489,7 +1594,7 @@ function initPropertyChart(prop) {
   });
 }
 
-// Comparison Matrix Modal (Framed without overflow)
+// Comparison Matrix Modal
 function openComparisonModal() {
   const modal = document.getElementById('comparison-modal');
   if (modal) {
@@ -1584,7 +1689,7 @@ function renderComparisonTable() {
           <tr>
             <td class="p-3.5 text-slate-400 font-medium">${t.compGrowth5y}</td>
             ${PROPOSALS_DATA.properties.map(p => `
-              <td class="p-3.5 text-emerald-400 font-bold">
+              <td class="p-4 text-emerald-400 font-bold">
                 ${p.appreciationHistory.growth5y}
               </td>
             `).join('')}

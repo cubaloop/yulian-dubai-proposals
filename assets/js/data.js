@@ -6,7 +6,7 @@ const PROPOSALS_DATA = {
     budgetLiving: "2.0M - 3.4M AED",
     commercialPreference: "Espacio para Restaurante (12,000 - 15,000 sqft)",
     budgetCommercial: "3.0M - 3.8M AED",
-    townhousePreference: "Townhouse 4 BHK para Empleados en Damac Hills o similar"
+    townhousePreference: "Townhouse / Chalet 3-4 BHK para Empleados en Damac Lagoons / Town Square"
   },
   rates: {
     AED_TO_EUR: 0.25,
@@ -141,7 +141,7 @@ const PROPOSALS_DATA = {
           es: [
             "Acceso directo a bulevares peatonales seguros y planos, ideal para paseos con tu madre sin cruces de tráfico pesado.",
             "Cercanía inmediata a centros médicos de élite (Mediclinic Dubai Mall a 5 min).",
-            "Edificio de alta gama con conserjería 24/7, ascensores de alta velocidad y ambiente residencial sereno.",
+            "Edificio de alta gama con conserjería 24/7, ascensores de alta velocidad y ambiente residencial sereno."
           ],
           en: [
             "Direct access to safe, flat pedestrian boulevards ideal for peaceful walks with your mother.",
@@ -378,6 +378,156 @@ const PROPOSALS_DATA = {
       }
     }
   ],
+  townhouseRentals: [
+    {
+      id: "damac-lagoons-malta",
+      name: "Chalet 4 BHK • DAMAC Lagoons (Malta Cluster)",
+      subTitle: "DAMAC Lagoons • Dubailand / Hessa St",
+      badge: "A Estrenar (Brand New)",
+      statusBadge: "Entrega Octubre 2026",
+      featured: true,
+      priceAedAnnual: 130000,
+      paymentOptions: {
+        es: [
+          { cheques: 2, aed: 130000, label: "130,000 AED (en 2 Cheques)" },
+          { cheques: 4, aed: 140000, label: "140,000 AED (en 4 Cheques)" }
+        ],
+        en: [
+          { cheques: 2, aed: 130000, label: "130,000 AED (2 Cheques)" },
+          { cheques: 4, aed: 140000, label: "140,000 AED (4 Cheques)" }
+        ]
+      },
+      sqft: 2270,
+      sqm: 210.88,
+      beds: 4,
+      baths: 2,
+      developer: "DAMAC Properties",
+      furnishing: {
+        es: "Sin Amueblar (A Estrenar con Jardín Privado y Terraza)",
+        en: "Unfurnished (Brand New with Garden & Terrace)"
+      },
+      availability: {
+        es: "Inspección/Snagging el 15 de Septiembre 2026. Entrega de llaves programada máximo para el 15 de Octubre 2026.",
+        en: "Snagging and Inspection scheduled for 15th September 2026. Handover of keys maximum 15th October 2026."
+      },
+      location: {
+        name: "DAMAC Lagoons - Malta Cluster, Dubailand",
+        coords: [25.0185, 55.2340],
+        highlights: {
+          es: "Ubicado junto a Hessa Street con conexión inmediata a Sheikh Mohammed Bin Zayed Rd, Emirates Rd y Al Khail Rd para transporte rápido del personal hacia el restaurante.",
+          en: "Situated near Hessa Street offering direct access to SMBZ Road, Emirates Road, and Al Khail Road for swift staff transit to central Dubai."
+        }
+      },
+      heroImage: "assets/images/townhouses/damac_lagoons_01.jpg",
+      gallery: [
+        "assets/images/townhouses/damac_lagoons_01.jpg",
+        "assets/images/townhouses/damac_lagoons_02.jpg",
+        "assets/images/townhouses/damac_lagoons_03.jpg"
+      ],
+      description: {
+        es: "Espectacular chalet adosado (Townhouse) de 4 habitaciones a estrenar en el exclusivo cluster Malta de DAMAC Lagoons. Diseñado con una distribución generosa de 210.88 m², incluye amplio jardín privado, terraza superior, acabados modernos a estrenar y plazas de parking privadas. La comunidad ofrece un estilo de vida resort con lagunas navegables de aguas cristalinas, playas artificiales y parques deportivos.",
+        en: "Brand new 4-bedroom townhouse in DAMAC Lagoons (Malta Cluster). Boasting 2,270 sq.ft (210.88 sq.m) with a private garden, rooftop terrace, and state-of-the-art construction. Perfect staff accommodation in a world-class resort master community."
+      },
+      staffSuitability: {
+        score: "9.9/10",
+        summary: {
+          es: "Excelente relación precio/capacidad (4 dormitorios nuevos por €32,500/año) para alojar cómodamente al equipo del restaurante.",
+          en: "Unbeatable price-to-space ratio (4 brand new bedrooms for €32,500/year) ideal for staff accommodation."
+        }
+      },
+      pros: {
+        es: [
+          "Chalet 100% a estrenar (Entrega de llaves Octubre 2026)",
+          "4 habitaciones amplias ideales para alojamiento de personal",
+          "Jardín privado espacioso y terraza exterior",
+          "Excelente precio de alquiler en el mercado (Desde 130k AED / ~€32,500 año)",
+          "Conexión rápida por Hessa St y Al Khail hacia el restaurante"
+        ],
+        en: [
+          "100% Brand new construction (Handover October 2026)",
+          "4 Spacious bedrooms ideal for restaurant staff team",
+          "Private garden and expansive rooftop terrace",
+          "Exceptional market rental price (From 130k AED / ~€32,500 year)",
+          "Fast road transit via Hessa St and Al Khail to restaurant"
+        ]
+      }
+    },
+    {
+      id: "reem-townhouses-nshama",
+      name: "Chalet 3 BHK • Reem Townhouses by Nshama",
+      subTitle: "Town Square Dubai • Al Yalayis 2 / Emirates Rd",
+      badge: "Comunidad Consolidada",
+      statusBadge: "Vacante Septiembre 2026",
+      featured: false,
+      priceAedAnnual: 155000,
+      paymentOptions: {
+        es: [
+          { cheques: 1, aed: 155000, label: "155,000 AED (en 1 Cheque)" },
+          { cheques: 2, aed: 160000, label: "160,000 AED (en 2 Cheques)" },
+          { cheques: 4, aed: 165000, label: "165,000 AED (en 4 Cheques)" }
+        ],
+        en: [
+          { cheques: 1, aed: 155000, label: "155,000 AED (1 Cheque)" },
+          { cheques: 2, aed: 160000, label: "160,000 AED (2 Cheques)" },
+          { cheques: 4, aed: 165000, label: "165,000 AED (4 Cheques)" }
+        ]
+      },
+      sqft: 2023,
+      sqm: 187.94,
+      beds: 3,
+      baths: 3,
+      developer: "Nshama",
+      furnishing: {
+        es: "Sin Amueblar (En Excelente Estado de Conservación)",
+        en: "Unfurnished (Well-Maintained & Clean)"
+      },
+      availability: {
+        es: "Actualmente alquilado, queda completamente vacante en Septiembre 2026. Visitas coordinables con 48 horas de antelación.",
+        en: "Currently tenanted, vacant by September 2026. Viewings arranged with 48h prior notice."
+      },
+      location: {
+        name: "Town Square, Al Yalayis 2, Emirates Road, Dubai",
+        coords: [25.0020, 55.2810],
+        highlights: {
+          es: "Ubicado en la consolidada comunidad Town Square con acceso directo a Al Qudra Road y Emirates Road. Entorno seguro con parques, supermercados Spinneys/Carrefour, cafeterías y transporte.",
+          en: "Prime spot in established Town Square community. Direct link to Al Qudra and Emirates Rd, surrounded by lush parks and retail."
+        }
+      },
+      heroImage: "assets/images/townhouses/reem_nshama_01.jpg",
+      gallery: [
+        "assets/images/townhouses/reem_nshama_01.jpg",
+        "assets/images/townhouses/reem_nshama_02.jpg",
+        "assets/images/townhouses/reem_nshama_03.jpg"
+      ],
+      description: {
+        es: "Excelente townhouse de 3 habitaciones y 3 baños en Reem Townhouses, desarrollado por Nshama en Town Square. Propiedad impecable, muy bien cuidada y limpia. Con 187.94 m² construidos, ofrece salón amplio, cocina moderna, armarios empotrados en todos los dormitorios, jardín privado y estacionamiento cubierto para 2 vehículos. Alta demanda en la zona.",
+        en: "Clean and well-maintained 3-bedroom townhouse in Reem by Nshama, Town Square. 2,023 sq.ft of practical living space featuring 3 full bathrooms, bright living area, and private garden in a self-contained family community."
+      },
+      staffSuitability: {
+        score: "9.5/10",
+        summary: {
+          es: "Comunidad 100% terminada con todos los servicios, supermercados y transporte en la puerta para la comodidad de los empleados.",
+          en: "Fully operational community with walkable supermarkets, dining, and transit for employees."
+        }
+      },
+      pros: {
+        es: [
+          "3 habitaciones con 3 baños completos (máxima privacidad)",
+          "Propiedad muy cuidada y en impecable estado",
+          "Comunidad Town Square con supermercados, farmacias y parques",
+          "Disponible para entrar en Septiembre 2026",
+          "Facilidades de pago en 1, 2 o 4 cheques"
+        ],
+        en: [
+          "3 bedrooms with 3 full bathrooms for great privacy",
+          "Impeccable condition, well-maintained",
+          "Full community amenities (supermarkets, clinics, parks)",
+          "Vacant and ready in September 2026",
+          "Flexible payment options (1, 2, or 4 cheques)"
+        ]
+      }
+    }
+  ],
   commercialSearch: {
     title: {
       es: "Espacio Comercial para Restaurante",
@@ -608,34 +758,5 @@ const PROPOSALS_DATA = {
       ],
       websiteUrl: "https://sevilles.ae/"
     }
-  ],
-  townhouseSearch: {
-    title: {
-      es: "Chalet para Rentar (Personal y Empleados)",
-      en: "Townhouse for Rent (Staff Accommodation)"
-    },
-    status: {
-      es: "Actualmente Trabajando en Encontrarte las mejores Opciones",
-      en: "Currently Sourcing the Best Options"
-    },
-    specs: {
-      type: { es: "Townhouse / Chalet 4 Habitaciones (4BHK)", en: "4-Bedroom Townhouse (4BHK)" },
-      locations: ["DAMAC Hills", "DAMAC Hills 2", "Town Square", "Dubai Hills Estate"],
-      budget: "Precio de Mercado / Market Rental Price",
-      requirements: {
-        es: [
-          "4 habitaciones amplias con baño y armarios empotrados",
-          "Ubicación en comunidad cerrada con seguridad 24/7 y áreas verdes",
-          "Fácil conexión a vías principales para transporte de empleados hacia el restaurante",
-          "Supermercados y servicios de primera necesidad dentro de la comunidad"
-        ],
-        en: [
-          "4 Spacious bedrooms with built-in wardrobes and bathrooms",
-          "Gated master community with 24/7 security and lush parks",
-          "Fast arterial road connectivity for staff shuttle to restaurant",
-          "Internal community supermarkets, retail and sports courts"
-        ]
-      }
-    }
-  }
+  ]
 };
